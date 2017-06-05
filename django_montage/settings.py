@@ -136,4 +136,4 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = 'auth_login'
 LOGIN_REDIRECT_URL = 'user:profile'
-ADMINS = ['mttwong', 'admin']
+ADMINS = ['admin']
