@@ -1,10 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponseForbidden, \
-    JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, Http404
+from django.shortcuts import get_object_or_404, render, redirect
+from django.http import Http404
 from django.views.generic import ListView, DetailView, CreateView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
@@ -15,8 +11,28 @@ from rest_framework.permissions import IsAuthenticated
 from rafter_user_service.models import Application, Profile
 from rafter_user_service.serializers import ApplicationJWTSerializer, ApplicationSerializer
 from rafter_user_service.permissions import IsOwnerOrPost
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+class UserDetail(DetailView):
+    model = User
+    context_object_name='user'
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+    template_name = 'rafter_user_service/user_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(UserDetail, self).get_context_data(**kwargs)
+        # Get all the applications for this user
+        user = context['user']
+        context['applications'] = user.profile.application_set.all()
+        return context
+
+@login_required
+def user_profile(request):
+    user = request.user
+    return redirect('user:user', permanent=True, username=user.username)
+
 class ApplicationList(ListView):
     model = Application
 

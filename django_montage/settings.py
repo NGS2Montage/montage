@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,6 +41,11 @@ INSTALLED_APPS = [
     'rafter_user_service',
     'rest_framework',
 ]
+
+# Registration settings
+ACCOUNT_ACTIVATION_DAYS = 3
+REGISTRATION_OPEN = True
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,8 +129,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = 'auth_login'
+LOGIN_REDIRECT_URL = 'user:profile'
+ADMINS = ['mttwong', 'admin']
