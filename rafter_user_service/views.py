@@ -1,10 +1,6 @@
-from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponseForbidden, \
-    JsonResponse, HttpResponseNotAllowed, HttpResponseBadRequest, Http404
+from django.shortcuts import get_object_or_404
+from django.http import Http404
 from django.views.generic import ListView, DetailView, CreateView
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView
