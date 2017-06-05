@@ -18,8 +18,8 @@ from django.contrib import admin
 from montage_index import views
 
 urlpatterns = [
-    url(r'^', include('django.contrib.auth.urls')),
     url(r'^$', views.index),
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('rafter_user_service.urls')),
+    url(r'^accounts/', include('registration.backends.admin_approval.urls')),
 ]
