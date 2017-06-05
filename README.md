@@ -7,15 +7,15 @@ To install:
     ```
     pip install -r requirements.txt
     ```  
-3. Then create migrations with
+3. Then create migrations with:
     ```
     python manage.py makemigrations
     ```  
-4. Apply these migrations with 
+4. Apply these migrations with:
     ```
     python manage.py migrate
     ```
-5. Then you can start the server with 
+5. Then you can start the server with:
     ```
     python manage.py runserver
     ```
