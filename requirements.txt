@@ -1,1 +1,3 @@
 django
+django-rafter-user-service
+djangorestframework
