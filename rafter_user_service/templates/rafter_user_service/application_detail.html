@@ -1,0 +1,7 @@
+<hr>{{ object.name }}</h1>
+{% if object.desc %}
+    <p>{{ object.desc }}<p>
+{% endif %}
+{% if object.profile_id == user.profile.id %}
+    <p><a href="{% url 'user:auth_app' object.id %}">Authenticate</a></p>
+{% endif %}

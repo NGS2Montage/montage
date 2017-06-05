@@ -1,3 +1,5 @@
 django
-django-rafter-user-service
 djangorestframework
+djangorestframework-jwt
+cryptography
+bcrypt
