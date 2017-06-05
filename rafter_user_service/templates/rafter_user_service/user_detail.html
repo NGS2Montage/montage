@@ -1,0 +1,9 @@
+{% block content %}
+    <h1>{{ user.username }}</h1>
+    <h2>Applications</h2>
+    <ul>
+        {% for application in applications %}
+            <li><a href="{% url 'user:detail_app' application.id %}">{{ application.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
