@@ -1,1 +1,5 @@
-<h2>Welcome to Montage</h2>
+{% include 'montage_index/base.html' %}
+{% block title %}Welcome to Montage{% endblock %}
+{% block content %}
+    <p><a href={% url 'user:profile' %}>User (redirects to login if no user)</a></p>
+{% endblock %}
