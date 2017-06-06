@@ -4,6 +4,54 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from .util import make_user, make_test_user, make_app
 
+class UserDetailViewTest(TestCase):
+    def setUp(self):
+        self.user = make_test_user()
+
+    def get_user(self):
+        return self.client.get(reverse('user:user', args=[self.user.username]))
+
+    def test_show_user_no_apps(self):
+        response = self.get_user()
+        self.assertQuerysetEqual(response.context['applications'], [])
+
+    def test_show_user_one_app(self):
+        make_app(self.user, name='test1')
+        response = self.get_user()
+        self.assertQuerysetEqual(response.context['applications'], ['<Application: test1>'])
+
+    def test_show_user_two_appa(self):
+        make_app(self.user, name='test1')
+        make_app(self.user, name='test2')
+        response = self.get_user()
+        self.assertQuerysetEqual(
+            response.context['applications'],
+            ['<Application: test1>', '<Application: test2>']
+        )
+
+class UserProfiletest(TestCase):
+    def setUp(self):
+        self.user = make_test_user()
+
+    def test_show_user_no_login(self):
+        response = self.client.get(reverse('user:profile'))
+        self.assertRedirects(
+            response,
+            reverse('auth_login') + '?next=/user/', 
+            status_code=302, 
+            target_status_code=200
+        )
+
+    def test_show_user_with_login(self):
+        self.client.login(username='test', password='test')
+        response = self.client.get(reverse('user:profile'))
+        self.assertRedirects(
+            response,
+            reverse('user:user', args=[self.user.username]), 
+            status_code=301, 
+            target_status_code=200
+        )
+        
 class ApplicationListViewTest(TestCase):
     def setUp(self):
         self.user = make_test_user()
