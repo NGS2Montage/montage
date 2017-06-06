@@ -46,6 +46,8 @@ INSTALLED_APPS = [
 # Registration settings
 ACCOUNT_ACTIVATION_DAYS = 3
 REGISTRATION_OPEN = True
+# In the future we should probable use SMTP, see
+# https://docs.djangoproject.com/en/1.11/topics/email/#smtp-backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
