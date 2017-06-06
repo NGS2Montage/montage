@@ -1,5 +1,8 @@
+{% include 'rafter_user_service/base.html' %}
+
+{% block title %}<h1>Applications</h1>{% endblock %}
+
 {% block content %}
-    <h2>Applications</h2>
     <ul>
         {% for application in object_list %}
             <li><a href="{% url 'user:detail_app' application.id %}">{{ application.name }}</a></li>
