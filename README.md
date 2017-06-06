@@ -9,7 +9,7 @@ To install:
     ```  
 3. Then create migrations with:
     ```
-    python manage.py makemigrations
+    python manage.py makemigrations rafter_user_service
     ```  
 4. Apply these migrations with:
     ```
