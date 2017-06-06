@@ -7,15 +7,11 @@ To install:
     ```
     pip install -r requirements.txt
     ```  
-3. Then create migrations with:
-    ```
-    python manage.py makemigrations rafter_user_service
-    ```  
-4. Apply these migrations with:
+3. Apply these migrations with:
     ```
     python manage.py migrate
     ```
-5. Then you can start the server with:
+4. Then you can start the server with:
     ```
     python manage.py runserver
     ```
