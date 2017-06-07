@@ -22,6 +22,6 @@ urlpatterns = [
     url(r'^viewer/(?P<match>.*)/$', views.viewer),
     url(r'^project/[(?P<match>.*)/]?$', views.project),
     url(r'^admin/', admin.site.urls),
+    url(r'^user/', include('registration.backends.admin_approval.urls')),
     url(r'^user/', include('rafter_user_service.urls')),
-    url(r'^accounts/', include('registration.backends.admin_approval.urls')),
 ]

@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^applications/(?P<pk>[0-9]+)/secret/$', get_token, name='secret'),
     url(r'^authenticate/(?P<pk>[0-9]+)/$', authenticate_app, name='auth_app'),
     url(r'^public_key/$', get_public_key, name='pub_key'),
-    url(r'^(?P<username>.+)/$', UserDetail.as_view(), name='user'),
+    url(r'^profile/(?P<username>.+)/$', UserDetail.as_view(), name='user'),
 ]

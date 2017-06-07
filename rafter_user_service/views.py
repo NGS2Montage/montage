@@ -11,7 +11,6 @@ from rest_framework.permissions import IsAuthenticated
 from rafter_user_service.models import Application, Profile
 from rafter_user_service.serializers import ApplicationJWTSerializer, ApplicationSerializer
 from rafter_user_service.permissions import IsOwnerOrPost
-from django.contrib.auth.views import LoginView as Login
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -100,15 +99,3 @@ def get_public_key(request):
         return Response(data)
     
     raise Http404('No public key.')
-
-class LoginView(Login):
-    """
-    Extending the login view so that we can add the JWT to the session.
-    Note that we add the JWT to the session after the login signal has been
-    sent.
-    """
-    def form_valid(self, form):
-        auth_login(self.request, form.get_user())
-        token = self.request.user.profile.generate_token()
-        self.request.session['JWT'] = token
-        return HttpResponseRedirect(self.get_success_url())
