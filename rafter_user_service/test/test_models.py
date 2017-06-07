@@ -40,8 +40,8 @@ class ApplicationTest(TestCase):
 
     def test_generate_access_token(self):
         app = make_app(self.user, 'test')
-        token = app.generate_access_token()
+        token = app.generate_secret()
 
         self.assertIsNotNone(app.access_token)
         self.assertNotEqual(len(app.access_token), 0)
-        self.assertTrue(app.check_token(token))
+        self.assertTrue(app.check_secret(token))

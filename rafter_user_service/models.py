@@ -48,6 +48,10 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
         
+    def generate_token(self):
+        payload = jwt_payload_handler(self.user)
+        return jwt_encode_handler(payload)
+        
     def __str__(self):
         return self.user.username
 
@@ -68,7 +72,7 @@ class Application(models.Model):
     def user(self, value):
         self.profile = value.profile
 
-    def generate_access_token(self):
+    def generate_secret(self):
         charset = string.ascii_uppercase + string.digits + string.ascii_lowercase
         token = ''.join(random.choices(charset, k=30))
 
@@ -79,12 +83,8 @@ class Application(models.Model):
         # Return the unhashed token
         return token
 
-    def check_token(self, token):
+    def check_secret(self, token):
         return self.access_token and bcrypt.hashpw(token.encode('utf-8'), self.access_token) == self.access_token
-
-    def get_user_token(self):
-        payload = jwt_payload_handler(self.user)
-        return jwt_encode_handler(payload)
 
     def __str__(self):
         return self.name

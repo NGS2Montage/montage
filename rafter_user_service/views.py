@@ -54,7 +54,7 @@ class ApplicationJWT(APIView):
         app = get_object_or_404(Application, pk=pk)
         self.check_object_permissions(request, app)
         data = {
-            'token': app.get_user_token()
+            'token': app.profile.generate_token()
         }
         return Response(data)
 
@@ -81,7 +81,7 @@ def get_token(request, pk):
     if not app.user == request.user:
         raise PermissionDenied()
 
-    token = app.generate_access_token()
+    token = app.generate_secret()
     app.save()
     data = {
         'app_id': pk,

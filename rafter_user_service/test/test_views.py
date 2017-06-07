@@ -123,13 +123,13 @@ class ApplicationGetSecretTest(TestCase):
         self.assertEqual(response.status_code, 200)
         secret_json = response.json()
         self.assertEqual(secret_json['app_id'], str(app.pk))
-        self.assertTrue(app.check_token(secret_json['app_secret']))
+        self.assertTrue(app.check_secret(secret_json['app_secret']))
 
 class ApplicationAuthenticateTest(TestCase):
     def setUp(self):
         self.user = make_test_user()
         self.app = make_app(self.user, 'test')
-        self.secret = self.app.generate_access_token()
+        self.secret = self.app.profile.generate_token()
 
     def get_auth(self, pk):
         return self.client.get(reverse('user:auth_app', args=[pk]))

@@ -10,12 +10,12 @@ class ApplicationJWTSerializer(serializers.Serializer):
     def validate(self, data):
         app = self.context['app']
         
-        if not app.check_token(data['secret']):
+        if not app.check_secret(data['secret']):
             msg = 'Wrong application secret.'
             raise serializers.ValidationError(msg)
 
         return {
-            'token': app.get_user_token()
+            'token': app.profile.generate_token()
         }
 
 class ApplicationSerializer(serializers.ModelSerializer):
