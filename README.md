@@ -2,16 +2,21 @@ MONTAGE
 =======
 
 To install:
-1. Start a virtual environment
-2. Then run: 
+1. First create an rsa key pair:
+    ```
+    openssl genrsa -des3 -out private.pem 2048
+    openssl rsa -in private.pem -outform PEM -pubout -out public.pem
+    ```
+2. Start a virtual environment
+3. Then run: 
     ```
     pip install -r requirements.txt
     ```  
-3. Apply these migrations with:
+4. Apply these migrations with:
     ```
     python manage.py migrate
     ```
-4. Then you can start the server with:
+5. Then you can start the server with:
     ```
     python manage.py runserver
     ```

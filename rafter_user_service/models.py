@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
-from datetime import timedelta
+from datetime import timedelta, datetime
 from rest_framework_jwt.settings import api_settings
 import bcrypt
 import string
@@ -47,10 +47,19 @@ class Profile(models.Model):
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
-        
+
     def generate_token(self):
         payload = jwt_payload_handler(self.user)
-        return jwt_encode_handler(payload)
+        payload['aud'] = self.access
+        payload['roles'] = self.roles
+        payload['sub'] = payload['username']
+        del payload['username']
+        now = datetime.utcnow()
+        payload['iat'] = now
+        payload['nbf'] = now
+
+        jwt = jwt_encode_handler(payload)
+        return jwt
         
     def __str__(self):
         return self.user.username

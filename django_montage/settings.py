@@ -86,6 +86,22 @@ TEMPLATES = [
     },
 ]
 
+# JWT settings
+with open(BASE_DIR + '/private.pem', 'r') as f:
+    PRIVATE_KEY = f.read().strip()
+
+with open(BASE_DIR + '/public.pem', 'r') as f:
+    PUBLIC_KEY = f.read().strip()
+
+from datetime import timedelta
+
+JWT_AUTH = {
+    'JWT_PUBLIC_KEY': str(PUBLIC_KEY),
+    'JWT_PRIVATE_KEY': str(PRIVATE_KEY),
+    'JWT_ALGORITHM': 'RS512',
+    'JWT_EXPIRATION_DELTA': timedelta(hours=3),
+}
+
 WSGI_APPLICATION = 'django_montage.wsgi.application'
 
 
