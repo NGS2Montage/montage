@@ -20,9 +20,9 @@ class Experiment(models.Model):
     population = models.ManyToManyField(Population)
     treatment = models.ManyToManyField(Treatment)
     method = models.CharField(max_length=200)
-    protocol = models.CharField(max_length=200)  # TODO file type?
-    consent = models.CharField(max_length=200)  # TODO file type?
-    recruitment = models.CharField(max_length=200)  # TODO file type?
+    protocol = models.FileField(max_length=200)
+    consent = models.FileField(max_length=200)
+    recruitment = models.FileField(max_length=200)
     is_active = models.CharField(choices=ACTIVE_CHOICES, default='N')
     created_by = models.ForeignKey(Investigator)
     modified_by = models.ForeignKey(Investigator)
