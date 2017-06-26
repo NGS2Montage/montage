@@ -1,18 +1,23 @@
+from django.contrib.auth.models import User
 from django.db import models
+from .team import Team
 
 import datetime
 
 
 class Investigator(models.Model):
-    rid = models.CharField(max_length=200, unique=True)
-    user = models.ForeignKey('rafter_user_service.User')
+    ACTIVE_CHOICES = (
+        ('Y', 'Yes'),
+        ('N', 'No')
+    )
+    user = models.ForeignKey(User)
     user_name = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    # team model?
+    team = models.ForeignKey(Team.name)
     affiliation = models.CharField(max_length=200)  # TODO come back to this may. Consult notes
-    is_active = models.CharField(max_length=200)  # TODO also review this
+    is_active = models.CharField(choices=ACTIVE_CHOICES, default='N')
     # createdBy ( investigator model )
     # modified ( investigator model )
-    created_on = models.CharField(datetime.date.today())  # TODO this and below may need be different types
+    created_on = models.CharField(datetime.date.today())
     last_modified = models.CharField(datetime.date.today())
