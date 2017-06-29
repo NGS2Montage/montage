@@ -7,16 +7,13 @@ import datetime
 
 
 class Treatment(models.Model):
-    ACTIVE_CHOICES = (
-        ('Y', 'Yes'),
-        ('N', 'No')
-    )
+
     rid = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     manipulation = models.ManyToManyField(Manipulation)
     population = models.ManyToManyField(Population)
-    is_active = models.CharField(choices=ACTIVE_CHOICES, default='N')
+    is_active = models.BooleanField(default=False)
     created_by = models.ForeignKey(Investigator)
     modified_by = models.ForeignKey(Investigator)
     created_on = models.CharField(datetime.date.today())

@@ -6,17 +6,14 @@ import datetime
 
 
 class Investigator(models.Model):
-    ACTIVE_CHOICES = (
-        ('Y', 'Yes'),
-        ('N', 'No')
-    )
+
     user = models.ForeignKey(User)
     user_name = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     team = models.ForeignKey(Team.name)
     affiliation = models.CharField(max_length=200)  # TODO come back to this may. Consult notes
-    is_active = models.CharField(choices=ACTIVE_CHOICES, default='N')
+    is_active = models.BooleanField(default=False)
     # createdBy ( investigator model )
     # modified ( investigator model )
     created_on = models.CharField(datetime.date.today())
