@@ -11,5 +11,5 @@ class Role(models.Model):
     is_active = models.BooleanField(default=False)
     created_by = models.ForeignKey(Investigator)
     modified_by = models.ForeignKey(Investigator)
-    created_on = models.CharField(default=datetime.date.today)
-    last_modified = models.CharField(default=datetime.date.today)
+    created_on = models.DateField(default=datetime.date.today)
+    last_modified = models.DateField(default=datetime.date.today)
