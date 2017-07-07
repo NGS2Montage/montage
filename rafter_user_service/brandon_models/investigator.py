@@ -16,5 +16,5 @@ class Investigator(models.Model):
     is_active = models.BooleanField(default=False)
     # createdBy ( investigator model )
     # modified ( investigator model )
-    created_on = models.CharField(datetime.date.today())
-    last_modified = models.CharField(datetime.date.today())
+    created_on = models.CharField(default=datetime.date.today)
+    last_modified = models.CharField(default=datetime.date.today)

@@ -4,7 +4,7 @@ import datetime
 
 
 class Team(models.Model):
-    
+
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     location = models.CharField(max_length=200)
@@ -13,5 +13,5 @@ class Team(models.Model):
     is_active = models.BooleanField(default=False)
     created_by = models.CharField(max_length=200, unique=True)
     modified_by = models.CharField(max_length=200, unique=True)
-    created_on = models.CharField(datetime.date.today())
-    last_modified = models.CharField(datetime.date.today())
+    created_on = models.CharField(default=datetime.date.today)
+    last_modified = models.CharField(default=datetime.date.today)
