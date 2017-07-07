@@ -110,8 +110,12 @@ WSGI_APPLICATION = 'django_montage.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django_mongodb_engine',
-        'NAME': 'montage'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'montage',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 

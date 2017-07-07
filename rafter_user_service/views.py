@@ -8,11 +8,12 @@ from rest_framework.decorators import api_view
 from rest_framework.exceptions import PermissionDenied
 from rest_framework_jwt.settings import api_settings
 from rest_framework.permissions import IsAuthenticated
-from rafter_user_service.models import Application, Profile
+from .models import Application
 from rafter_user_service.serializers import ApplicationJWTSerializer, ApplicationSerializer
 from rafter_user_service.permissions import IsOwnerOrPost
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+
 
 class UserDetail(DetailView):
     model = User
@@ -33,11 +34,14 @@ def user_profile(request):
     user = request.user
     return redirect('user:user', permanent=True, username=user.username)
 
+
 class ApplicationList(ListView):
     model = Application
 
+
 class ApplicationDetail(DetailView):
     model = Application
+
 
 class ApplicationCreate(CreateAPIView):
     serializer_class = ApplicationSerializer
@@ -45,6 +49,7 @@ class ApplicationCreate(CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
 
 class ApplicationJWT(APIView):
     serializer_class = ApplicationJWTSerializer
@@ -74,6 +79,7 @@ class ApplicationJWT(APIView):
 
 authenticate_app = ApplicationJWT.as_view()
 
+
 @api_view(['GET'])
 def get_token(request, pk):
     app = get_object_or_404(Application, pk=pk)
@@ -88,6 +94,7 @@ def get_token(request, pk):
         'app_secret': token,
     }
     return Response(data)
+
 
 @api_view(['GET'])
 def get_public_key(request):

@@ -3,6 +3,7 @@ from rafter_user_service.models import Application
 from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import PermissionDenied
 
+
 class ApplicationJWTSerializer(serializers.Serializer):
     token = serializers.CharField(read_only=True)
     secret = serializers.CharField(write_only=True)
@@ -17,6 +18,7 @@ class ApplicationJWTSerializer(serializers.Serializer):
         return {
             'token': app.profile.generate_token()
         }
+
 
 class ApplicationSerializer(serializers.ModelSerializer):
     class Meta:
