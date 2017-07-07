@@ -2,9 +2,7 @@ from django.db import models
 from .theory import Theory
 from .experiment import Experiment
 from .model import Model
-from ..investigator import Investigator
-
-import datetime
+from .investigator import Investigator
 
 
 class Literature(models.Model):
@@ -18,9 +16,9 @@ class Literature(models.Model):
     experiment = models.ManyToManyField(Experiment)
     model = models.ManyToManyField(Model)
     reference = models.CharField(max_length=200)
-    bibtex = models.CharField(max_length=200)  # TODO is this spelling correct?
+    bibtex = models.CharField(max_length=200)
     is_active = models.BooleanField(default=False)
-    created_by = models.ForeignKey(Investigator)
-    modified_by = models.ForeignKey(Investigator)
-    created_on = models.DateField(default=datetime.date.today)
-    last_modified = models.DateField(default=datetime.date.today)
+    created_by = models.ForeignKey(Investigator, related_name='%(class)s_creator')
+    modified_by = models.ForeignKey(Investigator, related_name='%(class)s_last_modifier')
+    date_created = models.DateField(auto_now_add=True)
+    date_last_modified = models.DateField(auto_now=True)

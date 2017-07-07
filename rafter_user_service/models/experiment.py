@@ -2,9 +2,7 @@ from django.db import models
 from .manipulation import Manipulation
 from .population import Population
 from .treatment import Treatment
-from ..investigator import Investigator
-
-import datetime
+from .investigator import Investigator
 
 
 class Experiment(models.Model):
@@ -21,7 +19,7 @@ class Experiment(models.Model):
     consent = models.FileField(max_length=200)
     recruitment = models.FileField(max_length=200)
     is_active = models.BooleanField(default=False)
-    created_by = models.ForeignKey(Investigator)
-    modified_by = models.ForeignKey(Investigator)
-    created_on = models.DateField(default=datetime.date.today)
-    last_modified = models.DateField(default=datetime.date.today)
+    created_by = models.ForeignKey(Investigator, related_name='%(class)s_creator')
+    modified_by = models.ForeignKey(Investigator, related_name='%(class)s_last_modifier')
+    date_created = models.DateField(auto_now_add=True)
+    date_last_modified = models.DateField(auto_now=True)

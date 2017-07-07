@@ -1,7 +1,5 @@
 from django.db import models
 
-import datetime
-
 
 class Team(models.Model):
 
@@ -13,5 +11,5 @@ class Team(models.Model):
     is_active = models.BooleanField(default=False)
     created_by = models.CharField(max_length=200, unique=True)
     modified_by = models.CharField(max_length=200, unique=True)
-    created_on = models.DateField(default=datetime.date.today)
-    last_modified = models.DateField(default=datetime.date.today)
+    created_on = models.DateField(auto_now_add=True)
+    last_modified = models.DateField(auto_now=True)

@@ -1,20 +1,21 @@
-from django.contrib.auth.models import User
 from django.db import models
+from django.conf import settings
 from .team import Team
-
-import datetime
 
 
 class Investigator(models.Model):
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
     user_name = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    team = models.ForeignKey(Team.name)
-    affiliation = models.CharField(max_length=200)  # TODO come back to this may. Consult notes
+    team = models.ForeignKey(Team)
+    affiliation = models.CharField(max_length=200)
     is_active = models.BooleanField(default=False)
     # created_by = models.ForeignKey(Investigator)
     # modified_by = models.ForeignKey(Investigator)
-    created_on = models.DateField(default=datetime.date.today)
-    last_modified = models.DateField(default=datetime.date.today)
+    date_created = models.DateField(auto_now_add=True)
+    date_last_modified = models.DateField(auto_now=True)
