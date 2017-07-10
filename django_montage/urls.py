@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^project', ui.project),
     url(r'^data', ui.data),
     url(r'^content/(?P<name>.*)$', ui.content),
+    url(r'^page/(?P<name>.*)$', ui.page),
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('registration.backends.admin_approval.urls')),
     url(r'^user/', include('rafter_user_service.urls')),
