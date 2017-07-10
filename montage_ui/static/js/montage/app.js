@@ -16,7 +16,7 @@ define([
 		},
 
 		rootRouteHandler: function(params){
-			var newState = {href: params.newPath}
+			var newState = {path: params.newPath}
 			newState.widgetClass="dijit/layout/ContentPane";
 			newState.widgetParams = {href: "/content/home"};
 			newState.requireAuth=false;
@@ -24,8 +24,18 @@ define([
 		},
 		
 		projectRouteHandler: function(params){
-			var newState = {href: params.newPath}
-			newState.widgetClass="montage/project/viewer";
+			var newState = {path: params.newPath}
+			var parts = params.newPath.split("/");
+			console.log("Parts: ", parts);
+			var project_id = parts[2];
+	
+			console.log("project_id: ", project_id);
+	
+			if (project_id) {	
+				newState.widgetClass="montage/project/viewer";
+			}else{
+				newState.widgetClass="montage/project/grid";
+			}
 			//newState.widgetClass="dijit/layout/ContentPane";
 			//newState.widgetParams = {content: "Project Viewer"};
 			newState.requireAuth=false;
@@ -33,7 +43,7 @@ define([
 		},
 
 		viewerRouteHandler: function(params){
-			var newState = {href: params.newPath}
+			var newState = {path: params.newPath}
 			//newState.widgetClass="montage/viewer";
 			newState.widgetClass="dijit/layout/ContentPane";
 			newState.widgetParams = {content: "Viewer Viewer"};
@@ -42,7 +52,7 @@ define([
 		},
 
 		dataRouteHandler: function(params){
-			var newState = {href: params.newPath}
+			var newState = {path: params.newPath}
 			newState.widgetClass="montage/workspace/explorer";
 			//newState.widgetClass="dijit/layout/ContentPane";
 			//newState.widgetParams = {content: "Data Viewer"};

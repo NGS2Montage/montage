@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rafter_user_service',
     'rest_framework',
-    'montage_index',
+    'montage_ui',
 ]
 
 # Registration settings
@@ -154,5 +154,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = 'auth_login'
-LOGIN_REDIRECT_URL = 'user:profile'
+LOGIN_REDIRECT_URL = '/'
 ADMINS = ['admin']
