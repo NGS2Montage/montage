@@ -19,8 +19,10 @@ from montage_index import views
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^viewer/(?P<match>.*)/$', views.viewer),
-    url(r'^project/[(?P<match>.*)/]?$', views.project),
+    url(r'^viewer', views.viewer),
+    url(r'^project', views.project),
+    url(r'^data', views.data),
+    url(r'^content/(?P<name>.*)$', views.content),
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('registration.backends.admin_approval.urls')),
     url(r'^user/', include('rafter_user_service.urls')),
