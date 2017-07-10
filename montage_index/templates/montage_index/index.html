@@ -1,5 +1,5 @@
-{% include 'montage_index/base.html' %}
+{% extends 'montage_index/base.html' %}
 {% block title %}Welcome to Montage{% endblock %}
 {% block content %}
-    <p><a href={% url 'user:profile' %}>User (redirects to login if no user)</a></p>
+	{% include "./content/home.html" %}
 {% endblock %}
