@@ -1,6 +1,8 @@
 @import url("../../dijit/themes/claro/claro.css");
 @import url("../../dojo/resources/dojo.css");
+@import url("./header.css");
 @import url("./icomoon/style.css");
+@import url("./icons.css");
 
 html,body,body.montage {
   font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
