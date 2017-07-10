@@ -1,0 +1,24 @@
+.claro .topMenuButtonIcon.dijitDropDownButton .dijitButtonNode,
+.claro .topMenuButton.dijitDropDownButton .dijitButtonNode,
+.topMenuButtonIcon,
+.topMenuButton {
+    background: inherit;
+    color: #efefef;
+    font-weight: 500;
+    cursor: pointer;
+    border: 0;
+    box-shadow: 0 0 0;
+    margin: 0;
+}
+
+.claro .topMenuButtonIcon.dijitDropDownButton {
+    margin: 4px 0 0;
+}
+
+.claro .topMenuButton.dijitDropDownButton {
+    margin: 10px 0 0;
+}
+
+.claro .topMenuButtonIcon .dijitArrowButtonInner {
+    display: none;
+}
