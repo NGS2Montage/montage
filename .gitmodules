@@ -1,12 +1,12 @@
 [submodule "montage_index/static/dojo"]
-	path = montage_index/static/js/dojo
+	path = montage_ui/static/js/dojo
 	url = https://github.com/dojo/dojo
 [submodule "montage_index/static/dijit"]
-	path = montage_index/static/js/dijit
+	path = montage_ui/static/js/dijit
 	url = https://github.com/dojo/dijit
 [submodule "montage_index/static/util"]
-	path = montage_index/static/js/util
+	path = montage_ui/static/js/util
 	url = https://github.com/dojo/util
 [submodule "montage_index/static/js/rql"]
-	path = montage_index/static/js/rql
+	path = montage_ui/static/js/rql
 	url = https://github.com/persvr/rql.git
