@@ -1,0 +1,7 @@
+{% extends 'montage_ui/base.html' %}
+{% block content %}
+	{% with template_name="montage_ui/content/"|add:name|add:".html" %}
+		{% include template_name %}
+
+	{% endwith %}
+{% endblock %}

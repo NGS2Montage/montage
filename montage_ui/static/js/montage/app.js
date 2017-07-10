@@ -13,6 +13,7 @@ define([
 			this.registerRoute("\/project(\/.*)", lang.hitch(this,"projectRouteHandler"));
 			this.registerRoute("\/viewer(\/.*)", lang.hitch(this,"viewerRouteHandler"));
 			this.registerRoute("\/data(\/.*)", lang.hitch(this,"dataRouteHandler"));
+			this.registerRoute("\/page/(.*)", lang.hitch(this,"pageRouteHandler"));
 		},
 
 		rootRouteHandler: function(params){
@@ -22,6 +23,18 @@ define([
 			newState.requireAuth=false;
 			this.set("state",newState);
 		},
+		pageRouteHandler: function(params){
+			var newState = {path: params.newPath}
+			newState.widgetClass="dijit/layout/ContentPane";
+			var parts = params.newPath.split("/");
+			console.log("Parts: ", parts);
+			var page = parts[2];
+	
+			newState.widgetParams = {href: "/content/" + page};
+			newState.requireAuth=false;
+			this.set("state",newState);
+		},
+		
 		
 		projectRouteHandler: function(params){
 			var newState = {path: params.newPath}

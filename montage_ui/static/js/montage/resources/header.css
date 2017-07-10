@@ -22,3 +22,22 @@
 .claro .topMenuButtonIcon .dijitArrowButtonInner {
     display: none;
 }
+
+.StaticTopMenu {
+	background: #ddd;
+	margin:0px;
+	padding:2px;
+	border:0px;
+	font-size: .7em;
+	background: #333; 
+	border-bottom: 1px solid #efefef;
+	text-align: right;
+}
+
+.claro .StaticTopMenu.dijitContentPane {
+	padding:2px;
+}
+
+.StaticTopMenu A,.StaticTopMenu A:visited {
+	color: #efefef;
+}
