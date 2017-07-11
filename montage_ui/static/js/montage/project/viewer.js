@@ -1,11 +1,11 @@
 define([
         "dojo/_base/declare", "dijit/layout/BorderContainer","dijit/layout/ContentPane",
 	"dojo/when","dojo/_base/lang","dojo/string","dojo/text!./template/ProjectOverviewPanel.html",
-	"dijit/layout/TabContainer"
+	"dijit/layout/TabContainer","dojo/query","dojo/on","dojo/dom-class","dojo/dom-attr"
 ], function(
 	declare,BorderContainer,ContentPane,
 	when,lang,dojoString,POPTemplate,
-	TabContainer
+	TabContainer,Query,on,domClass,domAttr
 ){
 
         return declare([BorderContainer], {
@@ -46,8 +46,9 @@ define([
 			if (this._started){
 				console.log("Render Investigations List", investigations);
 				var out=[]
-				investigations.forEach(function(investigation){
-					out.push('<div><span>' + investigation.id +"</span>" + '&nbsp;<span>' + investigation.status+ '</div>');
+				investigations.forEach(function(investigation,index){
+					var classes= (investigation.id == this.currentInvestigation.id)?"SelectedInvestigation":"";
+					out.push('<div rel="' +index+ '"  class="InvestigationListButton ' +classes + '"><span>' + investigation.id +"</span>" + '&nbsp;<span>' + investigation.status+ '<br>' + investigation.lastModified + '</div>');
 				},this);
 				console.log("Set InvestigationsList: ", out.join(""));
 				this.investigationsList.set("content", out.join(""));
@@ -64,8 +65,8 @@ define([
 
 		getInvestigations: function(){
 			return when(this.investigationStore.query({project: this.project.id},{sort: [{attribute: "createdOn",descending: true}]}), lang.hitch(this,function(results){
-				this.set("investigations", results);
 				this.set("currentInvestigation", results[0]);
+				this.set("investigations", results);
 			}));	
 		},
 		
@@ -79,8 +80,8 @@ define([
 			var investigationContent = (this.investigations && this.investigations[0])?this.investigations[0]:{};	
 			this.investigationView = new ContentPane({content: "<pre>"+JSON.stringify(investigationContent,null,4) + "</pre>", region: "center" });
 			this.addChild(this.investigationView);
-			this.sidePanelTabContainer = new TabContainer({style: "width: 200px;",region: "right"});
-			this.investigationsList = new ContentPane({title: "Investigations", region: "right"});
+			this.sidePanelTabContainer = new TabContainer({style: "width: 200px;",region: "right", splitter:true});
+			this.investigationsList = new ContentPane({title: "Investigations", region: "right", class:"InvestigationsList"});
 			this.sidePanelTabContainer.addChild(this.investigationsList);
 			this.observationsView= new ContentPane({title: "Observations", region: "right" });
 			this.sidePanelTabContainer.addChild(this.observationsView);
@@ -89,6 +90,24 @@ define([
 			console.log("Check for Investigations: ", this.investigations);
 
 			this.inherited(arguments);
+
+			on(this.investigationsList.containerNode, ".InvestigationListButton:click", lang.hitch(this, function(evt){
+				console.log("evt.target", evt.target);
+				var target = evt.target;
+				while (!domClass.contains(target,"InvestigationListButton")) {
+					target=target.parentNode;
+				}
+				var idx = domAttr.get(target,"rel");
+				var investigation = this.investigations[idx];
+				this.set("currentInvestigation", investigation);
+				Query(".InvestigationListButton",this.investigationsList.containerNode).forEach(function(node){
+					domClass.remove(node, "SelectedInvestigation")
+				});
+				domClass.add(target, "SelectedInvestigation");
+			
+			}))
+
+
 
 			if (this.investigations) {
 				console.log("Found Investigations: ", this.investigations.length);	
