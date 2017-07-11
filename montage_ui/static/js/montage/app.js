@@ -1,9 +1,12 @@
 define([
         "dojo/_base/declare", "RouterApp/app",
-	"dojo/_base/lang"
+	"dojo/_base/lang","montage/store/project",
+	"montage/store/investigation"
 ], function(
 	declare, RouterApp,
-	lang
+	lang,ProjectStore,
+	InvestigationStore
+
 ){
 
         return declare([RouterApp], {
@@ -14,6 +17,11 @@ define([
 			this.registerRoute("\/viewer(\/.*)", lang.hitch(this,"viewerRouteHandler"));
 			this.registerRoute("\/data(\/.*)", lang.hitch(this,"dataRouteHandler"));
 			this.registerRoute("\/page/(.*)", lang.hitch(this,"pageRouteHandler"));
+		},
+
+		setupStores: function(){
+			this.addStore("project", new ProjectStore({}));
+			this.addStore("investigation", new InvestigationStore({}));
 		},
 
 		rootRouteHandler: function(params){
@@ -46,11 +54,11 @@ define([
 	
 			if (project_id) {	
 				newState.widgetClass="montage/project/viewer";
+				newState.project_id = project_id;
 			}else{
 				newState.widgetClass="montage/project/grid";
 			}
-			//newState.widgetClass="dijit/layout/ContentPane";
-			//newState.widgetParams = {content: "Project Viewer"};
+
 			newState.requireAuth=false;
 			this.set("state",newState);
 		},
