@@ -18,6 +18,7 @@ define([
 
         return declare([Stateful], {
 		panels: {},
+		store: null,
 		state: null,
 		applicationContainer: null,
 		applicationContainerID: "ApplicationContainer",
@@ -26,6 +27,10 @@ define([
 				for(var prop in opts){
 					this[prop] = opts[prop]
 				}
+			}
+
+			if (!this.store){
+				this.store={};
 			}
 
 			Ready(this, lang.hitch(this,function(){
@@ -41,6 +46,8 @@ define([
     		startup: function(){
     			console.log("Application Startup()");
 			this.watch("state",lang.hitch(this,"onStateChange"));
+			console.log("Setup Stores...");
+			this.setupStores();
 			console.log("Add application routes...");
 			this.setupRoutes();
 			console.log("Start Router...");
@@ -49,6 +56,15 @@ define([
 	                this.listen();
 			console.log("Application Started.");
     		},
+
+		setupStores: function(){
+
+		},
+
+		addStore: function(id,store){
+			console.log("Adding Store: ", id);
+			this.store[id]=store;
+		},
 
 		/* load/require a widget constructor */
                 getConstructor: function(cls){
@@ -162,6 +178,58 @@ define([
 				Router.go(evt.target.pathname + (parts[1] || ""));
 			}));
 
+			on(win.doc, ".ApplicationDialogButton:click", lang.hitch(this, function(evt){
+				console.log("DialogButton Click()");
+				evt.stopPropagation();
+				evt.preventDefault();
+				var rel = domAttr.get(evt.target,"rel");
+				var parts = rel.split(":");
+
+				var ctor = parts.shift();
+				var opts = parts.join(":");
+
+				console.log("ctor: ", ctor, "opts: ", opts)
+
+				if (opts && opts.charAt(0)=="{"){
+					opts = JSON.parse(opts);
+				}else{
+					var title = opts||"";
+				}
+
+				console.log("DialogButton Click", rel);
+
+				if (!this._dialog){
+					this._dialog = new Dialog({title: title});
+
+					on(this._dialog.domNode, "refreshed", lang.hitch(this,function(evt){
+						console.log("Dialog caught refreshed event")
+						this._dialog.resize();
+					}));
+				}else{
+					this._dialog.set("title", title);
+				}
+
+				var dlg = this._dialog;
+
+				this.getConstructor(ctor).then(lang.hitch(this,function(ctor){
+					var w = new ctor((opts && typeof opts=="object")?opts:{});
+
+					if (w.title){
+						this._dialog.set('title', w.title);
+					}
+					domConstruct.empty(dlg.containerNode);
+					domConstruct.place(w.domNode,dlg.containerNode,"first");
+					w.startup();
+					dlg.show();
+				}))
+			}))
+
+			on(window, "dialogAction", lang.hitch(this, function(evt){
+				if (this._dialog){
+					this._dialog.hide();
+				}
+			}))
+	
 		}
     	})
 });

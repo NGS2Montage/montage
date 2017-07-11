@@ -1,0 +1,14 @@
+<form dojoAttachPoint="containerNode" class="BaseForm"
+    dojoAttachEvent="onreset:_onReset,onsubmit:_onSubmit,onchange:validate">
+
+      <div class="FormLine">
+        <label for="name">Project Name</label>    
+       <input data-dojo-type="dijit/form/ValidationTextBox" type="text" name="name" required="true" 
+              data-dojo-props='promptMessage:"The name of the project you wish to create."'
+       />
+      </div>
+      <div class="FormButtonContainer">
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="cancelButton" disabled="false" data-dojo-attach-event="click:onCancel">Cancel</button>
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="saveButton" disabled="true" type="submit">Create Project</button>
+      </div>
+</form>
