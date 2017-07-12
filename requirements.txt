@@ -4,3 +4,4 @@ djangorestframework-jwt
 cryptography
 bcrypt
 django-registration-redux
+django-settings-export
