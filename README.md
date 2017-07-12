@@ -4,7 +4,7 @@ MONTAGE
 To install:
 1. First create an rsa key pair:
     ```
-    ssh-keygen -t rsa -b 4096 -f private.pem 
+    openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out private.pem
     openssl rsa -in private.pem -outform PEM -pubout -out public.pem
     ```
 2. Start a virtual environment
