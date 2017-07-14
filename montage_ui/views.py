@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.conf import settings
 import logging
 
-logger = logging.getLogger(__name__)
+if settings.DEBUG:
+    logger = logging.getLogger(__name__)
 
 def index(request):
-    logger.debug(request)
+    if settings.DEBUG:
+        logger.debug(request)
     return render(request, 'montage_ui/index.html')
 
 def viewer(request, match):
@@ -17,9 +20,11 @@ def data(request, match=None):
     return render(request, 'montage_ui/data.html')
 
 def content(request, name=None):
-    logger.debug("Loading" + name)
+    if settings.DEBUG:
+        logger.debug(request)
     return render(request, 'montage_ui/content/' + name + '.html')
 
 def page(request, name=None):
-    logger.debug("Loading" + name)
+    if settings.DEBUG:
+        logger.debug(request)
     return render(request, 'montage_ui/page.html',{'name':name})
