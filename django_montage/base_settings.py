@@ -128,4 +128,5 @@ REGISTRATION_OPEN = True
 ### Settings Export
 SETTINGS_EXPORT = [
     # ...
+    'DEBUG'
 ]
