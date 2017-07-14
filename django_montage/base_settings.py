@@ -19,7 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rafter_user_service',
     'rest_framework',
-    'montage_index',
+    'montage_ui',
 ]
 
 MIDDLEWARE = [
