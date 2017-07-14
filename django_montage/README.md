@@ -2,7 +2,7 @@
 `settings.py` contains very little. In fact, it only sets the `DEBUG` flag and
 imports settings based on whether or not `DEBUG` is `True` or `False`.
 
-## Relevant settings.py code
+## Relevant `settings.py` code
 
 ```python
 DEBUG = True
