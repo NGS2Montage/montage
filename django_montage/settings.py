@@ -8,151 +8,21 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
+
+This file contains defaults for many settings, but all can be overwritten in
+prod_settings.py or dev_settings.py.
 """
-
-import os
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q!gh$o-pe@+_5xbc3ho@hyy0w^-k*2c9kshkj_kt@qju22cczy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
-# Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'registration',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rafter_user_service',
-    'rest_framework',
-    'montage_index',
-]
-
-# Registration settings
-ACCOUNT_ACTIVATION_DAYS = 3
-REGISTRATION_OPEN = True
-# In the future we should probable use SMTP, see
-# https://docs.djangoproject.com/en/1.11/topics/email/#smtp-backend
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ROOT_URLCONF = 'django_montage.urls'
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
-}
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-# JWT settings
-with open(BASE_DIR + '/private.pem', 'r') as f:
-    PRIVATE_KEY = f.read().strip()
-
-with open(BASE_DIR + '/public.pem', 'r') as f:
-    PUBLIC_KEY = f.read().strip()
-
-from datetime import timedelta
-
-JWT_AUTH = {
-    'JWT_PUBLIC_KEY': str(PUBLIC_KEY),
-    'JWT_PRIVATE_KEY': str(PRIVATE_KEY),
-    'JWT_ALGORITHM': 'RS512',
-    'JWT_EXPIRATION_DELTA': timedelta(hours=3),
-}
-
-WSGI_APPLICATION = 'django_montage.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'EST'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_URL = '/static/'
-
-LOGIN_URL = 'auth_login'
-LOGIN_REDIRECT_URL = 'user:profile'
-ADMINS = ['admin']
+if DEBUG:
+    try:
+        from .dev_settings import *
+    except ImportError:
+        pass
+else:
+    try:
+        from .prod_settings import *
+    except ImportError:
+        pass

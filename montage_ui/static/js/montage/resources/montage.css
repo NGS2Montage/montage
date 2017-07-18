@@ -1,0 +1,96 @@
+@import url("../../dijit/themes/claro/claro.css");
+@import url("../../dojo/resources/dojo.css");
+@import url("./header.css");
+@import url("./icomoon/style.css");
+@import url("./icons.css");
+@import url("./project.css");
+
+html,body,body.montage {
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  width: 100%;
+  height:100%;
+  overflow: auto;
+}
+
+
+a,a:visited {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+	color: #009c3a;
+}
+
+.icon-disabled {
+	color: #aaa;
+}
+.iconLink,
+.iconLink:visited {
+	color: #333;
+}
+
+
+/* Grid Classes */
+.dgrid-row-odd {
+	background: #efefef;
+}
+
+.assessmentActionColumn {
+	width: 60px;
+}
+
+.AssessmentResults {
+	width:30%;
+}
+
+.TopMenuDropDown {
+	vertical-align: bottom;
+	margin:0px;
+}
+
+.TopMenuDropDown.dijitDropDownButton .dijitButtonNode {
+	border: 0px;
+	color: #333;
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+	vertical-align: bottom;
+	padding:0px;
+}
+
+
+.TopMenuDropDown.dijitDropDownButton .dijitButtonNode .dijitArrowButtonInner {
+	display: none;
+}
+
+.menuLink,
+.TopMenuDropDown .menuLink {
+	font-size: 1.2em;
+	margin:0px;
+	padding: 6px;
+	outline: none;
+}
+
+.menuLink A,
+.TopMenuDropDown .menuLink A {
+	outline: none;
+}
+
+.menuLink:hover,
+.TopMenuDropDown .menuLink:hover {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+24,2bce30+52,ffffff+82&0+1,0.15+24,0.15+82,0+100 */
+background-color: #e6ffe6;
+border-radius: 2px;
+
+}
+
+
+
+.MenuPanel .dijitBorderContainer-dijitContentPane {
+	margin:0px;
+	padding:0px;
+	overflow:hidden;
+}
+
+

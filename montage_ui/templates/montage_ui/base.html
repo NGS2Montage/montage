@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	{% block head %}
+	<head>
+		<link rel='stylesheet' href='/static/js/montage/resources/montage.css' />
+	</head>
+	{% endblock %}
+	<body class="claro patric Authenticated">
+		<div id="ApplicationContainer" data-dojo-type="RouterApp/ApplicationContainer" class="layoutContainer" data-dojo-props="gutters:false,liveSplitters:false" style="width:100%;height:100%;">
+			{% block header %}
+                        <div class="StaticTopMenu" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'"> 
+				<a class="ApplicationNavLink" href="/page/about">ABOUT</a>&nbsp;
+				<a class="ApplicationNavLink" href="/page/contact">CONTACT</a>&nbsp;
+			</div>
+	
+                        <div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'" style="background: #ddd;margin:0px;padding:8px;border:0px;">
+				{% block header_content %}
+				{% include "./headerbar.html" %}
+				{% endblock %}
+			</div>
+			{% endblock %}
+
+			{% block content_container %}	
+			<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" style="margin:0px;padding:6px;border:0px solid #ddd;background:inherit;">
+				{% block title %}{% endblock %}
+				{% block content %}
+				{% endblock %}	
+			</div>
+			{% endblock %}
+		</div>	
+		<script>
+			dojoConfig = {
+				parseOnLoad: false,
+				packages: []
+    			}
+		</script>
+
+		<script src="/static/js/dojo/dojo.js"></script>
+		<script>
+
+			require(["montage/app"], function(App){
+				appOpts = {}
+				appOpts.authorizationToken = "{{ request.session.JWT }}"
+				window.App = new App(appOpts);
+			});
+		</script>
+	</body>
+</html>

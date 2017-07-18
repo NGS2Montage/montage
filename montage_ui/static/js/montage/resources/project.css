@@ -1,0 +1,22 @@
+.ProjectOverviewPanel {
+	margin: 4px;
+	border: 1px solid #efefef;
+	padding: 4px;
+}
+
+.SelectedInvestigation {
+	background: #99ccff;
+	border: 1px solid #333;
+	cursor: normal;
+}
+
+.InvestigationListButton {
+	border: 1px solid #ddd; 
+	padding: 2px; margin: 2px;
+}
+
+.InvestigationListButton:hover {
+	border: 1px solid #333;
+	cursor: pointer;
+	background: #e6f2ff;
+}
