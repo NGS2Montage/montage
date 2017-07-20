@@ -1,5 +1,7 @@
 # Use this as an example for per-deployment settings.
 
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # This is a Production setting
 # The Postgres database will need to be created
@@ -15,3 +17,17 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# JWT settings.
+# Example JWT key import
+try:		
+    with open(BASE_DIR + '/private.pem', 'r') as f:		
+        PRIVATE_KEY = f.read().strip()		
+		
+    with open(BASE_DIR + '/public.pem', 'r') as f:		
+        PUBLIC_KEY = f.read().strip()		
+		
+    JWT_AUTH['JWT_PUBLIC_KEY'] = str(PUBLIC_KEY)		
+    JWT_AUTH['JWT_PRIVATE_KEY'] = str(PRIVATE_KEY)		
+except:		
+    print('Could not find ./private.pem or ./public.pem.')
