@@ -1,1 +1,17 @@
 # Use this as an example for per-deployment settings.
+
+
+# This is a Production setting
+# The Postgres database will need to be created
+# "Name", "User", "Password", "Host", and "Port" may need to be set.
+# Defaults are provided
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'montage',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
