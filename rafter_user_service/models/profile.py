@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from datetime import datetime
 from rest_framework_jwt.settings import api_settings
 import jwt
+from jwt.exceptions import ExpiredSignatureError, ImmatureSignatureError
 import json
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
@@ -58,13 +59,17 @@ class Profile(models.Model):
         exp = datetime.utcfromtimestamp(exp)
 
         if now > exp:
-            raise jwt.exceptions.ExpiredSignatureError
+            raise ExpiredSignatureError
 
         if nbf > now:
-            raise jwt.exceptions.ImmatureSignatureError
+            raise ImmatureSignatureError
 
         # getter returns tuple, setter will only take the token
         return self._token, claims
+
+    @token.setter
+    def token(self, value):
+        self._token = value
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
@@ -76,6 +81,7 @@ class Profile(models.Model):
         instance.profile.save()
 
     def generate_token(self):
+        '''Use this to create a one time token.'''
         payload = jwt_payload_handler(self.user)
         payload['aud'] = self.access
         payload['roles'] = self.roles
@@ -85,10 +91,25 @@ class Profile(models.Model):
         payload['iat'] = now
         payload['nbf'] = now
 
-        jwt = jwt_encode_handler(payload)
+        token = jwt_encode_handler(payload)
 
-        self._token = jwt
-        return jwt
+        return token
+
+    def refresh_token(self):
+        self._token = self.generate_token()
+        return self._token
+
+    def get_token(self):
+        '''Use this to get a token for a logged in user. Note that if
+        self._token is None, get_token will return None, as accessing
+        self.token when self._token is None simply returns None.  Should make
+        sense because when a user is logged out his token should be None.'''
+        try:
+            token = self.token
+        except (ExpiredSignatureError, ImmatureSignatureError):
+            token = self.refresh_token
+                
+        return token
 
     def delete_token(self):
         self._token = None
