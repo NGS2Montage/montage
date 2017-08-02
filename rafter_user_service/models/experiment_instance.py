@@ -10,6 +10,7 @@ class ExperimentInstance(models.Model):
     rid = models.CharField(max_length=200, unique=True)
     experiment = models.ForeignKey(Experiment, related_name='%(class)s_experiment')
     treatment = models.ForeignKey(Treatment, related_name='%(class)s_treatment')
+    result_instance = models.FileField(max_length=100)
     experiment_status = models.ForeignKey(ExperimentStatus, related_name='%(class)s_experiment_status')
     investigation = models.ForeignKey(Investigation, related_name='%(class)s_investigation')
     is_active = models.BooleanField(default=False)
