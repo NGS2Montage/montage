@@ -3,4 +3,4 @@
 # the models.
 
 from .permissions import UserDetail, user_profile, ApplicationList, \
-    ApplicationDetail, ApplicationCreate, ApplicationJWT, get_token, get_public_key
+    ApplicationDetail, ApplicationCreate, ApplicationJWT, get_token, get_public_key, authenticate_app

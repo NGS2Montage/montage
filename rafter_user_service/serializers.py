@@ -74,7 +74,7 @@ class InputSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name')
 
 
-class InvestigationSerializer(serializers.HyperlinkedModelSerializer):
+class InvestigationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Investigation
         fields = ('id', 'name', 'project')
@@ -146,7 +146,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'user')
 
 
-class ProjectSerializer(serializers.HyperlinkedModelSerializer):
+class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ('id', 'team', 'project_state')

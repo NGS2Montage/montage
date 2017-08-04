@@ -19,6 +19,7 @@ from .manipulation import Manipulation
 from .model import Model
 from .model_instance import ModelInstance
 from .model_status import ModelStatus
+from .observation import Observation
 from .output import Output
 from .parameter import Parameter
 from .population import Population
