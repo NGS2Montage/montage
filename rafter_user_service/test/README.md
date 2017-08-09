@@ -1,4 +1,4 @@
-### Testing Structure
+# Testing Structure
 The structure of this directory is meant to mirror that of
 `rafter_user_service`.  Therefore, if there is a subpackage
 `rafter_user_service/models/`, there should be an analogous
