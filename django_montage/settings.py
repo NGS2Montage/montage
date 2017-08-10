@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rafter_user_service',
     'rest_framework',
     'montage_ui',
+    'montage_jwt',
 ]
 
 MIDDLEWARE = [
