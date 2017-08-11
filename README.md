@@ -1,5 +1,4 @@
-MONTAGE
-=======
+# MONTAGE
 
 To install:
 1. First create an rsa key pair:
@@ -22,3 +21,6 @@ To install:
     ```
 
 You should also make a superuser `admin` with `python manage.py createsuperuser`.  This will allow for administrator account approval.
+
+## Configuration
+Configuration is described in [`/django_montage/README.md`](https://github.com/NGS2Montage/montage/blob/master/django_montage/README.md).
