@@ -85,7 +85,9 @@ border-radius: 2px;
 
 }
 
-
+.FormLine {
+	margin-bottom: 4px;
+}
 
 .MenuPanel .dijitBorderContainer-dijitContentPane {
 	margin:0px;
@@ -94,3 +96,22 @@ border-radius: 2px;
 }
 
 
+.FormButtonContainer {
+	padding: 2px;
+	margin:2px;
+	text-align: right;
+}
+
+.Toolbar {
+	text-align: right;
+}
+
+.Toolbar I {
+	margin-left: 6px;
+}
+
+.Toolbar I.icon.disabled,
+.Toolbar I.disabled {
+	cursor: default;
+	color: #ddd;
+}

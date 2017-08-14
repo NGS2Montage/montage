@@ -1,30 +1,40 @@
 define([
-        "dojo/_base/declare", "./base", "dojo/on","dojo/dom-construct",
-        "dojo/dom-class","dojo/text!./template/CreateProject.html",
+        "dojo/_base/declare", "../form/base", "dojo/on","dojo/dom-construct",
+        "dojo/dom-class","dojo/text!./template/intersim-im-11-1.html",
         "dojo/request","dijit/form/ValidationTextBox","dojo/topic","dojo/_base/lang",
 		"dijit/form/CheckBox","dijit/form/Select","dijit/form/Button","dojo/query",
-		"dojo/when"
+		"dojo/when","dojo/dom-construct"
 ], function(
 	declare, FormBase, on, domConstruct,
 	domClass, Template,
 	Request,ValidationTextBox, Topic,lang,
 	CheckBox,Select,Button,Query,
-	when
+	when,domConstruct
 
 
 ){
 
 	return declare([FormBase], {
 		templateString: Template,
-		availableTests: null,
+		model: null,
+		_setModelAttr: function(val){
+			this.model = val;
+			if (this.model.params){
+				this.setValues(this.model.params);
+			}else{
 
-		constructor: function(){
-			this.store = window.App.store.project;
+			}
 		},
+		constructor: function(){
+			this.store = window.App.store.observation;
+		},
+
+
 
 		startup: function(){
 			if (this._started) { return; }
 			this.inherited(arguments);
+			this.validate();
 
 		},
 
@@ -41,26 +51,27 @@ define([
 			        this.showMessage("working");
 			        console.log("Form is Valid!", values)
 
-				   	when(this.store.add(values), function(){
-				   		_self.showMessage("complete");
+			        this.model.params = values;;
 
-				        on.emit(_self.domNode, "DialogAction", {
-				        	bubbles: true,
-					   		cancelable: true,
-					   		action: "close"
-					   	});
 
-					   	Topic.publish("/refreshProjects");
+		    		on.emit(this.domNode, "UpdateModel", {
+						   bubbles: true,
+						   cancelable: true,
+						   model: this.model
+					})
 
-				   	}, function(err){
-			        	_self.showMessage("error", "Error: " + err);
-			        });
+					on.emit(this.domNode, "DialogAction", {
+					    bubbles: true,
+		    			cancelable: true,
+						action: "close"
+					});
+
 			}else{
 			        console.log("Form is incomplete");
 			}
 		},
 		onCancel: function(){
-			console.log("CreateProject onCancel()");
+			console.log("Add Observation onCancel()");
 			this.inherited(arguments);
 
 		}
