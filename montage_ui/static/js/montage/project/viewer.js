@@ -121,23 +121,8 @@ define([
 				}
 			})
 
-			// this.investigationButtons = new ContentPane({region: "top", style: "border:0px;margin:0px;padding:2px;", "class":"InvestigationButtons",content: '<i rel=\'montage/form/observation:{\"projectId\":' + this.project.id + ',\"title\":\"Add Observation\"}\' class="icon fa-2x icon-comment ApplicationDialogButton"></i><i rel="playInvestigation" class="icon fa-2x icon-play"></i>'});
-			// on(this.investigationButtons.domNode, "I:click", lang.hitch(this,function(evt){
-			// 	console.log("CLICK")
-			// 	var target = evt.target;
-			// 	var rel = domAttr.get(target,"rel")
-			// 	switch(rel){
-			// 		case "addComment":
-			// 			break;
-			// 		case "playInvestigation":
-			// 			break;
-			// 		default: 
-			// 			console.log("Eh? " + rel);
-			// 	}
 
-			// }));
 			this.investigationView = new Investigation({region: "center",investigation: this.investigation?this.investigation:null });
-			console.log("InvestigationView: ", this.investigationView)
 
 			this.addChild(this.projectHeader);
 			this.addChild(this.investigationToolbar);
