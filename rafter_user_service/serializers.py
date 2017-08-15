@@ -122,6 +122,12 @@ class ModelStatusSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name')
 
 
+class ObservationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Observation
+        fields = ('comment', 'user')
+
+
 class OutputSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Output
