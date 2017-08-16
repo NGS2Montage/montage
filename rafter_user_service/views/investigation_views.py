@@ -2,13 +2,18 @@ from rafter_user_service.models import Investigation
 from rest_framework import viewsets
 from rafter_user_service.serializers import InvestigationSerializer
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 
 
-class InvestigationViewSet(APIView):
+class InvestigationViewSet(viewsets.ViewSet):
 
-    # TODO should this method get single and groups
-    def get(self, request, pk, format=None):
-        investigation = Investigation.objects.all()
+    def retrieve_investigation(self, pk=None):
+        investigation = get_object_or_404(Investigation, pk=pk)
         serializer = InvestigationSerializer(investigation)
-        return Response(serializer.data)
+        return Response(serializer)
+
+    def retrieve_by_project(self, project_id=None):
+        investigation = get_object_or_404(Investigation, project=project_id)
+        serializer = InvestigationSerializer(investigation)
+        return Response(serializer)
