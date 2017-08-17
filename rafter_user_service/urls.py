@@ -10,7 +10,7 @@ router.register(r'investigation_view', views.InvestigationViewSet)
 app_name = 'user'
 urlpatterns = [
     url(r'^$', views.user_profile, name='profile'),
-    url(r'^$', include(router.urls)),
+    url(r'^', include(router.urls)),
     url(r'^applications/$', views.ApplicationList.as_view(), name='apps'),
     url(r'^applications/create/$', views.ApplicationCreate.as_view(), name='create_app'),
     url(r'^applications/(?P<pk>[0-9]+)/$', views.ApplicationDetail.as_view(), name='detail_app'),

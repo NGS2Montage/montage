@@ -6,7 +6,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
-class ObservationViewSet(viewsets.ViewSet):
+class ObservationViewSet(viewsets.ModelViewSet):
+
+    serializer_class = ObservationSerializer
+    queryset = Observation.objects.all()
 
     def retrieve_observation(self, pk=None):
         observation = get_object_or_404(Observation, pk=pk)
