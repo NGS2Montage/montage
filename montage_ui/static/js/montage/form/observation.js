@@ -1,6 +1,6 @@
 define([
         "dojo/_base/declare", "./base", "dojo/on","dojo/dom-construct",
-        "dojo/dom-class","dojo/text!./template/CreateProject.html",
+        "dojo/dom-class","dojo/text!./template/observation.html",
         "dojo/request","dijit/form/ValidationTextBox","dojo/topic","dojo/_base/lang",
 		"dijit/form/CheckBox","dijit/form/Select","dijit/form/Button","dojo/query",
 		"dojo/when"
@@ -16,10 +16,10 @@ define([
 
 	return declare([FormBase], {
 		templateString: Template,
-		availableTests: null,
+		projectId: null,
 
 		constructor: function(){
-			this.store = window.App.store.project;
+			this.store = window.App.store.observation;
 		},
 
 		startup: function(){
@@ -37,9 +37,17 @@ define([
 
 			if(this.validate()){
 
+					if (!this.projectId){
+						console.warn("No Project ID for Add Observation()");
+						return;
+					}
+
 			        var values = this.getValues();
 			        this.showMessage("working");
 			        console.log("Form is Valid!", values)
+
+			        console.log("Add Observation: ", values)
+			        values.project = this.projectId
 
 				   	when(this.store.add(values), function(){
 				   		_self.showMessage("complete");
@@ -50,7 +58,7 @@ define([
 					   		action: "close"
 					   	});
 
-					   	Topic.publish("/refreshProjects");
+					   	Topic.publish("/refreshObservations");
 
 				   	}, function(err){
 			        	_self.showMessage("error", "Error: " + err);
@@ -60,7 +68,7 @@ define([
 			}
 		},
 		onCancel: function(){
-			console.log("CreateProject onCancel()");
+			console.log("Add Observation onCancel()");
 			this.inherited(arguments);
 
 		}

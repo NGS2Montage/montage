@@ -7,6 +7,10 @@
               data-dojo-props='promptMessage:"The name of the project you wish to create."'
        />
       </div>
+      <div class="FormLine">
+        <label for="name">Description</label>    
+        <input data-dojo-type="dijit/form/SimpleTextarea" type="text" rows="6" name="description" required="false" />
+      </div>
       <div class="FormButtonContainer">
         <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="cancelButton" disabled="false" data-dojo-attach-event="click:onCancel">Cancel</button>
         <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="saveButton" disabled="true" type="submit">Create Project</button>

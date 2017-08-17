@@ -10,4 +10,4 @@ Anything that would be a vital or strongly suggested in production, but not in
 development should be placed in this file.  For example, the JWT key pair does
 not need to be loaded in the way exemplified in this file, but it does need to
 be loaded in production, as it is a security risk to use the pair included in
-`local_settings.py`.
+`settings.py`.
