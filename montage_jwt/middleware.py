@@ -1,4 +1,4 @@
-from .util import refresh_token
+from .util import is_token_about_to_expire, refresh_token
 
 def refresh_token_middleware(get_response):
 
@@ -7,7 +7,8 @@ def refresh_token_middleware(get_response):
 
         if request.user.is_authenticated:
             token = request.session['JWT']
-            request.session['JWT'] = refresh_token(token)
+            if is_token_about_to_expire(token): # or is_token_expired(token):
+                request.session['JWT'] = refresh_token(token)
 
         response = get_response(request)
 

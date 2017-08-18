@@ -5,8 +5,7 @@ from django.http.request import HttpRequest
 from django.conf import settings
 from importlib import import_module
 from montage_jwt.settings import api_settings
-from montage_jwt.models import Token
-import jwt
+from montage_jwt.models import JWT
 import os
 
 class SignalTest(TestCase):
@@ -45,9 +44,7 @@ class SignalTest(TestCase):
         self.assertIn('JWT', request.session)
 
         token = request.session['JWT']
-        claims = jwt.decode(token, verify=False)
-        jwi = claims['jwi']
-        token = Token.objects.get(pk=jwi)
+        jwt = JWT.objects.get_model_from_token(token)
 
     def test_remove_jwt_after_logout(self):
         user = self.user
@@ -56,12 +53,10 @@ class SignalTest(TestCase):
         self.assertIn('JWT', request.session)
 
         token = request.session['JWT']
-        claims = jwt.decode(token, verify=False)
-        jwi = claims['jwi']
 
         user_logged_out.send(sender=user.__class__, request=request, user=user)
 
-        with self.assertRaises(Token.DoesNotExist):
-            Token.objects.get(pk=jwi)
+        with self.assertRaises(JWT.DoesNotExist):
+            JWT.objects.get_model_from_token(token)
 
         self.assertNotIn('JWT', request.session)
