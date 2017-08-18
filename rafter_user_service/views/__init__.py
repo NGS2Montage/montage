@@ -3,7 +3,7 @@
 # the models.
 
 from .permissions import UserDetail, user_profile, ApplicationList, \
-    ApplicationDetail, ApplicationCreate, ApplicationJWT, get_token, get_public_key, authenticate_app
+    ApplicationDetail, ApplicationCreate, ApplicationJWT, get_app_secret, get_public_key, authenticate_app
 
 from .investigation_views import InvestigationViewSet
 from .observation_views import ObservationViewSet

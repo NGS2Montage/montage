@@ -166,6 +166,10 @@ define([
 			console.log("Base setupRoutes() stub");
 		},
  
+ 		createDialog: function(params){
+ 			return new Dialog(params);
+ 		},
+
 		listen: function(){
 
 			console.log("App Listener Starting...");
@@ -199,13 +203,8 @@ define([
 				console.log("DialogButton Click", rel);
 
 				if (!this._dialog){
-					this._dialog = new Dialog({title: title});
-
-					on(this._dialog.domNode, "refreshed", lang.hitch(this,function(evt){
-						console.log("Dialog caught refreshed event")
-						this._dialog.resize();
-					}));
-				}else{
+					this._dialog = new this.createDialog({title: title});
+					}else{
 					this._dialog.set("title", title);
 				}
 
@@ -224,12 +223,6 @@ define([
 				}))
 			}))
 
-			on(window, "dialogAction", lang.hitch(this, function(evt){
-				if (this._dialog){
-					this._dialog.hide();
-				}
-			}))
-	
 		}
-    	})
+    })
 });

@@ -1,9 +1,11 @@
 define([
         "dojo/_base/declare", "dijit/layout/BorderContainer","dijit/layout/ContentPane",
 	"dojo/when","dojo/_base/lang","dojo/string","dojo/text!./template/ProjectOverviewPanel.html",
+	"dojo/topic"
 ], function(
 	declare,BorderContainer,ContentPane,
-	when,lang,dojoString,POPTemplate
+	when,lang,dojoString,POPTemplate,
+	Topic
 ){
 
         return declare([BorderContainer], {
@@ -14,6 +16,11 @@ define([
 			this.projectsView = new ContentPane({content: '', region: "center"});
 			this.addChild(this.projectsView);
 			this.inherited(arguments);
+			Topic.subscribe("/refreshProjects", lang.hitch(this, "refresh"));
+			this.refresh();
+		},
+
+		refresh: function(){
 
 			when(this.getProjects(), lang.hitch(this,function(results){
 				var out = [];
@@ -27,7 +34,7 @@ define([
 		},
 
 		getProjects: function(){
-			return this.store.query({});
+			return this.store.query({}, {sort:[{attribute: "lastModified", descending: true}]} );
 		}
 	})
 });

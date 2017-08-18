@@ -81,7 +81,7 @@ authenticate_app = ApplicationJWT.as_view()
 
 
 @api_view(['GET'])
-def get_token(request, pk):
+def get_app_secret(request, pk):
     app = get_object_or_404(Application, pk=pk)
 
     if not app.user == request.user:

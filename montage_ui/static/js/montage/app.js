@@ -1,15 +1,16 @@
 define([
         "dojo/_base/declare", "RouterApp/app",
 	"dojo/_base/lang","montage/store/project",
-	"montage/store/investigation"
+	"montage/store/investigation","montage/store/observation", "montage/widget/Dialog"
 ], function(
 	declare, RouterApp,
 	lang,ProjectStore,
-	InvestigationStore
+	InvestigationStore,ObservationStore, Dialog
 
 ){
 
-        return declare([RouterApp], {
+    return declare([RouterApp], {
+
 		setupRoutes: function(){
 			console.log("Register Montage Routes...");
 			this.registerRoute("\/$", lang.hitch(this,"rootRouteHandler"));
@@ -22,6 +23,7 @@ define([
 		setupStores: function(){
 			this.addStore("project", new ProjectStore({}));
 			this.addStore("investigation", new InvestigationStore({}));
+			this.addStore("observation", new ObservationStore({}));
 		},
 
 		rootRouteHandler: function(params){
@@ -79,8 +81,12 @@ define([
 			//newState.widgetParams = {content: "Data Viewer"};
 			newState.requireAuth=false;
 			this.set("state",newState);
-		}
-    	
-    	})
+		},
 
+		createDialog: function(params){
+			console.log("Create Montage Dialog");
+ 			return new Dialog(params);
+ 		}
+    	
+    })
 });

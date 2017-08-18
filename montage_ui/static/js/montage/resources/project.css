@@ -1,7 +1,7 @@
 .ProjectOverviewPanel {
-	margin: 4px;
+	/*margin: 4px;
 	border: 1px solid #efefef;
-	padding: 4px;
+	padding: 4px;*/
 }
 
 .SelectedInvestigation {
@@ -20,3 +20,98 @@
 	cursor: pointer;
 	background: #e6f2ff;
 }
+
+.Investigation .SectionTitle {
+	padding: 4px;
+	background: #dedede;
+	margin:0px;
+	margin-bottom: 4px;
+	font-size: 1.1em;
+
+}
+
+
+.InvestigationButtons {
+	margin: 2px;
+	padding: 2px;
+	text-align: right;
+	font-size: 1.1em;
+}
+
+.InvestigationButtons I {
+	margin-left: 8px;
+}
+
+
+.Section I {
+	float: right;
+	font-size: 1.1em;
+}
+
+.ModelItem,
+.MechanismItem,
+.TheoryItem,
+.HypothesisItem {
+	padding: 2px;
+	margin:4px;
+	border: 1px solid #efefef;
+
+}
+
+.ModelItem > TABLE,
+.MechanismItem > TABLE,
+.TheoryItem > TABLE,
+.HypothesisItem > TABLE {
+	width: 100%;
+}
+
+.Investigation .viewOnEditable{
+	display: none;
+}
+
+.ModelItem I,
+.MechanismItem I,
+.TheoryItem I,
+.HypothesisItem I {
+	margin-left: 4px;
+}
+
+.Investigation.editable .viewOnEditable {
+	display: block;
+}
+
+
+.ModelItem TABLE TD,
+.MechanismItem TABLE TD,
+.TheoryItem TABLE TD,
+.HypothesisItem TABLE TD {
+	vertical-align: top;
+	padding: 2px;
+}
+
+.ButtonContainer {
+	padding: 2px;
+	margin:2px;
+	text-align: right;
+}
+
+.ObservationItem {
+	border: 1px solid #dedede;
+	margin:1px;
+	margin-bottom:3px;
+	padding: 0px;
+	font-size: .95em;
+}
+
+.ObservationItem .meta {
+	font-size: .85em;
+	padding: 2px;
+	background: #efefef;
+}
+
+.Observation .text {
+	padding: 2px;
+}
+
+
+

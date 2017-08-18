@@ -48,6 +48,11 @@ define([
 
                                 var values = this.getValues();
                                 console.log("Form is Valid!", values)
+                                on.emit(this.domNode, "DialogAction", {
+                                    bubbles: true,
+                                    cancelable: true,
+                                    action: "close"
+                                });
                                 // domClass.add(this.domNode, "Working");
                                 // console.log("CREATING FOLDER: ", this.path + values.name, this.path);
                                 // WorkspaceManager.createFolder(this.path + values.name).then(function(results){
@@ -69,7 +74,12 @@ define([
                 },
 
                 onCancel: function(evt){
-                        on.emit(this.domNode, "dialogAction", {action: "close", bubbles: true});
+                        console.log("onCancel")
+                        on.emit(this.domNode, "DialogAction", {
+                            bubbles: true,
+                            cancelable: true,
+                            action: "close"
+                        });
                 }
         });
 });

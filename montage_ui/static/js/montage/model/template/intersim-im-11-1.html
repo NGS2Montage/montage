@@ -1,0 +1,16 @@
+<form dojoAttachPoint="containerNode" class="BaseForm"
+    dojoAttachEvent="onreset:_onReset,onsubmit:_onSubmit,onchange:validate">
+
+      <div class="FormLine">
+        <label for="name">Maximum time steps per run: </label>    
+        <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="maximumNumTimeStepsPerRun" value="100" required="true" style="width:64px;"  />
+      </div>
+      <div class="FormLine">
+        <label for="name">Runs per simulation: </label>    
+        <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="numRunsPerSimulation" value="20" required="true" style="width:64px;" />
+      </div>
+      <div class="FormButtonContainer">
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="cancelButton" disabled="false" data-dojo-attach-event="click:onCancel">Cancel</button>
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="saveButton" disabled="true" type="submit">Save</button>
+      </div>
+</form>

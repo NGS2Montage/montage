@@ -2,12 +2,14 @@ define([
         "dojo/_base/declare", "./base", "dojo/on","dojo/dom-construct",
         "dojo/dom-class","dojo/text!./template/CreateProject.html",
         "dojo/request","dijit/form/ValidationTextBox","dojo/topic","dojo/_base/lang",
-		"dijit/form/CheckBox","dijit/form/Select","dijit/form/Button","dojo/query"
+		"dijit/form/CheckBox","dijit/form/Select","dijit/form/Button","dojo/query",
+		"dojo/when"
 ], function(
 	declare, FormBase, on, domConstruct,
 	domClass, Template,
 	Request,ValidationTextBox, Topic,lang,
-	CheckBox,Select,Button,Query
+	CheckBox,Select,Button,Query,
+	when
 
 
 ){
@@ -17,6 +19,7 @@ define([
 		availableTests: null,
 
 		constructor: function(){
+			this.store = window.App.store.project;
 		},
 
 		startup: function(){
@@ -37,27 +40,29 @@ define([
 			        var values = this.getValues();
 			        this.showMessage("working");
 			        console.log("Form is Valid!", values)
-				return;
-			        Request.post("/assessment/", {
-			        	headers: {
-			        		"content-type": "application/json",
-			        		"accept": "application/json"
-			        	},
-			        	data: JSON.stringify(values)
-			        }).then(
-			        	function(results){
-			        		_self.showMessage("complete");
-			        		Topic.publish("/refreshAssessments");
-			        		on.emit(_self.domNode, "dialogAction", {action: "close", bubbles: true});
 
-			        	},
-			        	function(err){
-			        		_self.showMessage("error", "Error: " + err);
-			        	}
-			        )
+				   	when(this.store.add(values), function(){
+				   		_self.showMessage("complete");
+
+				        on.emit(_self.domNode, "DialogAction", {
+				        	bubbles: true,
+					   		cancelable: true,
+					   		action: "close"
+					   	});
+
+					   	Topic.publish("/refreshProjects");
+
+				   	}, function(err){
+			        	_self.showMessage("error", "Error: " + err);
+			        });
 			}else{
 			        console.log("Form is incomplete");
 			}
+		},
+		onCancel: function(){
+			console.log("CreateProject onCancel()");
+			this.inherited(arguments);
+
 		}
 	});
 

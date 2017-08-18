@@ -1,11 +1,13 @@
 /* makes the font 33% larger relative to the icon container */
 
+
 [class*=" icon-"]{
 	color: #333;
 }
 
 [class*=" icon-"]:hover{
 	color: orange;
+	cursor: pointer;
 }
 
 
@@ -154,4 +156,12 @@
 }
 .fa-inverse {
   color: #ffffff;
+}
+
+I.icon.ready {
+  color: green;
+}
+
+I.icon.incomplete {
+  color: yellow ;
 }
