@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.exceptions import PermissionDenied
 from rest_framework_jwt.settings import api_settings
 from rest_framework.permissions import IsAuthenticated
-from .models import Application
+from rafter_user_service.models import Application
 from rafter_user_service.serializers import ApplicationJWTSerializer, ApplicationSerializer
 from rafter_user_service.permissions import IsOwnerOrPost
 from django.contrib.auth.models import User
