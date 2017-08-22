@@ -10,7 +10,6 @@ DEFAULTS = {
     'ALGORITHM': 'RS512',
     'AUTH_HEADER_PREFIX': 'JWT',
     'TOKEN_TYPE_TABLE': 'montage_jwt.DEFAULT_TOKEN_TYPE_TABLE',
-    'REFRESH_THRESHOLD': timedelta(minutes=10),
 }
 
 # These settings will be imported by python
