@@ -1,11 +1,10 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.contrib.auth.signals import user_logged_in, user_logged_out
-from django.http.request import HttpRequest
 from django.conf import settings
-from importlib import import_module
 from montage_jwt.settings import api_settings
 from montage_jwt.models import JWT
+from unittest.mock import Mock
 import os
 
 class SignalTest(TestCase):
@@ -22,15 +21,13 @@ class SignalTest(TestCase):
         api_settings.PRIVATE_KEY = p_key
 
     def make_request(self):
-        request = HttpRequest()
-        request.session = self.engine.SessionStore(None)
+        request = Mock()
+        request.session = {}
         return request
 
     def setUp(self):
         self.user = User.objects.create_user('test', 'test@test.com', 'test')
-        self.engine = import_module(settings.SESSION_ENGINE)
         self.request = self.make_request()
-
 
     def test_no_login_no_jwt(self):
         user = self.user

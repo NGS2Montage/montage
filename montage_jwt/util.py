@@ -1,5 +1,6 @@
 import uuid
 from datetime import datetime, timedelta
+from django.utils import timezone
 from .settings import api_settings
 
 default_app_config = 'montage_jwt.apps.MontageJwtConfig'
@@ -9,7 +10,7 @@ def make_claims(user, scope, nbf=None):
         raise ValueError('Token type: {} is undefined.'.format(scope))
 
     jwi = uuid.uuid4()
-    iat = datetime.utcnow()
+    iat = timezone.now()
     exp = iat + get_exp_delta(scope)
     username = user.get_username()
     iss = this_uri()
@@ -39,3 +40,8 @@ def get_exp_delta(scope):
 
 def get_aud(user):
     return []
+
+def destructive_refresh(jwt):
+    new_jwt = jwt.refresh()
+    jwt.delete()
+    return new_jwt
