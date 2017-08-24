@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
-from . import make_token
+from montage_jwt.util import make_claims
+from montage_jwt.models import JWT
 
 # Create your views here.
 
@@ -14,9 +14,18 @@ def get_jwt(request, jwt_type):
         return Response({
             'error': 'User not logged in.'
         })
+    
+    jwt_type = jwt_type.upper()  
 
-    token = make_token(user, jwt_type)
+    try:
+        claims = make_claims(user, jwt_type)
+    except ValueError:
+        return Response({
+            'error': '{} is not a valid JWT type.'.format(jwt_type),
+        })
+
+    jwt = JWT.objects.create_token(claims, user)
 
     return Response({
-        'token': token
+        'token': jwt.token
     })

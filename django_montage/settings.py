@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'montage_jwt.middleware.refresh_token_middleware',
+    'montage_jwt.middleware.TokenMiddleware',
 ]
 
 ROOT_URLCONF = 'django_montage.urls'

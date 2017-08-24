@@ -25,7 +25,6 @@ class JWTAuthentication(authentication.BaseAuthentication):
                 options=self._decode_options
             )
         except InvalidTokenError:
-            print('invalid')
             return None, token
 
         jwt = JWT.objects.get_from_claims(claims)
