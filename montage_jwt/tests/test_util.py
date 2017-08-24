@@ -4,19 +4,13 @@ from montage_jwt.util import make_claims
 from montage_jwt.settings import api_settings
 from montage_jwt.models import JWT
 from datetime import datetime, timedelta
-import os
+from .utils import set_key_pair
 
 class JWTTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super(JWTTest, cls).setUpClass()
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        p_key_file = dir_path + '/private.pem'
-
-        with open(p_key_file, 'r') as f:
-            p_key = f.read().strip()
-
-        api_settings.PRIVATE_KEY = p_key
+        set_key_pair()
 
     def setUp(self):
         self.user = User.objects.create_user('test', 'test@test.com', 'test')
