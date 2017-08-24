@@ -4,6 +4,7 @@ from django.contrib.auth.signals import user_logged_in, user_logged_out
 from django.conf import settings
 from montage_jwt.settings import api_settings
 from montage_jwt.models import JWT
+from montage_jwt.util import make_login_token
 from unittest.mock import Mock
 import os
 
@@ -29,27 +30,13 @@ class SignalTest(TestCase):
         self.user = User.objects.create_user('test', 'test@test.com', 'test')
         self.request = self.make_request()
 
-    def test_no_login_no_jwt(self):
-        user = self.user
-        request = self.request
-        self.assertNotIn('JWT', request.session)
-
-    def test_add_jwt_after_login(self):
-        user = self.user
-        request = self.request
-        user_logged_in.send(sender=user.__class__, request=request, user=user)
-        self.assertIn('JWT', request.session)
-
-        token = request.session['JWT']
-        jwt = JWT.objects.get_model_from_token(token)
-
     def test_remove_jwt_after_logout(self):
         user = self.user
         request = self.request
-        user_logged_in.send(sender=user.__class__, request=request, user=user)
-        self.assertIn('JWT', request.session)
 
-        token = request.session['JWT']
+        jwt = make_login_token(user)
+        token = jwt.token
+        request.session['JWT'] = token
 
         user_logged_out.send(sender=user.__class__, request=request, user=user)
 
