@@ -10,6 +10,7 @@ from montage_jwt.models import JWT
 from montage_jwt.util import make_claims
 from montage_jwt.middleware import TokenMiddleware
 from datetime import timedelta
+from .utils import set_key_pair
 import os
 
 def get_response(request):
@@ -21,13 +22,7 @@ class TokenMiddlewareTest(TestCase):
     @classmethod
     def setUpClass(cls):
         super(TokenMiddlewareTest, cls).setUpClass()
-        dir_path = os.path.dirname(os.path.realpath(__file__))
-        p_key_file = dir_path + '/private.pem'
-
-        with open(p_key_file, 'r') as f:
-            p_key = f.read().strip()
-
-        api_settings.PRIVATE_KEY = p_key
+        set_key_pair()
 
     def setUp(self):
         self.user = User.objects.create_user('test', 'test@test.com', 'test')
