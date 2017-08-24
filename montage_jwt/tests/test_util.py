@@ -23,4 +23,4 @@ class JWTTest(TestCase):
 
     def test_token_create_no_user(self):
         claims = make_claims(self.user, 'LOG')
-        jwt = JWT.objects.create_token_from_claims(claims)
+        jwt = JWT.objects.create_token(claims)

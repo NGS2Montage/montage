@@ -8,19 +8,19 @@ from django.utils import timezone
 from montage_jwt.settings import api_settings
 from montage_jwt.models import JWT
 from montage_jwt.util import make_claims
-from montage_jwt.middleware import RefreshTokenMiddleware
+from montage_jwt.middleware import TokenMiddleware
 from datetime import timedelta
 import os
 
 def get_response(request):
     return None
 
-class RefreshMiddlewareTest(TestCase):
+class TokenMiddlewareTest(TestCase):
 
     # Setup
     @classmethod
     def setUpClass(cls):
-        super(RefreshMiddlewareTest, cls).setUpClass()
+        super(TokenMiddlewareTest, cls).setUpClass()
         dir_path = os.path.dirname(os.path.realpath(__file__))
         p_key_file = dir_path + '/private.pem'
 
@@ -32,7 +32,7 @@ class RefreshMiddlewareTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user('test', 'test@test.com', 'test')
         self.request = self.make_request()
-        self.middleware = RefreshTokenMiddleware(get_response)
+        self.middleware = TokenMiddleware(get_response)
 
     # Helper Methods
     def make_request(self):
@@ -47,11 +47,11 @@ class RefreshMiddlewareTest(TestCase):
         claims['iat'] = a_while_ago
         claims['nbf'] = a_while_ago
         claims['exp'] = now - timedelta(seconds=1)
-        return JWT.objects.create_token_from_claims(claims, self.user)
+        return JWT.objects.create_token(claims, self.user)
 
     def get_not_outdated_token(self):
         claims = make_claims(self.user, 'LOG')
-        return JWT.objects.create_token_from_claims(claims, self.user)
+        return JWT.objects.create_token(claims, self.user)
 
     # Tests
     def test_refresh_middleware_no_refresh(self):
@@ -77,3 +77,13 @@ class RefreshMiddlewareTest(TestCase):
         new_jwt = JWT.objects.get_model_from_token(request.session['JWT'])
 
         self.assertNotEqual(jwt, new_jwt)
+
+    def test_middleware_adds_token(self):
+        request = self.make_request()
+        request.user = self.user
+
+        self.assertNotIn('JWT', request.session)
+
+        self.middleware(request)
+
+        self.assertIn('JWT', request.session)

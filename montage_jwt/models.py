@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from .settings import api_settings
-from .util import get_exp_delta
 from datetime import datetime
 import uuid
 import jwt
@@ -12,7 +11,7 @@ class ExpiredQuerySet(models.QuerySet):
         return self.filter(exp__lt=timezone.now())
 
 class JWTManager(models.Manager):
-    def create_token_from_claims(self, claims, user=None):
+    def create_token(self, claims, user=None):
         exp = claims['exp']
         token = jwt.encode(claims, api_settings.PRIVATE_KEY, algorithm='RS512').decode('utf-8')
 
@@ -31,8 +30,8 @@ class JWTManager(models.Manager):
         )
 
     def get_model_from_token(self, token):
-        jwi = JWT.get_jwi(token)
-        return self.get(pk=jwi)
+        claims = jwt.decode(token, verify=False)
+        return self.get(pk=claims['jwi'])
 
 # Create your models here.
 class JWT(models.Model):
@@ -47,54 +46,3 @@ class JWT(models.Model):
 
     # Only editable field.
     revoked = models.BooleanField(default=False)
-
-    def get_claims(self):
-        return self.decode(self.token)
-    
-    def refresh(self):
-        claims = self.get_claims()
-
-        new_claims = {
-            'jwi': str(uuid.uuid4()),
-            'exp': timezone.make_aware(datetime.utcfromtimestamp(claims['exp']) + get_exp_delta(claims['scope'])),
-            'orig_iat': claims['iat'],
-            'iat': timezone.now(),
-        }
-
-        claims.update(new_claims)
-        return JWT.objects.create_token_from_claims(claims, user=self.user)
-
-    def is_expired(self):
-        exp = self.exp
-        now = datetime.utcnow()
-        return now > exp
-
-    def is_about_to_expire(self):
-        exp = self.exp
-        now = datetime.utcnow()
-        return now > exp - api_settings.REFRESH_THRESHOLD 
-
-    # These next two methods are useful because they can be used on tokens
-    # without having to do a database operation.
-    @staticmethod
-    def is_token_expired(token):
-        claims = JWT.decode(token)
-        exp = datetime.utcfromtimestamp(claims['exp'])
-        now = datetime.utcnow()
-        return now > exp
-
-    @staticmethod
-    def is_token_about_to_expire(token):
-        claims = JWT.decode(token)
-        exp = datetime.utcfromtimestamp(claims['exp'])
-        now = datetime.utcnow()
-        return now > exp - api_settings.REFRESH_THRESHOLD 
-    
-    @staticmethod
-    def get_jwi(token):
-        claims = jwt.decode(token, verify=False)
-        return claims['jwi']
-    
-    @staticmethod
-    def decode(token):
-        return jwt.decode(token, verify=False)
