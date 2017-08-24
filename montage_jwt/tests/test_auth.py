@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import timedelta
 from montage_jwt.models import JWT
 from montage_jwt.util import make_claims
 from montage_jwt.auth import JWTAuthentication
@@ -31,6 +33,20 @@ class AuthTest(TestCase):
 
         user, new_jwt = self.auth.authenticate(self.request)
 
-        self.assertEqual(self.user, user)
+        self.assertEqual(user, self.user)
         self.assertEqual(jwt, new_jwt)
 
+
+    def test_invalid_token(self):
+        claims = make_claims(self.user, 'API')
+        claims['exp'] = timezone.now() - timedelta(seconds=30)
+
+        jwt = JWT.objects.create_token(claims, self.user)
+        self.request.META['AUTHORIZATION'] = jwt.token
+
+        user, new_jwt = self.auth.authenticate(self.request)
+        self.assertIsNone(user)
+
+    def test_no_token(self):
+        user, new_jwt = self.auth.authenticate(self.request)
+        self.assertIsNone(user)
