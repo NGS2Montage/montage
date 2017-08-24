@@ -12,18 +12,4 @@ from jwt.exceptions import InvalidTokenError
 class JWTAuthentication(authentication.BaseAuthentication):
 
     def authenticate(self, request):
-        token = request.META.get('AUTHORIZATION')
-
-        pub_key = api_settings.PUBLIC_KEY
-
-        claims = JWT.decode(token)
-        try:
-            claims = jwt.decode(token, pub_key)
-        except InvalidTokenError:
-            return None
-
-
-        jwi = claims['jwi']
-        try:
-            JWT.objects.get(pk=jwi)
-        username = claims['sub'] 
+        raise NotImplementedError('auth not written yet')
