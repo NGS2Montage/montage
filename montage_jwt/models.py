@@ -33,6 +33,9 @@ class JWTManager(models.Manager):
         claims = jwt.decode(token, verify=False)
         return self.get(pk=claims['jwi'])
 
+    def get_from_claims(self, claims):
+        return self.get(pk=claims['jwi'])
+
 # Create your models here.
 class JWT(models.Model):
     objects = JWTManager()
