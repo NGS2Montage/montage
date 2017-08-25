@@ -4,6 +4,7 @@ from django.utils import timezone
 from .settings import api_settings
 from montage_jwt.models import JWT
 from functools import wraps
+import jwt
 
 default_app_config = 'montage_jwt.apps.MontageJwtConfig'
 
@@ -87,7 +88,6 @@ def checks_exp(func):
 
             return func(exp, *args, **kwargs)
 
-@needs_decode
 def refresh(claims):
     new_claims = {
         'jwi': str(uuid.uuid4()),
@@ -108,3 +108,17 @@ def is_expired(exp):
 def is_about_to_expire(exp):
     now = timezone.now()
     return now > exp - api_settings.REFRESH_THRESHOLD 
+
+def decode(token):
+    options = {
+        'verify_aud': False,
+    }
+
+    claims = jwt.decode(
+        token, 
+        api_settings.PUBLIC_KEY, 
+        algorithms=api_settings.ALGORITHM,
+        options=options
+    )
+
+    return claims

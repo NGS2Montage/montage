@@ -37,7 +37,7 @@ def _refresh_token(request):
         JWT.objects.get_model_from_token(token).delete()
         
         # Make a new token
-        new_jwt = refresh(claims, claims=True)
+        new_jwt = refresh(claims)
         request.session['JWT'] = new_jwt.token
 
 class TokenMiddleware(object):
