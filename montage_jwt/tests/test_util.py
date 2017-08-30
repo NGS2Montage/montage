@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
-from montage_jwt.util import make_claims
+from montage_jwt.util import make_claims, get_exp_delta
 from montage_jwt.settings import api_settings
 from montage_jwt.models import JWT
 from datetime import datetime, timedelta
@@ -18,3 +18,8 @@ class JWTTest(TestCase):
     def test_token_create_no_user(self):
         claims = make_claims(self.user, 'LOG')
         jwt = JWT.objects.create_token(claims)
+
+    def test_get_exp_delta(self):
+        scope = 'LOG'
+        delta = get_exp_delta(scope)
+        self.assertEqual(timedelta(hours=5), delta)
