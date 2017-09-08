@@ -3,7 +3,6 @@
 # the models.
 
 from .analysis import Analysis
-from .application import Application
 from .analysis_instance import AnalysisInstance
 from .confirmatory_loop import ConfirmatoryLoop
 from .experiment import Experiment

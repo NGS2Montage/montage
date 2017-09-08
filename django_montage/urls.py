@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^data', ui.data),
     url(r'^content/(?P<name>.*)$', ui.content),
     url(r'^page/(?P<name>.*)$', ui.page),
+    url(r'^token/', include('montage_jwt.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('registration.backends.admin_approval.urls')),
     url(r'^api/', include(router.urls, namespace='api')),
