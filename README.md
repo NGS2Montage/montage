@@ -22,5 +22,9 @@ To install:
 
 You should also make a superuser `admin` with `python manage.py createsuperuser`.  This will allow for administrator account approval.
 
+## API
+
+[Read about the API here(https://github.com/NGS2Montage/montage/blob/master/rafter_user_service/models/README.md)
+
 ## Configuration
 Configuration is described in [`/django_montage/README.md`](https://github.com/NGS2Montage/montage/blob/master/django_montage/README.md).
