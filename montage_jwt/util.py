@@ -45,7 +45,7 @@ def get_jwi(token):
     if isinstance(token, JWT):
         return token.jwi
     else:
-        claims = jwt.decode(token, api_settings.PUBLIC_KEY, algorithms='RS512')
+        claims = jwt.decode(token, api_settings.PUBLIC_KEY, algorithms=api_settings.ALGORITHM)
 
 def get_exp_delta(scope):
     exp_delta = table[scope][1]

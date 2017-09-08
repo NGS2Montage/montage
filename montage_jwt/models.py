@@ -13,7 +13,7 @@ class ExpiredQuerySet(models.QuerySet):
 class JWTManager(models.Manager):
     def create_token(self, claims, user=None):
         exp = claims['exp']
-        token = jwt.encode(claims, api_settings.PRIVATE_KEY, algorithm='RS512').decode('utf-8')
+        token = jwt.encode(claims, api_settings.PRIVATE_KEY, algorithm=api_settings.ALGORITHM).decode('utf-8')
 
         username = claims['sub']
         if user is None:
