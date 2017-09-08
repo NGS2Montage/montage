@@ -52,6 +52,7 @@ def get_exp_delta(scope):
     return exp_delta
 
 def get_aud(user):
+    # For now, the audience is always the same...
     return ['@core', '#public']
 
 def refresh(claims):
@@ -66,6 +67,8 @@ def refresh(claims):
     return JWT.objects.create_token(claims)
 
 def decode(token):
+    # For now we don't need to verify the audience because these tokens don't
+    # authenticate against us.
     options = {
         'verify_aud': False,
     }
