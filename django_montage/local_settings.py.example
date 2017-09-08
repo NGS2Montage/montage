@@ -18,6 +18,8 @@ DATABASES = {
     }
 }
 
+MONTAGE_JWT = {}
+
 # JWT settings.
 # Example JWT key import
 try:		
@@ -27,7 +29,7 @@ try:
     with open(BASE_DIR + '/public.pem', 'r') as f:		
         PUBLIC_KEY = f.read().strip()		
 		
-    JWT_AUTH['JWT_PUBLIC_KEY'] = str(PUBLIC_KEY)		
-    JWT_AUTH['JWT_PRIVATE_KEY'] = str(PRIVATE_KEY)		
+    MONTAGE_JWT['PUBLIC_KEY'] = str(PUBLIC_KEY)		
+    MONTAGE_JWT['PRIVATE_KEY'] = str(PRIVATE_KEY)		
 except:		
     print('Could not find ./private.pem or ./public.pem.')
