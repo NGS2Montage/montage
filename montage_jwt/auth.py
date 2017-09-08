@@ -15,7 +15,15 @@ class JWTAuthentication(authentication.BaseAuthentication):
         if 'AUTHORIZATION' not in request.META:
             return None, None
 
-        token = request.META['AUTHORIZATION']
+        
+        auth_header = request.META['AUTHORIZATION']
+
+        if not auth_header.startswith(api_settings.AUTH_HEADER_PREFIX + ' '):
+            # Malformed header
+            return None, None
+
+        token_loc = len(api_settings.AUTH_HEADER_PREFIX) + 1
+        token = auth_header[token_loc:]
 
         try:
             claims = decode(

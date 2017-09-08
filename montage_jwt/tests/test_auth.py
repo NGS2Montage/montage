@@ -29,13 +29,14 @@ class AuthTest(TestCase):
     def test_auth_proper_token(self):
         claims = make_claims(self.user, 'API')
         jwt = JWT.objects.create_token(claims, self.user)
-        self.request.META['AUTHORIZATION'] = jwt.token
+
+        auth_header = 'JWT {}'.format(jwt.token)
+        self.request.META['AUTHORIZATION'] = auth_header
 
         user, new_jwt = self.auth.authenticate(self.request)
 
         self.assertEqual(user, self.user)
         self.assertEqual(jwt, new_jwt)
-
 
     def test_invalid_token(self):
         claims = make_claims(self.user, 'API')
