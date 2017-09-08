@@ -6,7 +6,6 @@ from .investigation_status import InvestigationStatus
 
 class Investigation(models.Model):
 
-    rid = models.CharField(max_length=200, unique=True)
     project = models.ForeignKey(Project, related_name='%(class)s_project')
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)

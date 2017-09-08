@@ -5,7 +5,7 @@ from .model_status import ModelStatus
 
 
 class ModelInstance(models.Model):
-    rid = models.CharField(max_length=200, unique=True)
+
     input_list = models.FileField(max_length=100)
     output_list = models.FileField(max_length=100)
     parameter_list = models.FileField(max_length=100)

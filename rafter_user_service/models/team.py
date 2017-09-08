@@ -13,3 +13,6 @@ class Team(models.Model):
     modified_by = models.CharField(max_length=200, unique=True)
     created_on = models.DateField(auto_now_add=True)
     last_modified = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name

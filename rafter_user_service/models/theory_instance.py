@@ -5,7 +5,7 @@ from .model import Model
 
 
 class TheoryInstance(models.Model):
-    rid = models.CharField(max_length=200, unique=True)
+
     investigation = models.ForeignKey(Investigation, related_name='%(class)s_investigation')
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
