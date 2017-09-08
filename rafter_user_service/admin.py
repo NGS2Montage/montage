@@ -2,20 +2,29 @@ from django.contrib import admin
 
 from simple_history.admin import SimpleHistoryAdmin
 
-from .models import ProjectState, Investigator, Observation, Team
+from . import models
 
-@admin.register(Team)
-class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name',)
 
-@admin.register(Observation)
+@admin.register(models.Investigator)
+class InvestigatorAdmin(SimpleHistoryAdmin):
+    pass
+
+
+@admin.register(models.Observation)
 class ObservationAdmin(SimpleHistoryAdmin):
     pass
 
-@admin.register(Investigator)
-class InvestigatorAdmin(admin.ModelAdmin):
+
+@admin.register(models.Project)
+class ProjectAdmin(SimpleHistoryAdmin):
     pass
 
-@admin.register(ProjectState)
-class ProjectStateAdmin(admin.ModelAdmin):
+
+@admin.register(models.ProjectState)
+class ProjectStateAdmin(SimpleHistoryAdmin):
     pass
+
+
+@admin.register(models.Team)
+class TeamAdmin(SimpleHistoryAdmin):
+    list_display = ('name',)
