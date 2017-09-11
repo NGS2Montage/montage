@@ -93,3 +93,10 @@ Send a PUT with new JSON data to the single item URL.
 Send a DELETE to the single item URL.
 
 - **Delete Observation** with ID 6: send DELETE to `/api/observations/6/`
+
+
+## Testing data
+
+Load some sample data into the database with `./manage.py loaddata rafter_user_service/initial_data.json`
+
+This will make an admin user with password `correcthorsebatterystaple`.

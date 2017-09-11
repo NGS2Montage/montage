@@ -24,7 +24,10 @@ You should also make a superuser `admin` with `python manage.py createsuperuser`
 
 ## API
 
-[Read about the API here(https://github.com/NGS2Montage/montage/blob/master/rafter_user_service/models/README.md)
+[Read about the API here](https://github.com/NGS2Montage/montage/blob/master/rafter_user_service/models/README.md).
+
+It might be convenient for development to load some initial model data with `./manage.py loaddata rafter_user_service/initial_data.json`
+
 
 ## Configuration
 Configuration is described in [`/django_montage/README.md`](https://github.com/NGS2Montage/montage/blob/master/django_montage/README.md).
