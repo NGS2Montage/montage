@@ -1,7 +1,17 @@
 API
 ==========
 
-Browse it at: `/api/`
+Browse it at: `/api/`. Currently serving:
+
+```
+{
+    "projects": "/api/projects/",
+    "observations": "/api/observations/",
+    "investigations": "/api/investigations/",
+    "project_states": "/api/project_states/",
+    "teams": "/api/teams/"
+}
+```
 
 ## Get
 
@@ -12,14 +22,8 @@ Browse it at: `/api/`
     {
         "id": 1,
         "description": "Lorem ipsum et al",
-        "team": {
-            "id": 1,
-            "name": "Testing Team"
-        },
-        "project_state": {
-            "id": 1,
-            "name": "READY"
-        },
+        "team": 1,
+        "project_state": 1,
         "created_by": "admin",
         "modified_by": "admin",
         "date_created": "2017-09-07T19:04:35.629296Z",
@@ -34,14 +38,8 @@ Browse it at: `/api/`
 {
     "id": 1,
     "description": "Lorem ipsum et al",
-    "team": {
-        "id": 1,
-        "name": "Testing Team"
-    },
-    "project_state": {
-        "id": 1,
-        "name": "READY"
-    },
+    "team": 1,
+    "project_state": 1,
     "created_by": "admin",
     "modified_by": "admin",
     "date_created": "2017-09-07T19:04:35.629296Z",

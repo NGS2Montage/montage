@@ -1,0 +1,260 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$wKGfNO7WRppl$WKTyk5tJJbNyINus0xMNawUrMs4XxV3thoGuEY7ryRQ=",
+      "last_login": "2017-09-11T16:26:23.831Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "nwself@cs.vt.edu",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2017-09-11T16:01:44.914Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalteam",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "date_created": "2017-09-11T16:05:19.722Z",
+      "last_modified": "2017-09-11T16:05:19.722Z",
+      "name": "Testing Team",
+      "description": "Team for testing",
+      "location": "The cloud",
+      "website": "dac.cs.vt.edu",
+      "affiliation": "VT",
+      "created_by": 1,
+      "modified_by": 1,
+      "history_date": "2017-09-11T16:05:19.723Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "+"
+    }
+  },
+  {
+    "model": "rafter_user_service.team",
+    "pk": 1,
+    "fields": {
+      "date_created": "2017-09-11T16:05:19.722Z",
+      "last_modified": "2017-09-11T16:05:19.722Z",
+      "created_by": 1,
+      "modified_by": 1,
+      "name": "Testing Team",
+      "description": "Team for testing",
+      "location": "The cloud",
+      "website": "dac.cs.vt.edu",
+      "affiliation": "VT"
+    }
+  },
+  {
+    "model": "rafter_user_service.profile",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "_token": null,
+      "_roles": "[]",
+      "_access": "[\"@core\", \"#public\"]"
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalprojectstate",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "date_created": "2017-09-11T16:06:25.656Z",
+      "last_modified": "2017-09-11T16:06:25.657Z",
+      "name": "READY",
+      "description": "State for ready things",
+      "created_by": 1,
+      "modified_by": 1,
+      "history_date": "2017-09-11T16:06:25.657Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "+"
+    }
+  },
+  {
+    "model": "rafter_user_service.projectstate",
+    "pk": 1,
+    "fields": {
+      "date_created": "2017-09-11T16:06:25.656Z",
+      "last_modified": "2017-09-11T16:06:25.657Z",
+      "created_by": 1,
+      "modified_by": 1,
+      "name": "READY",
+      "description": "State for ready things"
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalproject",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "date_created": "2017-09-11T16:06:36.878Z",
+      "last_modified": "2017-09-11T16:06:36.878Z",
+      "description": "A stub project",
+      "created_by": 1,
+      "modified_by": 1,
+      "team": 1,
+      "project_state": 1,
+      "history_date": "2017-09-11T16:06:36.879Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "+"
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalproject",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "date_created": "2017-09-11T16:28:10.893Z",
+      "last_modified": "2017-09-11T16:28:10.893Z",
+      "description": "A second stub project",
+      "created_by": 1,
+      "modified_by": 1,
+      "team": 1,
+      "project_state": 1,
+      "history_date": "2017-09-11T16:28:10.894Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "+"
+    }
+  },
+  {
+    "model": "rafter_user_service.project",
+    "pk": 1,
+    "fields": {
+      "date_created": "2017-09-11T16:06:36.878Z",
+      "last_modified": "2017-09-11T16:06:36.878Z",
+      "created_by": 1,
+      "modified_by": 1,
+      "description": "A stub project",
+      "team": 1,
+      "project_state": 1
+    }
+  },
+  {
+    "model": "rafter_user_service.project",
+    "pk": 2,
+    "fields": {
+      "date_created": "2017-09-11T16:28:10.893Z",
+      "last_modified": "2017-09-11T16:28:10.893Z",
+      "created_by": 1,
+      "modified_by": 1,
+      "description": "A second stub project",
+      "team": 1,
+      "project_state": 1
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalobservation",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "date_created": "2017-09-11T16:07:49.477Z",
+      "last_modified": "2017-09-11T16:07:49.477Z",
+      "comment": "An observation about the stub project",
+      "created_by": 1,
+      "modified_by": 1,
+      "project": 1,
+      "history_date": "2017-09-11T16:07:49.479Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "+"
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalobservation",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "date_created": "2017-09-11T16:07:55.717Z",
+      "last_modified": "2017-09-11T16:07:55.717Z",
+      "comment": "Another observation",
+      "created_by": 1,
+      "modified_by": 1,
+      "project": 1,
+      "history_date": "2017-09-11T16:07:55.718Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "+"
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalobservation",
+    "pk": 3,
+    "fields": {
+      "id": 2,
+      "date_created": "2017-09-11T16:07:55.717Z",
+      "last_modified": "2017-09-11T16:28:23.467Z",
+      "comment": "Another observation on first project",
+      "created_by": 1,
+      "modified_by": 1,
+      "project": 1,
+      "history_date": "2017-09-11T16:28:23.469Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "~"
+    }
+  },
+  {
+    "model": "rafter_user_service.historicalobservation",
+    "pk": 4,
+    "fields": {
+      "id": 3,
+      "date_created": "2017-09-11T16:28:35.996Z",
+      "last_modified": "2017-09-11T16:28:35.996Z",
+      "comment": "About the second project",
+      "created_by": 1,
+      "modified_by": 1,
+      "project": 2,
+      "history_date": "2017-09-11T16:28:35.997Z",
+      "history_change_reason": null,
+      "history_user": 1,
+      "history_type": "+"
+    }
+  },
+  {
+    "model": "rafter_user_service.observation",
+    "pk": 1,
+    "fields": {
+      "date_created": "2017-09-11T16:07:49.477Z",
+      "last_modified": "2017-09-11T16:07:49.477Z",
+      "created_by": 1,
+      "modified_by": 1,
+      "comment": "An observation about the stub project",
+      "project": 1
+    }
+  },
+  {
+    "model": "rafter_user_service.observation",
+    "pk": 2,
+    "fields": {
+      "date_created": "2017-09-11T16:07:55.717Z",
+      "last_modified": "2017-09-11T16:28:23.467Z",
+      "created_by": 1,
+      "modified_by": 1,
+      "comment": "Another observation on first project",
+      "project": 1
+    }
+  },
+  {
+    "model": "rafter_user_service.observation",
+    "pk": 3,
+    "fields": {
+      "date_created": "2017-09-11T16:28:35.996Z",
+      "last_modified": "2017-09-11T16:28:35.996Z",
+      "created_by": 1,
+      "modified_by": 1,
+      "comment": "About the second project",
+      "project": 2
+    }
+  }
+]
