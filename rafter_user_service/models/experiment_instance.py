@@ -7,7 +7,7 @@ from .investigation import Investigation
 
 
 class ExperimentInstance(models.Model):
-    rid = models.CharField(max_length=200, unique=True)
+
     experiment = models.ForeignKey(Experiment, related_name='%(class)s_experiment')
     treatment = models.ForeignKey(Treatment, related_name='%(class)s_treatment')
     result_instance = models.FileField(max_length=100)

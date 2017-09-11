@@ -9,7 +9,6 @@ class Investigator(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    user_name = models.CharField(max_length=200)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     team = models.ForeignKey(Team)

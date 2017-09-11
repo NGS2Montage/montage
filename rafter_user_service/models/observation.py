@@ -1,13 +1,13 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
+
+from .abstract import AuditedTimeStampedModel
+from .project import Project
 
 
-class Observation(models.Model):
-
+class Observation(AuditedTimeStampedModel):
     comment = models.CharField(max_length=200)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-    )
-    date_created = models.DateField(auto_now_add=True)
-    date_last_modified = models.DateField(auto_now=True)
+    project = models.ForeignKey(Project, related_name='%(class)s_project')
+
+    def __str__(self):
+        return '({}) {}'.format(self.created_by.username, self.comment)

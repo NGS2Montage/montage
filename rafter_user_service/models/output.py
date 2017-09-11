@@ -4,7 +4,6 @@ from .investigator import Investigator
 
 class Output(models.Model):
 
-    rid = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     type = models.CharField(max_length=200)
