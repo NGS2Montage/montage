@@ -1,7 +1,17 @@
 API
 ==========
 
-Browse it at: `/api/`
+Browse it at: `/api/`. Currently serving:
+
+```
+{
+    "projects": "/api/projects/",
+    "observations": "/api/observations/",
+    "investigations": "/api/investigations/",
+    "project_states": "/api/project_states/",
+    "teams": "/api/teams/"
+}
+```
 
 ## Get
 
@@ -12,14 +22,8 @@ Browse it at: `/api/`
     {
         "id": 1,
         "description": "Lorem ipsum et al",
-        "team": {
-            "id": 1,
-            "name": "Testing Team"
-        },
-        "project_state": {
-            "id": 1,
-            "name": "READY"
-        },
+        "team": 1,
+        "project_state": 1,
         "created_by": "admin",
         "modified_by": "admin",
         "date_created": "2017-09-07T19:04:35.629296Z",
@@ -34,14 +38,8 @@ Browse it at: `/api/`
 {
     "id": 1,
     "description": "Lorem ipsum et al",
-    "team": {
-        "id": 1,
-        "name": "Testing Team"
-    },
-    "project_state": {
-        "id": 1,
-        "name": "READY"
-    },
+    "team": 1,
+    "project_state": 1,
     "created_by": "admin",
     "modified_by": "admin",
     "date_created": "2017-09-07T19:04:35.629296Z",
@@ -95,3 +93,10 @@ Send a PUT with new JSON data to the single item URL.
 Send a DELETE to the single item URL.
 
 - **Delete Observation** with ID 6: send DELETE to `/api/observations/6/`
+
+
+## Testing data
+
+Load some sample data into the database with `./manage.py loaddata rafter_user_service/initial_data.json`
+
+This will make an admin user with password `correcthorsebatterystaple`.

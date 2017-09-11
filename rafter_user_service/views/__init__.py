@@ -6,3 +6,4 @@ from .permissions import UserDetail, user_profile
 from .investigation_views import InvestigationViewSet
 from .observation_views import ObservationViewSet
 from .project_views import ProjectViewSet
+from .simple_views import ProjectStateViewSet, TeamViewSet

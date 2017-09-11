@@ -6,6 +6,8 @@ router = DefaultRouter()
 router.register(r'projects', views.ProjectViewSet)
 router.register(r'observations', views.ObservationViewSet)
 router.register(r'investigations', views.InvestigationViewSet)
+router.register(r'project_states', views.ProjectStateViewSet)
+router.register(r'teams', views.TeamViewSet)
 
 app_name = 'user'
 urlpatterns = [
