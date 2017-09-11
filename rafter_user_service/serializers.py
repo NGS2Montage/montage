@@ -4,28 +4,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework.exceptions import PermissionDenied
 
 
-class ApplicationJWTSerializer(serializers.Serializer):
-    token = serializers.CharField(read_only=True)
-    secret = serializers.CharField(write_only=True)
-
-    def validate(self, data):
-        app = self.context['app']
-        
-        if not app.check_secret(data['secret']):
-            msg = 'Wrong application secret.'
-            raise serializers.ValidationError(msg)
-
-        return {
-            'token': app.profile.generate_token()
-        }
-
-
-class ApplicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Application
-        fields = ('name', 'desc')
-
-
 class AnalysisSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Analysis
@@ -123,9 +101,13 @@ class ModelStatusSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ObservationSerializer(serializers.ModelSerializer):
+    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Observation
-        fields = ('comment', 'user')
+        fields = ('comment', 'project', 'date_created', 'last_modified', 'created_by', 'modified_by')
+        read_only_fields = ('date_created', 'last_modified')
 
 
 class OutputSerializer(serializers.HyperlinkedModelSerializer):
@@ -152,27 +134,31 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'user')
 
 
-class ProjectSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Project
-        fields = ('id', 'team', 'project_state')
-
-
-class ProjectStateSerializer(serializers.HyperlinkedModelSerializer):
+class ProjectStateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProjectState
-        fields = ('id', 'name')
+        fields = ('id', 'name', 'description')
+
+
+class TeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ('id', 'name', 'description', 'location', 'website', 'affiliation')
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = Project
+        fields = ('id', 'description', 'team', 'project_state', 'created_by', 'modified_by', 'date_created', 'last_modified')
+        read_only_fields = ('created_by', 'modified_by', 'date_created', 'last_modified')
 
 
 class RoleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Role
-        fields = ('id', 'name')
-
-
-class TeamSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Team
         fields = ('id', 'name')
 
 

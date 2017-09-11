@@ -4,7 +4,6 @@ from .investigator import Investigator
 
 class ExperimentStatus(models.Model):
 
-    rid = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     is_active = models.BooleanField(default=False)

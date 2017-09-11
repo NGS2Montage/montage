@@ -5,7 +5,7 @@ from .analysis import Analysis
 
 
 class ConfirmatoryLoop(models.Model):
-    rid = models.CharField(max_length=200, unique=True)
+
     investigation = models.ForeignKey(Investigation, related_name='%(class)s_investigation')
     analysis = models.ForeignKey(Analysis, related_name='%(class)s_analysis')
     # TODO "(Model Validation -- what form should this be -- how does this generate the “next” loop?)"
