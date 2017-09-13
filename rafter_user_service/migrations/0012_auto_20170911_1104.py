@@ -55,19 +55,17 @@ class Migration(migrations.Migration):
             field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
             preserve_default=False,
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='team',
             name='created_by',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='team_created_by', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
             model_name='team',
             name='last_modified',
             field=models.DateTimeField(auto_now=True),
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='team',
             name='modified_by',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='team_modified_by', to=settings.AUTH_USER_MODEL),
         ),
     ]
