@@ -15,7 +15,12 @@ To install:
     ```
     python manage.py migrate
     ```
-5. Then you can start the server with:
+5. Now apply settings.  To do this copy
+   `django_montage/local_settings.py.example` to
+   `django_montage/local_settings.py`. Now, add any configuration settings to
+   `local_settings.py`.
+
+6. Then you can start the server with:
     ```
     python manage.py runserver
     ```
