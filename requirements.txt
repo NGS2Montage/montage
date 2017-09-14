@@ -2,8 +2,10 @@ asn1crypto==0.22.0
 cffi==1.10.0
 cryptography==2.0
 Django==1.11.3
+django-filter==1.0.4
 django-registration-redux==1.7
 django-settings-export==1.2.1
+django-simple-history==1.9.0
 djangorestframework==3.6.3
 idna==2.5
 psycopg2==2.7.1

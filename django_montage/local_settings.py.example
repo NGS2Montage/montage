@@ -3,6 +3,9 @@
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Might want to make this more specific
+ALLOWED_HOSTS = ['*']
+DEBUG = True
 # This is a Production setting
 # The Postgres database will need to be created
 # "Name", "User", "Password", "Host", and "Port" may need to be set.
@@ -10,26 +13,30 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'montage',
-        'USER': 'postgres',
+        'NAME': 'django_db',
+        'USER': 'django',
         'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
 
-MONTAGE_JWT = {}
+from datetime import timedelta
 
 # JWT settings.
 # Example JWT key import
-try:		
-    with open(BASE_DIR + '/private.pem', 'r') as f:		
-        PRIVATE_KEY = f.read().strip()		
-		
-    with open(BASE_DIR + '/public.pem', 'r') as f:		
-        PUBLIC_KEY = f.read().strip()		
-		
-    MONTAGE_JWT['PUBLIC_KEY'] = str(PUBLIC_KEY)		
-    MONTAGE_JWT['PRIVATE_KEY'] = str(PRIVATE_KEY)		
-except:		
-    print('Could not find ./private.pem or ./public.pem.')
+try:        
+    with open(BASE_DIR + '/private.pem', 'r') as f:     
+        PRIVATE_KEY = f.read().strip()      
+        
+    with open(BASE_DIR + '/public.pem', 'r') as f:      
+        PUBLIC_KEY = f.read().strip()       
+        
+    JWT_AUTH = {
+        'JWT_ALGORITHM': 'RS512',
+        'JWT_EXPIRATION_DELTA': timedelta(hours=3),
+        'JWT_PRIVATE_KEY': str(PUBLIC_KEY),
+        'JWT_PUBLIC_KEY': str(PRIVATE_KEY),
+    }
+except IOError:
+    print('Could not find {0}/private.pem or {0}/public.pem.'.format(BASE_DIR))

@@ -10,6 +10,8 @@ class ObservationViewSet(viewsets.ModelViewSet):
 
     serializer_class = ObservationSerializer
     queryset = Observation.objects.all()
+    filter_fields = ('project',)
+
 
     def retrieve_observation(self, pk=None):
         observation = get_object_or_404(Observation, pk=pk)

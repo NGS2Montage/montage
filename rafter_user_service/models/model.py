@@ -8,7 +8,6 @@ from .investigator import Investigator
 
 class Model(models.Model):
 
-    rid = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     literature_reference = models.CharField(max_length=200)

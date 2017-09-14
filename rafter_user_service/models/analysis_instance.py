@@ -4,7 +4,7 @@ from .investigation import Investigation
 
 
 class AnalysisInstance(models.Model):
-    rid = models.CharField(max_length=200, unique=True)
+
     investigation = models.ForeignKey(Investigation, related_name='%(class)s_investigation')
     input_list = models.FileField(max_length=100)
     output_list = models.FileField(max_length=100)

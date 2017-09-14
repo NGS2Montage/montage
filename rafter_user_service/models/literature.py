@@ -7,7 +7,6 @@ from .investigator import Investigator
 
 class Literature(models.Model):
 
-    rid = models.CharField(max_length=200, unique=True)
     name = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
     publication_date = models.CharField(max_length=200)

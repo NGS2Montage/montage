@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from montage_ui import views  as ui
+from rafter_user_service.urls import router
 
 urlpatterns = [
     url(r'^$', ui.index),
@@ -27,5 +28,5 @@ urlpatterns = [
     url(r'^token/', include('montage_jwt.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^user/', include('registration.backends.admin_approval.urls')),
-    url(r'^user/', include('rafter_user_service.urls')),
+    url(r'^api/', include(router.urls, namespace='api')),
 ]
