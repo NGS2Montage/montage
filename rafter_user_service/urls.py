@@ -11,7 +11,5 @@ router.register(r'teams', views.TeamViewSet)
 
 app_name = 'user'
 urlpatterns = [
-    url(r'^$', views.user_profile, name='profile'),
     url(r'^', include(router.urls)),
-    url(r'^profile/(?P<username>.+)/$', views.UserDetail.as_view(), name='user'),
 ]
