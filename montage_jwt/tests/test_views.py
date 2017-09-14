@@ -25,7 +25,7 @@ class GetJwtViewTest(TestCase):
 
     def test_get_jwt_no_login(self):
         resp = self.client.get(reverse('montage_jwt:get_jwt', args=['api']))
-        self.assertEqual(401, resp.status_code)
+        self.assertEqual(403, resp.status_code)
 
     def test_get_jwt_no_type(self):
         self.client.login(username='test', password='test')
