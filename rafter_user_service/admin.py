@@ -10,6 +10,11 @@ class InvestigatorAdmin(SimpleHistoryAdmin):
     pass
 
 
+@admin.register(models.InvestigationStatus)
+class InvestigationStatusAdmin(SimpleHistoryAdmin):
+    pass
+
+
 @admin.register(models.Observation)
 class ObservationAdmin(SimpleHistoryAdmin):
     pass

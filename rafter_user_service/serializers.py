@@ -59,9 +59,13 @@ class InvestigationSerializer(serializers.ModelSerializer):
 
 
 class InvestigationStatusSerializer(serializers.HyperlinkedModelSerializer):
+    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
     class Meta:
-        model = InvestigationStatus
-        fields = ('id', 'name')
+        model = Observation
+        fields = ('id', 'name', 'description', 'date_created', 'last_modified', 'created_by', 'modified_by')
+        read_only_fields = ('date_created', 'last_modified')
 
 
 class InvestigatorSerializer(serializers.HyperlinkedModelSerializer):
@@ -141,9 +145,12 @@ class ProjectStateSerializer(serializers.ModelSerializer):
 
 
 class TeamSerializer(serializers.ModelSerializer):
+    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Team
-        fields = ('id', 'name', 'description', 'location', 'website', 'affiliation')
+        fields = ('id', 'name', 'description', 'location', 'website', 'affiliation', 'created_by', 'modified_by')
 
 
 class ProjectSerializer(serializers.ModelSerializer):
