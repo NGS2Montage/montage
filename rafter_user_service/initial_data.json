@@ -53,16 +53,6 @@
     }
   },
   {
-    "model": "rafter_user_service.profile",
-    "pk": 1,
-    "fields": {
-      "user": 1,
-      "_token": null,
-      "_roles": "[]",
-      "_access": "[\"@core\", \"#public\"]"
-    }
-  },
-  {
     "model": "rafter_user_service.historicalprojectstate",
     "pk": 1,
     "fields": {

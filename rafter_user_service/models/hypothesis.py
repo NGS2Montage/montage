@@ -3,7 +3,7 @@ from django.db import models
 from .abstract import AuditedTimeStampedModel
 
 
-class Theory(AuditedTimeStampedModel):
+class Hypothesis(AuditedTimeStampedModel):
 
     text = models.CharField(max_length=200)
 

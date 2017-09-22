@@ -9,12 +9,14 @@ from .experiment import Experiment
 from .experiment_instance import ExperimentInstance
 from .experiment_status import ExperimentStatus
 from .exploratory_loop import ExploratoryLoop
+from .hypothesis import Hypothesis
 from .input import Input
 from .investigation import Investigation
 from .investigation_status import InvestigationStatus
 from .investigator import Investigator
 from .literature import Literature
 from .manipulation import Manipulation
+from .mechanism import Mechanism
 from .model import Model
 from .model_instance import ModelInstance
 from .model_status import ModelStatus

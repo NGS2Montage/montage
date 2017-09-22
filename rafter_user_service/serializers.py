@@ -1,106 +1,195 @@
 from rest_framework import serializers
-from rafter_user_service.models import *
-from django.shortcuts import get_object_or_404
-from rest_framework.exceptions import PermissionDenied
+from rafter_user_service import models
+# from django.shortcuts import get_object_or_404
+# from rest_framework.exceptions import PermissionDenied
 
 
-class AnalysisSerializer(serializers.HyperlinkedModelSerializer):
+class MyBaseSerializer(serializers.ModelSerializer):
+    def get_fields(self):
+        fields = super(MyBaseSerializer, self).get_fields()
+        fields['id'] = serializers.IntegerField(label='ID', read_only=True)
+        fields['created_by'] = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+        fields['modified_by'] = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+        fields['date_created'] = serializers.DateTimeField(read_only=True)
+        fields['last_modified'] = serializers.DateTimeField(read_only=True)
+        return fields
+
+
+class ProjectStateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Analysis
-        fields = ('id', 'name')
+        model = models.ProjectState
+        fields = ('name', 'description')
+
+
+class TeamSerializer(MyBaseSerializer):
+    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = models.Team
+        fields = ('name', 'description', 'location', 'website', 'affiliation', 'created_by', 'modified_by')
+
+
+class ProjectSerializer(MyBaseSerializer):
+    investigations = serializers.HyperlinkedRelatedField(
+        source='investigation_set',
+        many=True,
+        view_name="api:investigation-detail",
+        queryset=models.Investigation.objects.all()
+    )
+
+    class Meta:
+        model = models.Project
+        fields = ('description', 'team', 'project_state', 'investigations')
+
+    def to_representation(self, instance):
+        representation = super(ProjectSerializer, self).to_representation(instance)
+        representation['team'] = TeamSerializer(instance.team).data
+        representation['project_state'] = ProjectStateSerializer(instance.project_state).data
+        return representation
+
+
+class HypothesisSerializer(MyBaseSerializer):
+    class Meta:
+        model = models.Hypothesis
+        fields = ('text',)
+
+
+class MechanismSerializer(MyBaseSerializer):
+    class Meta:
+        model = models.Mechanism
+        fields = ('text',)
+
+
+class TheorySerializer(MyBaseSerializer):
+    class Meta:
+        model = models.Theory
+        fields = ('text',)
+
+
+class InvestigationStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.InvestigationStatus
+        fields = ('name', 'description')
+
+
+class ModelSerializer(MyBaseSerializer):
+    class Meta:
+        model = models.Model
+        fields = ('name', 'description', 'literature_reference', 'inputs', 'outputs', 'parameters')
+
+    def to_representation(self, instance):
+        representation = super(ModelSerializer, self).to_representation(instance)
+        representation['inputs'] = InputSerializer(instance.inputs, many=True).data
+        representation['outputs'] = OutputSerializer(instance.outputs, many=True).data
+        representation['parameters'] = ParameterSerializer(instance.parameters, many=True).data
+        return representation
+
+
+class ExperimentSerializer(MyBaseSerializer):
+    class Meta:
+        model = models.Experiment
+        fields = ('name', 'description', 'method', 'protocol', 'consent', 'recruitment')
+
+
+class InvestigationSerializer(serializers.ModelSerializer):
+    analysis = serializers.PrimaryKeyRelatedField(source='analysis_set', many=True, queryset=models.Analysis.objects.all())
+
+    class Meta:
+        model = models.Investigation
+        fields = (
+            'analysis',
+            'experiments',
+            'hypotheses',
+            'investigation_status',
+            'mechanisms',
+            'models',
+            'name',
+            'project',
+            'theories',
+        )
+
+    def to_representation(self, instance):
+        representation = super(InvestigationSerializer, self).to_representation(instance)
+        representation['analysis'] = AnalysisSerializer(instance.analysis_set, many=True).data
+        representation['experiments'] = ExperimentSerializer(instance.experiments, many=True).data
+        representation['hypotheses'] = HypothesisSerializer(instance.hypotheses, many=True).data
+        representation['investigation_status'] = InvestigationStatusSerializer(instance.investigation_status).data
+        representation['models'] = ModelSerializer(instance.models, many=True).data
+        representation['mechanisms'] = MechanismSerializer(instance.mechanisms, many=True).data
+        representation['theories'] = TheorySerializer(instance.theories, many=True).data
+        return representation
+
+
+class AnalysisSerializer(MyBaseSerializer):
+    class Meta:
+        model = models.Analysis
+        fields = ('text', 'investigation')
 
 
 class AnalysisInstanceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = AnalysisInstance
+        model = models.AnalysisInstance
         fields = 'id'
 
 
 class ConfirmatoryLoopSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ConfirmatoryLoop
+        model = models.ConfirmatoryLoop
         fields = 'id'
-
-
-class ExperimentSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Experiment
-        fields = ('id', 'name')
 
 
 class ExperimentInstanceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ExperimentInstance
+        model = models.ExperimentInstance
         fields = ('id', 'experiment', 'experiment_status')
 
 
 class ExperimentStatusSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ExperimentStatus
+        model = models.ExperimentStatus
         fields = ('id', 'name')
 
 
 class ExperimentLoopSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ExploratoryLoop
+        model = models.ExploratoryLoop
         fields = 'id'
 
 
 class InputSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Input
-        fields = ('id', 'name')
-
-
-class InvestigationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Investigation
-        fields = ('id', 'name', 'project')
-
-
-class InvestigationStatusSerializer(serializers.HyperlinkedModelSerializer):
-    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-
-    class Meta:
-        model = Observation
-        fields = ('id', 'name', 'description', 'date_created', 'last_modified', 'created_by', 'modified_by')
-        read_only_fields = ('date_created', 'last_modified')
+        model = models.Input
+        fields = ('id', 'name', 'description', 'type')
 
 
 class InvestigatorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Investigator
+        model = models.Investigator
         fields = ('id', 'name', 'user_name')
 
 
 class LiteratureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Literature
+        model = models.Literature
         fields = ('id', 'name', 'author')
 
 
 class ManipulationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Manipulation
-        fields = ('id', 'name')
-
-
-class ModelSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Model
+        model = models.Manipulation
         fields = ('id', 'name')
 
 
 class ModelInstanceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ModelInstance
+        model = models.ModelInstance
         fields = 'id'
 
 
 class ModelStatusSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = ModelStatus
+        model = models.ModelStatus
         fields = ('id', 'name')
 
 
@@ -109,79 +198,48 @@ class ObservationSerializer(serializers.ModelSerializer):
     modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
 
     class Meta:
-        model = Observation
+        model = models.Observation
         fields = ('comment', 'project', 'date_created', 'last_modified', 'created_by', 'modified_by')
         read_only_fields = ('date_created', 'last_modified')
 
 
 class OutputSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Output
-        fields = ('id', 'name','type')
+        model = models.Output
+        fields = ('id', 'name', 'description', 'type')
 
 
 class ParameterSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Parameter
-        fields = ('id', 'name','type')
+        model = models.Parameter
+        fields = ('id', 'name', 'description', 'type')
 
 
 class PopulationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Population
+        model = models.Population
         fields = ('id', 'name')
 
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Profile
+        model = models.Profile
         fields = ('id', 'user')
-
-
-class ProjectStateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ProjectState
-        fields = ('id', 'name', 'description')
-
-
-class TeamSerializer(serializers.ModelSerializer):
-    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-
-    class Meta:
-        model = Team
-        fields = ('id', 'name', 'description', 'location', 'website', 'affiliation', 'created_by', 'modified_by')
-
-
-class ProjectSerializer(serializers.ModelSerializer):
-    created_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-    modified_by = serializers.StringRelatedField(read_only=True, default=serializers.CurrentUserDefault())
-
-    class Meta:
-        model = Project
-        fields = ('id', 'description', 'team', 'project_state', 'created_by', 'modified_by', 'date_created', 'last_modified')
-        read_only_fields = ('created_by', 'modified_by', 'date_created', 'last_modified')
 
 
 class RoleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Role
-        fields = ('id', 'name')
-
-
-class TheorySerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Theory
+        model = models.Role
         fields = ('id', 'name')
 
 
 class TheoryInstanceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = TheoryInstance
+        model = models.TheoryInstance
         fields = ('id', 'name', 'model')
 
 
 class TreatmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Treatment
+        model = models.Treatment
         fields = ('id', 'name')

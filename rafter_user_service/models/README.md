@@ -5,49 +5,58 @@ Browse it at: `/api/`. Currently serving:
 
 ```
 {
-    "projects": "/api/projects/",
-    "observations": "/api/observations/",
+    "analyses": "/api/analyses/",
+    "experiments": "/api/experiments/",
+    "hypotheses": "/api/hypotheses/",
     "investigations": "/api/investigations/",
-    "project_states": "/api/project_states/",
-    "teams": "/api/teams/"
+    "mechanisms": "/api/mechanisms/",
+    "observations": "/api/observations/",
+    "projects": "/api/projects/",
+    "teams": "/api/teams/",
+    "theories": "/api/theories/"
 }
 ```
 
-## Get
+## GET
 
-- **All projects**: `/api/projects/`
+- *All projects*: `/api/projects/` (Note: projects expand nested relations [`team` and `project_state`] for GET requests but required IDs only for POSTs).
 
 ```
 [
     {
+        "description": "A stub project",
+        "team": {
+            "name": "Testing Team",
+            "description": "Team for testing",
+            "location": "The cloud",
+            "website": "dac.cs.vt.edu",
+            "affiliation": "VT",
+            "created_by": "admin",
+            "modified_by": "admin",
+            "id": 1,
+            "date_created": "2017-09-11T16:05:19.722000Z",
+            "last_modified": "2017-09-11T16:05:19.722000Z"
+        },
+        "project_state": {
+            "name": "READY",
+            "description": "State for ready things"
+        },
+        "investigations": [
+            "http://localhost:8000/api/investigations/1/",
+            "http://localhost:8000/api/investigations/2/"
+        ],
         "id": 1,
-        "description": "Lorem ipsum et al",
-        "team": 1,
-        "project_state": 1,
         "created_by": "admin",
         "modified_by": "admin",
-        "date_created": "2017-09-07T19:04:35.629296Z",
-        "last_modified": "2017-09-07T19:04:35.629340Z"
+        "date_created": "2017-09-11T16:06:36.878000Z",
+        "last_modified": "2017-09-11T16:06:36.878000Z"
     },
     ...
 ```
 
-- **Single project** `/api/projects/1/`
+- Get only the *project with `ID=1`* at `/api/projects/1/`
 
-```
-{
-    "id": 1,
-    "description": "Lorem ipsum et al",
-    "team": 1,
-    "project_state": 1,
-    "created_by": "admin",
-    "modified_by": "admin",
-    "date_created": "2017-09-07T19:04:35.629296Z",
-    "last_modified": "2017-09-07T19:04:35.629340Z"
-}
-```
-
-- **Observations for a project**: `/api/observations/?project=1`
+- *Observations for a project*: `/api/observations/?project=1`
 
 ```
 [
@@ -64,9 +73,19 @@ Browse it at: `/api/`. Currently serving:
 
 ## Create
 
-Send a POST with JSON data that looks like the GET responses, but leave out auto-generated fields. 
+Send a POST with JSON data that looks like the GET responses, but leave out auto-generated fields (these are usually `id`, `created_by`, `modified_by`, `date_created`, `last_modified`).
 
-- **Create a new Observation**: POST to `/api/observations` (`id, created_by, modified_by, date_created, last_modified` are not included again):
+- *Create a new Project*: POST the following to `/api/projects`
+
+```
+{
+    "description": "Here is a new project",
+    "team": 1,
+    "project_state": 2
+}
+```
+
+- *Create a new Observation*: POST to the following `/api/observations`
 
 ```
 {
@@ -79,7 +98,7 @@ Send a POST with JSON data that looks like the GET responses, but leave out auto
 
 Send a PUT with new JSON data to the single item URL.
 
-- **Update Observation** with ID 6: send PUT to `/api/observations/6/` with data:
+- *Update Observation* with ID 6: send PUT to `/api/observations/6/` with data:
 
 ```
 {
@@ -92,7 +111,7 @@ Send a PUT with new JSON data to the single item URL.
 
 Send a DELETE to the single item URL.
 
-- **Delete Observation** with ID 6: send DELETE to `/api/observations/6/`
+- *Delete Observation* with ID 6: send DELETE to `/api/observations/6/`
 
 
 ## Testing data
