@@ -17,12 +17,12 @@ To install:
   ```
   python3 -m venv env
   ```
-  c. open a new terminal into /montage/env/bin
-  d. . ./env/bin/activate
+  c.
   ```
-  source activate
+   . ./env/bin/activate
   ```
-3. From the other terminal, run:
+
+3. You should see (env) at prompt, then run:
     ```
     pip3 install -r requirements.txt
     ```  
