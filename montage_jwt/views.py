@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http.response import HttpResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.exceptions import NotAuthenticated, NotFound
@@ -10,10 +11,9 @@ from montage_jwt.settings import api_settings
 
 # Create your views here.
 
-@api_view(['GET'])
 def public_key(request):
     key = api_settings.PUBLIC_KEY
-    return Response(key)
+    return HttpResponse(key)
 
 
 @api_view(['GET'])
