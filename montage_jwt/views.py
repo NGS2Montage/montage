@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http.response import HttpResponse
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.exceptions import NotAuthenticated, NotFound
@@ -6,8 +7,14 @@ from rest_framework.permissions import AllowAny
 from montage_jwt.util import make_claims, refresh
 from montage_jwt.models import JWT
 from montage_jwt.serializers import JWTSerializer
+from montage_jwt.settings import api_settings
 
 # Create your views here.
+
+def public_key(request):
+    key = api_settings.PUBLIC_KEY
+    return HttpResponse(key)
+
 
 @api_view(['GET'])
 def get_jwt(request, jwt_type):
