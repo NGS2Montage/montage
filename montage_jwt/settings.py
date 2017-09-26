@@ -10,6 +10,7 @@ DEFAULTS = {
     'ALGORITHM': 'RS512',
     'AUTH_HEADER_PREFIX': 'JWT',
     'TOKEN_TYPE_TABLE': 'montage_jwt.DEFAULT_TOKEN_TYPE_TABLE',
+    'HOSTNAME': 'http://localhost/',
 }
 
 # These settings will be imported by python
