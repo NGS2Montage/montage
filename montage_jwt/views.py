@@ -6,8 +6,15 @@ from rest_framework.permissions import AllowAny
 from montage_jwt.util import make_claims, refresh
 from montage_jwt.models import JWT
 from montage_jwt.serializers import JWTSerializer
+from montage_jwt.settings import api_settings
 
 # Create your views here.
+
+@api_view(['GET'])
+def public_key(request):
+    key = api_settings.PUBLIC_KEY
+    return Response(key)
+
 
 @api_view(['GET'])
 def get_jwt(request, jwt_type):

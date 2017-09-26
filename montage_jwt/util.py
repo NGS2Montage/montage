@@ -4,6 +4,7 @@ from django.utils import timezone
 from .settings import api_settings
 from montage_jwt.models import JWT
 from functools import wraps
+from django.urls import reverse
 import jwt
 
 default_app_config = 'montage_jwt.apps.MontageJwtConfig'
@@ -22,7 +23,7 @@ def make_claims(user, scope, nbf=None):
     iat = timezone.now()
     exp = iat + get_exp_delta(scope)
     username = user.get_username()
-    iss = api_settings.ISSUER
+    iss = reverse('montage_jwt:public_key')
     aud = get_aud(user)
     claims = {
         'jwi': str(jwi),
