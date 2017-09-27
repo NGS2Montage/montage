@@ -1,28 +1,45 @@
 # MONTAGE
 
 To install:
+
 1. First create an rsa key pair:
     ```
     openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:4096 -out private.pem
     openssl rsa -in private.pem -outform PEM -pubout -out public.pem
     ```
 2. Start a virtual environment
-3. Then run: 
+
+  a.
+  ```
+  apt-get install python3-venv
+  ```
+  b.
+  ```
+  python3 -m venv env
+  ```
+  c.
+  ```
+   . ./env/bin/activate
+  ```
+
+3. You should see (env) at prompt, then run:
     ```
-    pip install -r requirements.txt
+    pip3 install -r requirements.txt
     ```  
 4. Apply these migrations with:
     ```
-    python manage.py migrate
+    python3 manage.py migrate
     ```
-5. Now apply settings.  To do this copy
-   `django_montage/local_settings.py.example` to
-   `django_montage/local_settings.py`. Now, add any configuration settings to
+5. Now apply settings.  To do this
+  * copy `django_montage/local_settings.py.example` to
+   `django_montage/local_settings.py`.
+   * Now, add any configuration settings to
    `local_settings.py`.
+   * If not connecting to the database, delete that entire section from file.
 
 6. Then you can start the server with:
     ```
-    python manage.py runserver
+    python3 manage.py runserver
     ```
 
 You should also make a superuser `admin` with `python manage.py createsuperuser`.  This will allow for administrator account approval.
