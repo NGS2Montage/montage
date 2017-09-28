@@ -1,0 +1,54 @@
+<form dojoAttachPoint="containerNode" class="BaseForm"
+    dojoAttachEvent="onreset:_onReset,onsubmit:_onSubmit,onchange:validate">
+      <div class="FormLine" id="graphPlainTextFile">
+        <label for="name">Graph (select file to upload):<br></label>
+        <input type="file" name="graphPlainTextFile" style="width:200px;"  />
+      </div>
+      <div class="FormLine">
+        <label for="name">Graph (select file from server):<br></label>
+        <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="someFilesOnServer">
+          <!-- TODO on change if value !== '', remove the graphPlainTextFile from DOM and reset value -->
+          <!-- TODO on change if value === '', display the graphPlainTextFile field -->
+          <option value=""> </option>
+          <option value="exampleFile1">exampleFile1</option>
+      		<option value="exampleFile2">exampleFile2</option>
+      		<option value="exampleFile3">exampleFile3</option>
+      	</select>
+      </div>
+      <div class="FormLine">
+        <label for="name">Threshold &amp; Letter Assignments:<br></label>
+        <input type="file" name="thresholdLetterAssignments" style="width:200px;"  />
+      </div>
+      <div class="FormLine" id="legitimateWords">
+        <label for="name">Legitimate Words (select file to upload):<br></label>
+        <input type="file" name="legitimateWords" style="width:200px;"  />
+      </div>
+      <div class="FormLine">
+        <label for="name">Legitimate Words (select file from server):<br></label>
+        <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="someFilesOnServer">
+          <!-- TODO on change if value !== '', remove the legitimateWords from DOM and reset value -->
+          <!-- TODO on change if value === '', display the legitimateWords field -->
+          <option value=""> </option>
+          <option value="dictionary1">dictionary1</option>
+          <option value="dictionary2">dictionary2</option>
+          <option value="dictionary3">dictionary3</option>
+        </select>
+      </div>
+      <div class="FormLine">
+        <label for="name">Random Seed:<br></label>
+        <!-- TODO <input type="number" name="randomSeed" required="true" style="width:100px;"  value="${entropySource}"/> -->
+        <input type="number" name="randomSeed" style="width:100px;"  value=""/>
+      </div>
+      <div class="FormLine">
+        <label for="name">Maximum time steps per run: </label>
+        <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="maximumNumTimeStepsPerRun" value="100" required="true" style="width:64px;"  />
+      </div>
+      <div class="FormLine">
+        <label for="name">Runs per simulation: </label>
+        <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="numRunsPerSimulation" value="20" required="true" style="width:64px;" />
+      </div>
+      <div class="FormButtonContainer">
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="cancelButton" disabled="false" data-dojo-attach-event="click:onCancel">Cancel</button>
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="saveButton" disabled="true" type="submit">Save</button>
+      </div>
+</form>

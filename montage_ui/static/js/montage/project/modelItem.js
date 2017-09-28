@@ -29,7 +29,7 @@ define([
 
 		edit: function(){
 			when(this.getConstructor("montage/model/" + this.model.type), lang.hitch(this, function(ctor){
-				var dlg = new Dialog({title: "Edit Model"});
+				var dlg = new Dialog({title: "Edit Model: " + this.model.type});
     			var model = new ctor({model: this.model});
     			domConstruct.place(model.domNode,dlg.containerNode);
 
@@ -38,7 +38,7 @@ define([
 	    			evt.stopPropagation();
 	    			evt.preventDefault();
 	    			this.set("model", evt.model);
-	    			
+
 	    			on.emit(this.domNode, "UpdateModel", {
 					   bubbles: true,
 					   cancelable: true,
@@ -59,7 +59,7 @@ define([
 					domClass.add(this.statusNode, "icon-check-circle icon fa-2x ready");
 
 					break;
-				case "incomplete": 
+				case "incomplete":
 					domClass.add(this.statusNode, "icon-exclamation-circle icon fa-2x incomplete");
 					break;
 				default: {
