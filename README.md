@@ -58,9 +58,6 @@ It might be convenient for development to load some initial model data with `./m
 ## Configuration
 Configuration is described in [`/django_montage/README.md`](https://github.com/NGS2Montage/montage/blob/master/django_montage/README.md).
 
-To start the server after initial setup, run this:
-
-. ./env/bin/activate && python3 manage.py migrate
 
 ## Ongoing development
 
