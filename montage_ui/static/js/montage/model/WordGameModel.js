@@ -17,6 +17,7 @@ define([
 	return declare([FormBase], {
 		templateString: Template,
 		model: null,
+    entropySource:"",
 		_setModelAttr: function(val){
 			this.model = val;
 			if (this.model.params){
