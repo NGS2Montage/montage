@@ -4,7 +4,7 @@ define([
 	"./hypothesisItem", "./theoryItem", "./mechanismItem","./modelItem",//"./experimentItem","./analysisItem"
 	"dijit/form/Button", "dijit/form/SimpleTextarea",
 	"../widget/Dialog","./hypothesis","dojo/on","./model",
-	"./Theory", "./Mechanism"
+	"./theory", "./mechanism"
 ], function(
 	declare,WidgetBase,Templated,
 	when,lang,dojoString,Template,domConstruct,domClass,
@@ -160,8 +160,8 @@ define([
     	startup: function(){
     		if (this._started){ return; }
     		this.inherited(arguments);
-    		if (this.investigation) { 
-    			this.render(); 
+    		if (this.investigation) {
+    			this.render();
     		}
     	}
 	})
