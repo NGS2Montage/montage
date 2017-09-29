@@ -1,0 +1,32 @@
+{
+  "name": "montage",
+  "version": "0.0.1",
+  "description": "montage",
+  "main": "dist/index.html",
+  "repository": {
+    "url": "git+ssh://git@github.com/NGS2Montage/montage.git",
+    "type": "git"
+  },
+  "author": "Biocomplexity",
+  "license": "",
+  "engines": {
+    "node": "8.5.0",
+    "npm": "5.4.1",
+    "yarn": "1.0.2"
+  },
+  "scripts": {
+    "eslint-fix": "./node_modules/eslint/bin/eslint.js --fix .",
+    "start": "pushstate-server"
+  },
+  "dependencies": {
+    "cross-env": "^5.0.1",
+    "pushstate-server": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "html-hint": "^0.2.4",
+    "stylelint": "^8.1.1",
+    "stylelint-config-standard": "^17.0.0",
+    "webpack-dev-server": "^2.6.1"
+  }
+}
