@@ -9,6 +9,7 @@
     "color-no-invalid-hex": true,
     "comment-whitespace-inside": null,
     "unit-no-unknown": true,
-    "unit-blacklist": ""
+    "unit-blacklist": "",
+    "color-hex-length": null
   }
 }

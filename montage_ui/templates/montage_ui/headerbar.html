@@ -1,35 +1,35 @@
-                                <table style="width:100%">
-                                        <tr>
-                                                <td style="width:15%;font-size:1.2em;font-weight:600;"><a class="ApplicationNavLink" href="/">montage</a></td>
-                                                <td>
-							{% if user.is_authenticated %}
-                                                        	<a class="ApplicationNavLink" href="/project/">Projects</a> &nbsp;&nbsp;
-	                                                        <a class="ApplicationNavLink" href="/data/">Data</a>
-							{% endif %}
-                                                </td>
-                                                <td style="text-align: right;">
-                                                        {% if user.is_authenticated %}
-                                                                <!-- <i class="icon-bars"></i> &nbsp; -->
-        <div class="showOnLoad dijitHidden">
-            <div class="showOnLoad dijitHidden topMenuButtonIcon"
-                 data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'icon-bars fa-2x'">
-                <span></span>
-                <div data-dojo-type="dijit/TooltipDialog">
-                    <div>Signed in as <span id="signedInAs" style="font-weight:bold;">{{ request.user.username }}</span></div>
-                    <hr>
+<table style="width:100%">
+  <tr>
+    <td style="width:15%;font-size:1.2em;font-weight:600;"><a class="ApplicationNavLink" href="/">montage</a></td>
+    <td>
+      {% if user.is_authenticated %}
+      <a class="ApplicationNavLink" href="/project/">Projects</a> &nbsp;&nbsp;
+      <a class="ApplicationNavLink" href="/data/">Data</a>
+      {% endif %}
+    </td>
+    <td style="text-align: right;">
+      {% if user.is_authenticated %}
+      <!-- <i class="icon-bars"></i> &nbsp; -->
+      <div class="showOnLoad dijitHidden">
+        <div class="showOnLoad dijitHidden topMenuButtonIcon"
+        data-dojo-type="dijit/form/DropDownButton" data-dojo-props="iconClass:'icon-bars fa-2x'">
+        <span></span>
+        <div data-dojo-type="dijit/TooltipDialog">
+          <div>Signed in as <span id="signedInAs" style="font-weight:bold;">{{ request.user.username }}</span></div>
+          <hr>
 
-                    <div><a 
-                            href="/user/">Account Settings</a></div>
+          <div><a
+            href="/user/">Account Settings</a></div>
 
-                    <div><a href="/user/logout"/logout">Logout</a></div>
-                </div>
-            </div>
-        </div>                                              
-                                                        {% else %}
-                                                                <a href="/user/register">Register</a>&nbsp;&nbsp;
-                                                                <a href="/user/login">Login</a>
-                                                        {% endif %}
+            <div><a href="/user/logout">Logout</a></div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <a href="/user/register">Register</a>&nbsp;&nbsp;
+      <a href="/user/login">Login</a>
+      {% endif %}
 
-                                                </td>
-                                        </tr>
-                                </table>
+    </td>
+  </tr>
+</table>

@@ -10,11 +10,12 @@
   "author": "Biocomplexity",
   "license": "",
   "engines": {
-    "node": "8.5.0",
-    "npm": "5.4.1",
-    "yarn": "1.0.2"
+    "node": "8.6.0",
+    "npm": "5.4.2",
+    "yarn": "1.1.0"
   },
   "scripts": {
+    "preinstall": "npm install -g npm && npm install -g yarn",
     "eslint-fix": "./node_modules/eslint/bin/eslint.js --fix .",
     "start": "pushstate-server"
   },
@@ -27,6 +28,7 @@
     "html-hint": "^0.2.4",
     "stylelint": "^8.1.1",
     "stylelint-config-standard": "^17.0.0",
-    "webpack-dev-server": "^2.6.1"
+    "webpack-dev-server": "^2.6.1",
+    "webpack": "^3.0.0"
   }
 }
