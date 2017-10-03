@@ -1,0 +1,40 @@
+<style>
+.elevation3 {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
+  padding: 10px;
+  margin: auto;
+  max-width: 3.25in;
+}
+
+.submitButton:hover {
+  background-color: #33ccff;
+}
+h1 { text-align:center; margin-top:20px
+
+}
+
+</style>
+
+{% extends "registration/registration_base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Register for an Account" %}{% endblock %}
+
+{% block content %}
+<form class="elevation3" method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="submitButton" type="submit" value="{% trans 'Submit' %}" />
+</form>
+{% endblock %}
+
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
+
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}
