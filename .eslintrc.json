@@ -1,4 +1,5 @@
 {
+  "extends": "./node_modules/aurelia-tools/.eslintrc.json",
   "rules": {
     "space-before-function-paren": [0, "never"],
     "space-before-blocks": [ 0, "never"],
