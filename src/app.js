@@ -42,6 +42,7 @@ export class App {
     config.options.root = '/';
     config.addPipelineStep('authorize', AuthorizeStep);//Is the actually Authorization to get into the /dashboard
     config.map([
+      { route: 'dashboard', name: 'dashboard-router', moduleId: PLATFORM.moduleName('./dashboard-router'), nav: false, title: '', auth: true, settings: 'fa fa-tachometer'},
       { route: 'login', name: 'login', moduleId: PLATFORM.moduleName('./login'), nav: true, title: 'Login', settings: 'fa fa-sign-in'},
       { route: ['', 'home'], name: 'home', moduleId: PLATFORM.moduleName('./home'), nav: false, title: '', settings: 'fa fa-home' },
       { route: 'users',         name: 'users',        moduleId: PLATFORM.moduleName('./users'),        nav: true, title: 'Github Users' },
