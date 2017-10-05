@@ -64,9 +64,13 @@
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-0.0.32.tgz#bd284e57c84f1325da702babfc82a5328190c0c5"
 
-"@types/selenium-webdriver@^2.53.33", "@types/selenium-webdriver@^2.53.35", "@types/selenium-webdriver@~2.53.39":
+"@types/selenium-webdriver@^2.53.35", "@types/selenium-webdriver@~2.53.39":
   version "2.53.42"
   resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-2.53.42.tgz#74cb77fb6052edaff2a8984ddafd88d419f25cac"
+
+"@types/selenium-webdriver@^3.0.4":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-3.0.7.tgz#5d3613d1ab3ca08b74d19683a3a7c573129ab18f"
 
 abab@^1.0.3:
   version "1.0.4"
@@ -424,7 +428,7 @@ aurelia-binding@^1.0.0, aurelia-binding@^1.0.9, aurelia-binding@^1.1.0, aurelia-
     aurelia-pal "^1.0.0"
     aurelia-task-queue "^1.0.0"
 
-aurelia-bootstrapper@2.1.1:
+aurelia-bootstrapper@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/aurelia-bootstrapper/-/aurelia-bootstrapper-2.1.1.tgz#4757ac17611b6096704961b55148f77b042b6ac5"
   dependencies:
@@ -466,9 +470,9 @@ aurelia-event-aggregator@^1.0.0:
   dependencies:
     aurelia-logging "^1.0.0"
 
-aurelia-fetch-client@1.1.2, aurelia-fetch-client@^1.0.0, aurelia-fetch-client@^1.0.0-beta.1.2.5:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/aurelia-fetch-client/-/aurelia-fetch-client-1.1.2.tgz#123a04d8677e15a8feca0553bc8486515a15dd2a"
+aurelia-fetch-client@^1.0.0, aurelia-fetch-client@^1.0.0-beta.1.2.5, aurelia-fetch-client@^1.1.2:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/aurelia-fetch-client/-/aurelia-fetch-client-1.1.3.tgz#3b6a4b8b9de4809e996bda1299f05838c3907b0a"
 
 aurelia-framework@^1.0.0, aurelia-framework@^1.0.1, aurelia-framework@^1.1.4:
   version "1.1.5"
@@ -484,9 +488,9 @@ aurelia-framework@^1.0.0, aurelia-framework@^1.0.1, aurelia-framework@^1.1.4:
     aurelia-task-queue "^1.0.0"
     aurelia-templating "^1.0.0"
 
-aurelia-history-browser@1.0.0, aurelia-history-browser@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/aurelia-history-browser/-/aurelia-history-browser-1.0.0.tgz#954e31cb5d9a18914502e02e544e83c0c152d07c"
+aurelia-history-browser@^1.0.0, aurelia-history-browser@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/aurelia-history-browser/-/aurelia-history-browser-1.1.0.tgz#b587dda37b06bc06261fa2854764fb2d646ad303"
   dependencies:
     aurelia-history "^1.0.0"
     aurelia-pal "^1.0.0"
@@ -513,7 +517,7 @@ aurelia-loader-default@^1.0.0:
     aurelia-metadata "^1.0.0"
     aurelia-pal "^1.0.0"
 
-aurelia-loader-nodejs@1.0.1:
+aurelia-loader-nodejs@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/aurelia-loader-nodejs/-/aurelia-loader-nodejs-1.0.1.tgz#51dbfcbcba6ef3a9a51e9a962d9461ada7b04d7b"
   dependencies:
@@ -524,7 +528,7 @@ aurelia-loader-nodejs@1.0.1:
     aurelia-path "^1.1.1"
     debug "^2.3.2"
 
-aurelia-loader-webpack@2.1.0, aurelia-loader-webpack@^2.1.0:
+aurelia-loader-webpack@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/aurelia-loader-webpack/-/aurelia-loader-webpack-2.1.0.tgz#6d1c8d768eac07ed219771a64c7bb7d5902743cd"
   dependencies:
@@ -540,7 +544,7 @@ aurelia-loader@^1.0.0:
     aurelia-metadata "^1.0.0"
     aurelia-path "^1.0.0"
 
-aurelia-logging-console@1.0.0, aurelia-logging-console@^1.0.0:
+aurelia-logging-console@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/aurelia-logging-console/-/aurelia-logging-console-1.0.0.tgz#edf7507a97fc68b40513a17c677d70414101adb4"
   dependencies:
@@ -556,20 +560,20 @@ aurelia-metadata@^1.0.0, aurelia-metadata@^1.0.2:
   dependencies:
     aurelia-pal "^1.0.0"
 
-aurelia-pal-browser@1.2.1, aurelia-pal-browser@^1.0.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/aurelia-pal-browser/-/aurelia-pal-browser-1.2.1.tgz#426db535a6019940c49520f4c23a29b0789c4a75"
+aurelia-pal-browser@^1.0.0, aurelia-pal-browser@^1.2.1:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/aurelia-pal-browser/-/aurelia-pal-browser-1.3.0.tgz#63b5eaf36934dae89952ed16374cf1b029820ee0"
   dependencies:
-    aurelia-pal "^1.1.0"
+    aurelia-pal "^1.4.0"
 
-aurelia-pal-nodejs@1.0.0-beta.1.0.0:
-  version "1.0.0-beta.1.0.0"
-  resolved "https://registry.yarnpkg.com/aurelia-pal-nodejs/-/aurelia-pal-nodejs-1.0.0-beta.1.0.0.tgz#c9952bc5050398a549c73c7f76092f3071b5eb0f"
+aurelia-pal-nodejs@^1.0.0-beta.2.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/aurelia-pal-nodejs/-/aurelia-pal-nodejs-1.0.0.tgz#edb473ecd6c2d30d71460167486a93e7f322d235"
   dependencies:
-    aurelia-pal "^1.1.0"
-    jsdom "^9.8.3"
+    aurelia-pal "^1.0.0"
+    jsdom "^9.2.1"
 
-aurelia-pal@^1.0.0, aurelia-pal@^1.1.0, aurelia-pal@^1.1.1, aurelia-pal@^1.3.0, aurelia-pal@^1.4.0:
+aurelia-pal@^1.0.0, aurelia-pal@^1.1.1, aurelia-pal@^1.3.0, aurelia-pal@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/aurelia-pal/-/aurelia-pal-1.4.0.tgz#1148f256c854c0e020a0a8f465cbf4a6eeaf9188"
 
@@ -587,11 +591,11 @@ aurelia-polymer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/aurelia-polymer/-/aurelia-polymer-1.0.0.tgz#a2e7d3d74499cc452a0a8befaaadbe707ddce3cd"
 
-aurelia-protractor-plugin@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/aurelia-protractor-plugin/-/aurelia-protractor-plugin-1.0.3.tgz#af4e5c3096dfffb43c01d2bc4230a9c064f0c29e"
+aurelia-protractor-plugin@^1.0.3:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/aurelia-protractor-plugin/-/aurelia-protractor-plugin-1.0.5.tgz#786f84dc6db672f8dd6534c4bd15eb2873f9fe20"
   dependencies:
-    "@types/selenium-webdriver" "^2.53.33"
+    "@types/selenium-webdriver" "^3.0.4"
 
 aurelia-route-recognizer@^1.0.0:
   version "1.1.1"
@@ -599,9 +603,9 @@ aurelia-route-recognizer@^1.0.0:
   dependencies:
     aurelia-path "^1.0.0"
 
-aurelia-router@1.3.0, aurelia-router@^1.0.0-beta.1.2.3, aurelia-router@^1.0.1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/aurelia-router/-/aurelia-router-1.3.0.tgz#55fc65fe010771ac7adf2ebb0c897a0b66592d72"
+aurelia-router@^1.0.0-beta.1.2.3, aurelia-router@^1.0.1, aurelia-router@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/aurelia-router/-/aurelia-router-1.4.0.tgz#a6109dba2916065b9e1fa47fe3dce69d2fb5ff1d"
   dependencies:
     aurelia-dependency-injection "^1.0.0"
     aurelia-event-aggregator "^1.0.0"
@@ -616,17 +620,17 @@ aurelia-task-queue@^1.0.0, aurelia-task-queue@^1.1.0, aurelia-task-queue@^1.2.0:
   dependencies:
     aurelia-pal "^1.0.0"
 
-aurelia-templating-binding@1.3.0, aurelia-templating-binding@^1.0.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/aurelia-templating-binding/-/aurelia-templating-binding-1.3.0.tgz#595c6f96404a62e5c072cacc0990daf17535075d"
+aurelia-templating-binding@^1.0.0, aurelia-templating-binding@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/aurelia-templating-binding/-/aurelia-templating-binding-1.4.0.tgz#4c76a26b1776f87e9ee749fafdd172d3dba03d99"
   dependencies:
-    aurelia-binding "^1.1.0"
+    aurelia-binding "^1.3.0"
     aurelia-logging "^1.0.0"
     aurelia-templating "^1.3.0"
 
-aurelia-templating-resources@1.4.0, aurelia-templating-resources@^1.0.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/aurelia-templating-resources/-/aurelia-templating-resources-1.4.0.tgz#9c82e8dfb9f6b18af2fca77d986e9341b7409713"
+aurelia-templating-resources@^1.0.0, aurelia-templating-resources@^1.5.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/aurelia-templating-resources/-/aurelia-templating-resources-1.5.1.tgz#a0d3b8b12c07b92b1d2fd336da01b2277168e856"
   dependencies:
     aurelia-binding "^1.1.0"
     aurelia-dependency-injection "^1.0.0"
@@ -636,11 +640,11 @@ aurelia-templating-resources@1.4.0, aurelia-templating-resources@^1.0.0:
     aurelia-pal "^1.3.0"
     aurelia-path "^1.0.0"
     aurelia-task-queue "^1.0.0"
-    aurelia-templating "^1.3.0"
+    aurelia-templating "^1.5.0"
 
-aurelia-templating-router@1.1.0, aurelia-templating-router@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/aurelia-templating-router/-/aurelia-templating-router-1.1.0.tgz#969219ffcd3578bec6c97c5adb471c7ad853d4db"
+aurelia-templating-router@^1.0.0, aurelia-templating-router@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/aurelia-templating-router/-/aurelia-templating-router-1.2.0.tgz#47d658929593c81daed50a1e70fbd4fa894b638e"
   dependencies:
     aurelia-binding "^1.0.9"
     aurelia-dependency-injection "^1.0.0"
@@ -649,11 +653,11 @@ aurelia-templating-router@1.1.0, aurelia-templating-router@^1.0.0:
     aurelia-pal "^1.3.0"
     aurelia-path "^1.0.0"
     aurelia-router "^1.0.1"
-    aurelia-templating "^1.3.0"
+    aurelia-templating "^1.5.0"
 
-aurelia-templating@1.4.2, aurelia-templating@^1.0.0, aurelia-templating@^1.1.2, aurelia-templating@^1.3.0, aurelia-templating@^1.4.2, aurelia-templating@^1.5.0:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/aurelia-templating/-/aurelia-templating-1.4.2.tgz#479ce47705a095fd636e0975c9cb79cbee7ed7cb"
+aurelia-templating@^1.0.0, aurelia-templating@^1.1.2, aurelia-templating@^1.3.0, aurelia-templating@^1.4.2, aurelia-templating@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/aurelia-templating/-/aurelia-templating-1.5.0.tgz#33c4bc5310177242a5230f5d180126d394f20e49"
   dependencies:
     aurelia-binding "^1.0.0"
     aurelia-dependency-injection "^1.0.0"
@@ -664,7 +668,7 @@ aurelia-templating@1.4.2, aurelia-templating@^1.0.0, aurelia-templating@^1.1.2, 
     aurelia-path "^1.0.0"
     aurelia-task-queue "^1.1.0"
 
-aurelia-testing@1.0.0-beta.3.0.1:
+aurelia-testing@^1.0.0-beta.3.0.1:
   version "1.0.0-beta.3.0.1"
   resolved "https://registry.yarnpkg.com/aurelia-testing/-/aurelia-testing-1.0.0-beta.3.0.1.tgz#436d35755ce65bfb4b4913c049abdc2f7f658502"
   dependencies:
@@ -674,7 +678,7 @@ aurelia-testing@1.0.0-beta.3.0.1:
     aurelia-pal "^1.0.0"
     aurelia-templating "^1.0.0"
 
-aurelia-tools@1.0.0:
+aurelia-tools@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/aurelia-tools/-/aurelia-tools-1.0.0.tgz#c7d82c939ee4c46026ac2a05a99fc446732a31bc"
   dependencies:
@@ -972,7 +976,7 @@ babel-plugin-transform-class-properties@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-plugin-transform-decorators-legacy@1.3.4:
+babel-plugin-transform-decorators-legacy@^1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-decorators-legacy/-/babel-plugin-transform-decorators-legacy-1.3.4.tgz#741b58f6c5bce9e6027e0882d9c994f04f366925"
   dependencies:
@@ -1342,13 +1346,13 @@ blocking-proxy@0.0.5:
   dependencies:
     minimist "^1.2.0"
 
-bluebird@3.5.0, bluebird@^3.3.0, bluebird@^3.4.7:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
-
 bluebird@^2.10.2:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
+
+bluebird@^3.3.0, bluebird@^3.4.7, bluebird@^3.5.0:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
@@ -1621,12 +1625,12 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000743"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000743.tgz#bc8df2a257cf91ba024322266295af3ded852306"
+  version "1.0.30000744"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000744.tgz#00758ff7dd5f7138d34a15608dccf71a59656ffe"
 
 caniuse-lite@^1.0.30000718, caniuse-lite@^1.0.30000726:
-  version "1.0.30000743"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000743.tgz#f4f5c6750676ff8f6144ea40456c3729d5341769"
+  version "1.0.30000744"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000744.tgz#860fa5c83ba34fe619397d607f30bb474821671b"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -2038,9 +2042,9 @@ cookie@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.3.1.tgz#e7e0a1f9ef43b4c8ba925c5c5a96e806d16873bb"
 
-copy-webpack-plugin@4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-4.0.1.tgz#9728e383b94316050d0c7463958f2b85c0aa8200"
+copy-webpack-plugin@^4.0.1:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/copy-webpack-plugin/-/copy-webpack-plugin-4.1.0.tgz#292a040318fe8ae3b1d7996ef05dfb483eb0b647"
   dependencies:
     bluebird "^2.10.2"
     fs-extra "^0.26.4"
@@ -3002,7 +3006,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-expose-loader@0.7.3:
+expose-loader@^0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/expose-loader/-/expose-loader-0.7.3.tgz#35fbd3659789e4faa81f59de8b7e9fc39e466d51"
 
@@ -3224,7 +3228,7 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
-font-awesome@4.7.0:
+font-awesome@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
 
@@ -4207,7 +4211,7 @@ isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
-isomorphic-fetch@2.2.1, isomorphic-fetch@^2.2.1:
+isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
@@ -4218,7 +4222,7 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-istanbul-api@^1.1.7:
+istanbul-api@^1.1.8:
   version "1.1.14"
   resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-1.1.14.tgz#25bc5701f7c680c0ffff913de46e3619a3a6e680"
   dependencies:
@@ -4234,7 +4238,7 @@ istanbul-api@^1.1.7:
     mkdirp "^0.5.1"
     once "^1.4.0"
 
-istanbul-instrumenter-loader@2.0.0:
+istanbul-instrumenter-loader@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/istanbul-instrumenter-loader/-/istanbul-instrumenter-loader-2.0.0.tgz#e5492900ab0bba835efa8024cb00be9b3eea2700"
   dependencies:
@@ -4339,7 +4343,7 @@ joi@^9.2.0:
     moment "2.x.x"
     topo "2.x.x"
 
-jquery@3.2.1:
+jquery@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -4369,7 +4373,7 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
 
-jsdom@^9.8.3:
+jsdom@^9.2.1:
   version "9.12.0"
   resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-9.12.0.tgz#e8c546fffcb06c00d4833ca84410fed7f8a097d4"
   dependencies:
@@ -4465,11 +4469,12 @@ karma-chrome-launcher@^2.2.0:
     fs-access "^1.0.0"
     which "^1.2.1"
 
-karma-coverage-istanbul-reporter@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-1.2.0.tgz#f5ba3c5613c1b78721dff61a7765f5709e0e33cd"
+karma-coverage-istanbul-reporter@^1.2.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/karma-coverage-istanbul-reporter/-/karma-coverage-istanbul-reporter-1.3.0.tgz#d142cd9c55731c9e363ef7374e8ef1a31bebfadb"
   dependencies:
-    istanbul-api "^1.1.7"
+    istanbul-api "^1.1.8"
+    minimatch "^3.0.4"
 
 karma-coverage@^1.1.1:
   version "1.1.1"
@@ -4858,11 +4863,7 @@ mime@1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.3.4.tgz#115f9e3b6b3daf2959983cb38f149a2d40eb5d53"
 
-mime@1.3.x:
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/mime/-/mime-1.3.6.tgz#591d84d3653a6b0b4a3b9df8de5aa8108e72e5e0"
-
-mime@1.4.1, mime@^1.3.4:
+mime@1.4.1, mime@^1.3.4, mime@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.4.1.tgz#121f9ebc49e3766f311a76e1fa1c8003c4b03aa6"
 
@@ -7594,12 +7595,13 @@ upper-case@^1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/upper-case/-/upper-case-1.1.3.tgz#f6b4501c2ec4cdd26ba78be7222961de77621598"
 
-url-loader@0.5.9:
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-0.5.9.tgz#cc8fea82c7b906e7777019250869e569e995c295"
+url-loader@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/url-loader/-/url-loader-0.6.2.tgz#a007a7109620e9d988d14bce677a1decb9a993f7"
   dependencies:
     loader-utils "^1.0.2"
-    mime "1.3.x"
+    mime "^1.4.1"
+    schema-utils "^0.3.0"
 
 url-parse-lax@^1.0.0:
   version "1.0.0"
@@ -7708,7 +7710,7 @@ void-elements@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
-wait-on@2.0.2:
+wait-on@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/wait-on/-/wait-on-2.0.2.tgz#0a84fd07024c6fc268cb0eabe585be217aaf2baa"
   dependencies:
