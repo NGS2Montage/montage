@@ -9,18 +9,19 @@
 .submitButton:hover {
   background-color: #33ccff;
 }
+
 h1 { text-align:center; margin-top:20px
-
 }
-
 </style>
+
+<!-- <link rel="stylesheet" href="./montage_ui/static/js/montage/resources/montage.css" /> -->
 
 {% extends "registration/registration_base.html" %}
 {% load i18n %}
 {% block title %}{% trans "Register for an Account" %}{% endblock %}
 
 {% block content %}
-<form class="elevation3" method="post" action="">
+<form class="elevation3" method="post" action="" style="max-width:3.25in">
     {% csrf_token %}
     {{ form.as_p }}
     <input class="submitButton" type="submit" value="{% trans 'Submit' %}" />
