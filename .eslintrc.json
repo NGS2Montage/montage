@@ -11,6 +11,7 @@
     "no-empty": [0, "never"],
     "no-var": [0, "never"],
     "new-cap": [0, "never"],
+    "vars-on-top": [0, "never"],
     "arrow-spacing": ["error", { "before": true, "after": true }],
     "arrow-parens": ["error", "always"]
   }
