@@ -22,7 +22,7 @@ define([
       this.getProjects(this.projectsView);
     },
     refresh: function(){
-      when(this.getProjects(), lang.hitch(this, function(results){
+      when(this.getProjects(this.projectsView), lang.hitch(this, function(results){
         //var out = [];
         //console.log(results);
         // results.forEach(function(p){
@@ -46,7 +46,7 @@ define([
           //console.log(projectArr[i]);
         }
         pview.set("content", projecthtml);
-        return projectArr;
+        //return projectArr;
       });
       //var proj = this.store.query({}, {sort: [{attribute: "lastModified", descending: true}]} );
       //console.log(proj);

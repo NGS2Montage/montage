@@ -40,14 +40,29 @@ define([
           'project_state': 1,
           'investigations': []
         };
-        console.log(newProject);
-        // request('/api/projects').then(function(data){
-        //   console.log(JSON.stringify(data));
-        // });
+        //console.log(newProject);
+        //console.log(document.cookie);
+        //get cookie
+        var name = 'csrftoken=';
+        var cookieToken = '';
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) === 0) {
+            cookieToken = c.substring(name.length, c.length);
+          }
+        }
         request('/api/projects/', {
           method: 'post',
-          contentType: 'application/json',
-          body: newProject
+          // mode: 'cors',
+          headers: {'X-CSRFTOKEN': cookieToken,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'},
+          data: JSON.stringify(newProject)
         })
         .then((data) => {
           console.log(data);
