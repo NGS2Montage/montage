@@ -1,0 +1,56 @@
+<form dojoAttachPoint="containerNode" class="BaseForm"
+    dojoAttachEvent="onreset:_onReset,onsubmit:_onSubmit,onchange:validate">
+    <div class="FormLine">
+      <label for="name">Graph Node:<br></label>
+      <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="someFilesOnServer">
+        <option value=""> </option>
+        <!-- TODO for loop through the array of graph nodes that exist -->
+        <option value="graphNode1">graphNode1</option>
+        <option value="graphNode2">graphNode2</option>
+        <option value="graphNode3">graphNode3</option>
+        <option value="storedGraphFormat">storedGraphNodeFormat</option>
+      </select>
+    </div>
+    <div class="FormLine">
+      <label for="name">Graph Edge:<br></label>
+      <select data-dojo-type="dijit/form/Select" data-dojo-attach-point="someFilesOnServer">
+        <option value=""> </option>
+        <!-- TODO for loop through the array of graph edges -->
+        <option value="graphEdge1">graphEdge1</option>
+        <option value="graphEdge2">graphEdge2</option>
+        <option value="graphEdge3">graphEdge3</option>
+        <option value="storedGraphEdgeFormat">storedGraphEdgeFormat</option>
+      </select>
+    </div>
+    <div class="FormLine">
+      <label for="name">Set Threshold for All Nodes: </label>
+      <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="allNodeThres" value="0" required="true" style="width:64px;"  />
+    </div>
+    <!-- TODO if all node thress !== "" then hide individualNodeThresh -->
+    <!-- TODO display only if the user has selected a value for graphNode -->
+    <div class="FormLine" id="individualNodeThresh1">
+      <!-- TODO for loop to generate divs for each individual node that is in the selected graph node -->
+      <label for="name">Set Threshold for [name of node]: </label>
+      <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="nameofNode" value="0" required="true" style="width:64px;"  />
+    </div>
+    <div class="FormLine" id="nodeStates">
+      <!-- TODO for loop to generate divs for each individual node that is in the selected graph node-->
+      <label for="name">Action State [node of nodes]: </label>
+      <input data-dojo-type="dijit/form/NumberSpinner" type="number" value="0" name="actionState" required="true" style="width:64px;" />
+      <br>
+      <label for="name">Flag [node of nodes]: </label>
+      <input data-dojo-type="dijit/form/NumberSpinner" type="number" value="0" name="flag" required="true" style="width:64px;"  />
+    </div>
+      <div class="FormLine">
+        <label for="name">Maximum time steps per run: </label>
+        <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="maximumNumTimeStepsPerRun" value="100" required="true" style="width:64px;"  />
+      </div>
+      <div class="FormLine">
+        <label for="name">Runs per simulation: </label>
+        <input data-dojo-type="dijit/form/NumberSpinner" type="text" name="numRunsPerSimulation" value="20" required="true" style="width:64px;" />
+      </div>
+      <div class="FormButtonContainer">
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="cancelButton" disabled="false" data-dojo-attach-event="click:onCancel">Cancel</button>
+        <button data-dojo-type="dijit/form/Button" data-dojo-attach-point="saveButton" disabled="true" type="submit">Save</button>
+      </div>
+</form>

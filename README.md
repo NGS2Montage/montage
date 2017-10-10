@@ -55,9 +55,11 @@
 It might be convenient for development to load some initial model data with `./manage.py loaddata rafter_user_service/initial_data.json`
 
 
-## Configuration
+## Django Configuration
 Configuration is described in [`/django_montage/README.md`](https://github.com/NGS2Montage/montage/blob/master/django_montage/README.md).
 
+## Dojo Config
+/montage/montage_ui/templates/montage_ui/base.html
 
 ## Ongoing development
 
