@@ -40,10 +40,12 @@ define([
         projectArr = JSON.parse(data);
         //this.projectsView.set("content", projectArr.join(""));
         console.log(projectArr);
-        var projecthtml = '<table><thead><tr><th> </th><th>Name</th><th>Description</th></thead><tbody>';
+        var projecthtml = '<table><thead><tr><th>Project</th><th>Name</th><th>Description</th><th>Observations</th></thead><tbody>';
         for (var i = 0; i < projectArr.length; i++){
-          projecthtml += '<tr><td><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" onclick="updateProj(' + projectArr[i].id + ',this.projectsView)">Update</button></td>' +
-          '<td><a style="color:#0000ff; text-decoration:underline" href="/project/' + projectArr[i].id + '">' + projectArr[i].name + '</a></td><td>' + projectArr[i].description + '</td></tr>';
+          projecthtml += '<tr><td><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" onclick="updateProj(' + projectArr[i].id + ')">Update</button></td>' +
+          '<td><a style="color:#0000ff; text-decoration:underline" href="/project/' + projectArr[i].id + '">' + projectArr[i].name + '</a></td><td>' + projectArr[i].description +
+          '</td><td><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" onclick="createObs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">Make</button>' +
+          '<button class = "submitButton" onclick="viewObs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">View</button></td></tr>';
           //console.log(projectArr[i]);
         }
         projecthtml += '</tdody></table><div style="display:none" class="updateProj"></div>';
