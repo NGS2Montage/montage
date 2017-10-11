@@ -7,9 +7,10 @@ from .team import Team
 
 class Project(AuditedTimeStampedModel):
 
+    name = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
     team = models.ForeignKey(Team, related_name='%(class)s_team')
     project_state = models.ForeignKey(ProjectState, related_name='%(class)s_project_state')
 
     def __str__(self):
-        return '({}) {}'.format(self.team, self.description)
+        return '({}) {}'.format(self.team, self.name)
