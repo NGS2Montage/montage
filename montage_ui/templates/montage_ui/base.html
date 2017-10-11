@@ -3,33 +3,36 @@
 {% block head %}
 
 <link rel="stylesheet" href="/static/js/montage/resources/montage.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 
 {% endblock %}
-<body class="claro patric Authenticated">
-	<div id="ApplicationContainer" data-dojo-type="RouterApp/ApplicationContainer" class="layoutContainer" data-dojo-props="gutters:false,liveSplitters:false" style="width:100%;height:100%;">
-		{% block header %}
-		<div class="StaticTopMenu" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
-			<a class="ApplicationNavLink" href="/page/about">ABOUT</a>&nbsp;
-			<a class="ApplicationNavLink" href="/page/contact">CONTACT</a>&nbsp;
-		</div>
+<body class="claro patric Authenticated container-fluid">
 
-		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'" style="background: #ddd;margin:0px;padding:8px;border:0px;">
-			{% block header_content %}
-			{% include "./headerbar.html" %}
+		<div id="ApplicationContainer" data-dojo-type="RouterApp/ApplicationContainer" class="layoutContainer" data-dojo-props="gutters:false,liveSplitters:false" style="width:100%;height:100%;">
+			{% block header %}
+			<div class="StaticTopMenu" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'">
+				<a class="ApplicationNavLink" href="/page/about">ABOUT</a>&nbsp;
+				<a class="ApplicationNavLink" href="/page/contact">CONTACT</a>&nbsp;
+			</div>
+
+			<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region: 'top'" style="background: #ddd;margin:0px;padding:8px;border:0px;">
+				{% block header_content %}
+				{% include "./headerbar.html" %}
+				{% endblock %}
+			</div>
 			{% endblock %}
-		</div>
-		{% endblock %}
 
-		{% block content_container %}
-		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" style="margin:0px;padding:6px;border:0px solid #ddd;background:inherit;">
-			{% block title %}{% endblock %}
-			{% block content %}
+			{% block content_container %}
+			<div data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'" style="margin:0px;padding:6px;border:0px solid #ddd;background:inherit;">
+				{% block title %}{% endblock %}
+				{% block content %}
+				{% endblock %}
+			</div>
 			{% endblock %}
-		</div>
-		{% endblock %}
 
-	</div>
-	<div style="display:none" class="updateProjForm"></div>
+		</div>
+		<div style="display:none; margin:auto; text-align:center" class="updateProjForm"></div>
+
 	<script>
 	dojoConfig = {
 		parseOnLoad: false,
@@ -39,145 +42,12 @@
 
 	<script src="/static/js/dojo/dojo.js"></script>
 	<script>
-
 	require(["montage/app"], function(App){
 		appOpts = {}
 		appOpts.authorizationToken = "{{ request.session.JWT }}"
 		window.App = new App(appOpts);
 	});
-	var proj = {};
-	var updateProj = function(projid){
-		console.log(projid);
-		fetch('/api/projects/' + projid + '/')
-		.then((resp) => resp.json())
-		.then((data) => {
-			proj = data;
-			console.log(proj);
-			var upf = document.getElementsByClassName('updateProjForm');
-			upf[0].style.display = 'block';
-			upf[0].innerHTML = '<h2>Update Project</h2><form><label>Name</label><input class="updateprojinputs" name="projname" value="' + proj.name + '"><br><label>Description</label><input class="updateprojinputs" name ="projdesc" value ="' + proj.description +
-			'"><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="putProj()">Update</button>' +
-			'<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="cancelProj()">Cancel</button></form>';
-			upf[0].scrollIntoView();
-		});
-	};
-
-	var cancelProj = function(){
-		var upf = document.getElementsByClassName('updateProjForm');
-		upf[0].style.display = 'none';
-		document.body.scrollTop = document.documentElement.scrollTop = 0;
-	};
-
-	var getCookieToken = function(){
-		var name = 'csrftoken=';
-		var cookieToken = '';
-		var decodedCookie = decodeURIComponent(document.cookie);
-		var ca = decodedCookie.split(';');
-		for (var i = 0; i < ca.length; i++) {
-			var c = ca[i];
-			while (c.charAt(0) === ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) === 0) {
-				cookieToken = c.substring(name.length, c.length);
-			}
-		}
-		return cookieToken;
-	}
-
-	var putProj = function(){
-		var inputs = document.getElementsByClassName('updateprojinputs');
-		console.log(inputs);
-		var bodyData = {'name': inputs[0].value, 'description': inputs[1].value, 'team': 1, 'investigations':[], 'project_state':1 };
-		// var name = 'csrftoken=';
-		// var cookieToken = '';
-		// var decodedCookie = decodeURIComponent(document.cookie);
-		// var ca = decodedCookie.split(';');
-		// for (var i = 0; i < ca.length; i++) {
-		// 	var c = ca[i];
-		// 	while (c.charAt(0) === ' ') {
-		// 		c = c.substring(1);
-		// 	}
-		// 	if (c.indexOf(name) === 0) {
-		// 		cookieToken = c.substring(name.length, c.length);
-		// 	}
-		// }
-		var cookieToken = getCookieToken();
-		var fetchData = {
-			method: 'PUT',
-			credentials: 'same-origin',
-			body: JSON.stringify(bodyData),
-			headers: {'X-CSRFTOKEN': cookieToken,
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		}
-	};
-	console.log('trying to put project');
-	console.log(fetchData);
-	//return;
-	fetch('/api/projects/' + proj.id + '/', fetchData)
-	.then((data) => {
-		console.log(data);
-		location.reload();
-	});
-};
-
-var createObs = function(projid, projname){
-	console.log(projid);
-	console.log(projname);
-	var upf = document.getElementsByClassName('updateProjForm');
-	upf[0].style.display = 'block';
-	upf[0].innerHTML = '<h2>Make Observation for ' + projname + '</h2><form>' +
-	'<<textarea rows="4" cols="50" class="obscom" name="obscom" value="">Enter comments</textarea>' +
-	'<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="putObs('+ projid + ')">Submit</button>' +
-	'<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="cancelProj()">Cancel</button></form>';
-	upf[0].scrollIntoView();
-};
-
-var putObs = function(projid){
-	var comments = document.getElementsByClassName('obscom');
-	var bodyData = {'comment': comments[0].value, 'project': projid };
-	var cookieToken = getCookieToken();
-	var fetchData = {
-		method: 'POST',
-		credentials: 'same-origin',
-		body: JSON.stringify(bodyData),
-		headers: {'X-CSRFTOKEN': cookieToken,
-		'Accept': 'application/json',
-		'Content-Type': 'application/json'
-		}
-	}
-	fetch('/api/observations/', fetchData)
-	.then((data) => {
-		console.log(data);
-		location.reload();
-	});
-};
-
-var viewObs = function(projid, projname){
-	console.log(projid);
-	console.log(projname);
-	var upf = document.getElementsByClassName('updateProjForm');
-	upf[0].style.display = 'block';
-	upf[0].innerHTML = '<h2>Current Observations for ' + projname + '</h2>';
-	// var fetchData = {
-	// 		headers: {'X-CSRFTOKEN': cookieToken,
-	// 	'Accept': 'application/json',
-	// 	'Content-Type': 'application/json'
-	// 	}
-	// }
-	fetch('/api/observations/' + projid + '/')
-	.then((resp) => resp.json())
-	.then((data) => {
-		console.log(data);
-		upf[0].innerHTML += '<textarea rows="6" cols="50">' + JSON.stringify(data) + '</textarea>'
-	})
-	.catch((error) => {
-		console.log(error);
-	});
-	upf[0].scrollIntoView();
-};
-
 </script>
+<script src="/static/js/montage/base.js"></script>
 </body>
 </html>
