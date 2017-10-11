@@ -65,11 +65,24 @@
 		var inputs = document.getElementsByClassName('updateprojinputs');
 		console.log(inputs);
 		var bodyData = {'name': inputs[0].value, 'description': inputs[1].value, 'team': 1, 'investigations':[], 'project_state':1 };
+		var name = 'csrftoken=';
+		var cookieToken = '';
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) === ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) === 0) {
+				cookieToken = c.substring(name.length, c.length);
+			}
+		}
 		var fetchData = {
 			method: 'PUT',
 			credentials: 'same-origin',
 			body: JSON.stringify(bodyData),
-			headers: {'X-CSRFTOKEN': 'NkurnTPjiik9IwsENyx5yNQprISrh9MWiZOu0rMr4b83kIZWrdTUSAjXfShbfY0g',
+			headers: {'X-CSRFTOKEN': cookieToken,
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 				// 'Cookie': 'tabstyle=raw-tab; sessionid=ranr65yx2wv3wfzyig5oqmco8i80uxao; csrftoken=NkurnTPjiik9IwsENyx5yNQprISrh9MWiZOu0rMr4b83kIZWrdTUSAjXfShbfY0g'
