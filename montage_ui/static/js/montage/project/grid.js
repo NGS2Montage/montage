@@ -40,17 +40,27 @@ define([
         projectArr = JSON.parse(data);
         //this.projectsView.set("content", projectArr.join(""));
         console.log(projectArr);
-        var projecthtml = '';
+        var projecthtml = '<table><thead><tr><th> </th><th>Name</th><th>Description</th></thead><tbody>';
         for (var i = 0; i < projectArr.length; i++){
-          projecthtml += '<p>Description: <a style="color:#0000ff; text-decoration:underline" href="/project/' + projectArr[i].id + '">' + projectArr[i].description + '<a></p>';
+          projecthtml += '<tr><td><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" onclick="updateProj(' + projectArr[i].id + ',this.projectsView)">Update</button></td>' +
+          '<td><a style="color:#0000ff; text-decoration:underline" href="/project/' + projectArr[i].id + '">' + projectArr[i].name + '</a></td><td>' + projectArr[i].description + '</td></tr>';
           //console.log(projectArr[i]);
         }
+        projecthtml += '</tdody></table><div style="display:none" class="updateProj"></div>';
         pview.set("content", projecthtml);
+        //document.body.innerHTML += '<div class="updateProj"></div>';
         //return projectArr;
       });
       //var proj = this.store.query({}, {sort: [{attribute: "lastModified", descending: true}]} );
       //console.log(proj);
       //return proj;
     }
+    // updateProj: function(proj){
+    //   console.log(proj);
+    //   console.log(pview);
+      //document.body.innerHTML += '<div class="updateProj"></div>';
+      //var updateDiv = document.getElementsByClassName('updateProj');
+      //console.log(updateDiv[0]);
+    // }
   });
 });

@@ -35,6 +35,7 @@ define([
         this.showMessage('working');
         console.log('Form is Valid!', values);
         newProject = {
+          'name': values.name,
           'description': values.description,
           'team': 1,
           'project_state': 1,

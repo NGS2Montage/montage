@@ -2,7 +2,7 @@
 <html>
 {% block head %}
 
-	<link rel="stylesheet" href="/static/js/montage/resources/montage.css" />
+<link rel="stylesheet" href="/static/js/montage/resources/montage.css" />
 
 {% endblock %}
 <body class="claro patric Authenticated">
@@ -27,7 +27,9 @@
 			{% endblock %}
 		</div>
 		{% endblock %}
+
 	</div>
+	<div style="display:none" class="updateProjForm"></div>
 	<script>
 	dojoConfig = {
 		parseOnLoad: false,
@@ -43,6 +45,46 @@
 		appOpts.authorizationToken = "{{ request.session.JWT }}"
 		window.App = new App(appOpts);
 	});
+  var proj = {};
+	var updateProj = function(projid){
+		console.log(projid);
+		fetch('/api/projects/' + projid + '/')
+		.then((resp) => resp.json())
+		.then((data) => {
+			proj = data;
+			console.log(proj);
+			var upf = document.getElementsByClassName('updateProjForm');
+			upf[0].style.display = 'block';
+			upf[0].innerHTML = '<h2>Update Project</h2><form><label>Name</label><input class="updateprojinputs" name="projname" value="' + proj.name + '"><br><label>Description</label><input class="updateprojinputs" name ="projdesc" value ="' + proj.description +
+			'"><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="putProj()">Update</button></form>';
+			upf[0].scrollIntoView();
+		});
+	};
+
+	var putProj = function(){
+		var inputs = document.getElementsByClassName('updateprojinputs');
+		console.log(inputs);
+		var bodyData = {'name': inputs[0].value, 'description': inputs[1].value, 'team': 1, 'investigations':[], 'project_state':1 };
+		var fetchData = {
+			method: 'PUT',
+			credentials: 'same-origin',
+			body: JSON.stringify(bodyData),
+			headers: {'X-CSRFTOKEN': 'NkurnTPjiik9IwsENyx5yNQprISrh9MWiZOu0rMr4b83kIZWrdTUSAjXfShbfY0g',
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+				// 'Cookie': 'tabstyle=raw-tab; sessionid=ranr65yx2wv3wfzyig5oqmco8i80uxao; csrftoken=NkurnTPjiik9IwsENyx5yNQprISrh9MWiZOu0rMr4b83kIZWrdTUSAjXfShbfY0g'
+				}
+		};
+		console.log('trying to put project');
+		console.log(fetchData);
+		//return;
+		fetch('/api/projects/' + proj.id + '/', fetchData)
+		.then((data) => {
+			console.log(data);
+			location.reload();
+		});
+	}
+
 	</script>
 </body>
 </html>
