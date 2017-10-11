@@ -40,7 +40,7 @@ class ProjectSerializer(MyBaseSerializer):
 
     class Meta:
         model = models.Project
-        fields = ('description', 'team', 'project_state', 'investigations')
+        fields = ('name', 'description', 'team', 'project_state', 'investigations')
 
     def to_representation(self, instance):
         representation = super(ProjectSerializer, self).to_representation(instance)
