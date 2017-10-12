@@ -92,7 +92,7 @@ class ExperimentSerializer(MyBaseSerializer):
         fields = ('name', 'description', 'method', 'protocol', 'consent', 'recruitment')
 
 
-class InvestigationSerializer(serializers.ModelSerializer):
+class InvestigationSerializer(MyBaseSerializer):
     analysis = serializers.PrimaryKeyRelatedField(source='analysis_set', many=True, queryset=models.Analysis.objects.all())
 
     class Meta:
