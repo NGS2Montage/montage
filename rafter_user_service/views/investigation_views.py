@@ -11,6 +11,7 @@ class InvestigationViewSet(viewsets.ModelViewSet):
 
     serializer_class = InvestigationSerializer
     queryset = Investigation.objects.all()
+    filter_fields = ('project',)
 
     def retrieve_investigation(self, pk=None):
         investigation = get_object_or_404(Investigation, id=pk)
