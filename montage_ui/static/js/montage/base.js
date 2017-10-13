@@ -2,6 +2,7 @@
 var proj = {};
 /* eslint-disable */
 var updateProj = function(projid){
+  /* eslint-enable */
   console.log(projid);
   fetch('/api/projects/' + projid + '/')
   .then((resp) => resp.json())
@@ -22,7 +23,7 @@ var cancelProj = function(){
   upf[0].style.display = 'none';
   document.body.scrollTop = document.documentElement.scrollTop = 0;
 };
-/* eslint-enable */
+
 var getCookieToken = function(){
   var name = 'csrftoken=';
   var cookieToken = '';
@@ -41,6 +42,7 @@ var getCookieToken = function(){
 };
 /* eslint-disable */
 var putProj = function(){
+  /* eslint-enable */
   var inputs = document.getElementsByClassName('updateprojinputs');
   console.log(inputs);
   var bodyData = {'name': inputs[0].value, 'description': inputs[1].value, 'team': 1, 'investigations': [], 'project_state': 1 };
@@ -50,20 +52,21 @@ var putProj = function(){
     credentials: 'same-origin',
     body: JSON.stringify(bodyData),
     headers: {'X-CSRFTOKEN': cookieToken,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-};
-console.log('trying to put project');
-console.log(fetchData);
-fetch('/api/projects/' + proj.id + '/', fetchData)
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  console.log('trying to put project');
+  console.log(fetchData);
+  fetch('/api/projects/' + proj.id + '/', fetchData)
 .then((data) => {
   console.log(data);
   location.reload();
 });
 };
-
+/* eslint-disable */
 var createObs = function(projid, projname){
+    /* eslint-enable */
   console.log(projid);
   console.log(projname);
   var upf = document.getElementsByClassName('updateProjForm');
@@ -74,8 +77,9 @@ var createObs = function(projid, projname){
   '<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="cancelProj()">Cancel</button></form>';
   upf[0].scrollIntoView();
 };
-
+/* eslint-disable */
 var postObs = function(projid){
+    /* eslint-enable */
   var comments = document.getElementsByClassName('obscom');
   var bodyData = {'comment': comments[0].value, 'project': projid };
   var cookieToken = getCookieToken();
@@ -84,18 +88,19 @@ var postObs = function(projid){
     credentials: 'same-origin',
     body: JSON.stringify(bodyData),
     headers: {'X-CSRFTOKEN': cookieToken,
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  }
-};
-fetch('/api/observations/', fetchData)
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  fetch('/api/observations/', fetchData)
 .then((data) => {
   console.log(data);
   cancelProj();
 });
 };
-
+/* eslint-disable */
 var viewObs = function(projid, projname){
+    /* eslint-enable */
   console.log(projid);
   console.log(projname);
   var upf = document.getElementsByClassName('updateProjForm');
@@ -113,8 +118,9 @@ var viewObs = function(projid, projname){
     console.log(error);
   });
 };
-
+/* eslint-disable */
 var createInvs = function(projid, projname){
+    /* eslint-enable */
   console.log(projid);
   console.log(projname);
   var upf = document.getElementsByClassName('updateProjForm');
@@ -125,35 +131,37 @@ var createInvs = function(projid, projname){
   '<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="cancelProj()">Cancel</button></form>';
   upf[0].scrollIntoView();
 };
-
+/* eslint-disable */
 var postInvs = function(projid){
+  /* eslint-enable */
   var name = document.getElementsByClassName('invsname');
   var bodyData = {'name': name[0].value, 'project': projid, 'investigation_status': 1,
-  "analysis": [],
-  "experiments": [],
-  "hypotheses": [],
-  "mechanisms": [],
-  "models": [],
-  "theories": []
-};
-var cookieToken = getCookieToken();
-var fetchData = {
-  method: 'POST',
-  credentials: 'same-origin',
-  body: JSON.stringify(bodyData),
-  headers: {'X-CSRFTOKEN': cookieToken,
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-}
-};
-fetch('/api/investigations/', fetchData)
+    'analysis': [],
+    'experiments': [],
+    'hypotheses': [],
+    'mechanisms': [],
+    'models': [],
+    'theories': []
+  };
+  var cookieToken = getCookieToken();
+  var fetchData = {
+    method: 'POST',
+    credentials: 'same-origin',
+    body: JSON.stringify(bodyData),
+    headers: {'X-CSRFTOKEN': cookieToken,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  fetch('/api/investigations/', fetchData)
 .then((data) => {
   console.log(data);
   cancelProj();
 });
 };
-
+/* eslint-disable */
 var viewInvs = function(projid, projname){
+    /* eslint-enable */
   console.log(projid);
   console.log(projname);
   var upf = document.getElementsByClassName('updateProjForm');
@@ -164,11 +172,48 @@ var viewInvs = function(projid, projname){
   .then((resp) => resp.json())
   .then((data) => {
     console.log(data);
-    upf[0].innerHTML += '<textarea rows="6" cols="50">' + JSON.stringify(data) + '</textarea>';
+    for (var i = 0; i < data.length; i++){
+      upf[0].innerHTML += '<textarea rows="7" cols="60">' + JSON.stringify(data[i]) + '</textarea><br>' +
+      '<form><label>Name </label><input class="invsnameupd" value="' + data[i].name + '"><button type="button" onclick="putInvs(' + data[i].id + ',' + data[i].project + ')">Update</button></form><p>&nbsp;</p>';
+    }
+    //upf[0].innerHTML += '<textarea rows="6" cols="50">' + JSON.stringify(data) + '</textarea>';
     upf[0].scrollIntoView();
   })
   .catch((error) => {
     console.log(error);
   });
 };
-/* eslint-enable */
+/* eslint-disable */
+var putInvs = function(invsid, projid){
+    /* eslint-enable */
+  var inputs = document.getElementsByClassName('invsnameupd');
+  console.log(inputs);
+  var bodyData = {'name': inputs[0].value,
+    "analysis": [],
+    "experiments": [],
+    "hypotheses": [],
+    "mechanisms": [],
+    "models": [],
+    "project": projid,
+    "id": invsid,
+    "theories": [],
+    "investigation_status": 1
+  };
+  var cookieToken = getCookieToken();
+  var fetchData = {
+    method: 'PUT',
+    credentials: 'same-origin',
+    body: JSON.stringify(bodyData),
+    headers: {'X-CSRFTOKEN': cookieToken,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  };
+  console.log('trying to put investigations');
+  console.log(fetchData);
+  fetch('/api/investigations/' + invsid + '/', fetchData)
+.then((data) => {
+  console.log(data);
+  cancelProj();
+});
+};
