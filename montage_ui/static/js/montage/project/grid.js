@@ -42,10 +42,10 @@ define([
         console.log(projectArr);
         var projecthtml = '<table class="table"><thead><tr><th>Project</th><th>Name</th><th>Description</th><th>Observations</th><th>Investigations</th></thead><tbody>';
         for (var i = 0; i < projectArr.length; i++){
-          projecthtml += '<tr><td><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" onclick="updateProj(' + projectArr[i].id + ')">Update</button></td>' +
-          '<td><a style="color:#0000ff; text-decoration:underline" href="/project/' + projectArr[i].id + '">' + projectArr[i].name + '</a></td><td>' + projectArr[i].description +
-          '</td><td><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" onclick="createObs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">Make</button>' +
-          '<button class = "submitButton" onclick="viewObs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">View</button></td>' +
+          projecthtml += '<tr><td><button type="button" class="submitButton" onclick="updateProj(' + projectArr[i].id + ')">Update</button></td>' +
+          '<td><a href="/project/' + projectArr[i].id + '">' + projectArr[i].name + '</a></td><td>' + projectArr[i].description +
+          '</td><td><button class="submitButton" type="button" onclick="createObs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">Make</button>' +
+          '<button type="button" class="submitButton" onclick="viewObs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">View</button></td>' +
           '<td><button class = "submitButton" onclick="createInvs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">Create</button>' +
           '<button class = "submitButton" onclick="viewInvs(' + projectArr[i].id + ', &apos;' + projectArr[i].name + '&apos;)">View</button></td></tr>';
           //console.log(projectArr[i]);

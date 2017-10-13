@@ -11,9 +11,11 @@ var updateProj = function(projid){
     console.log(proj);
     var upf = document.getElementsByClassName('updateProjForm');
     upf[0].style.display = 'block';
-    upf[0].innerHTML = '<h2>Update Project</h2><form><label>Name</label><input class="updateprojinputs" name="projname" value="' + proj.name + '"><br><label>Description</label><input class="updateprojinputs" name ="projdesc" value ="' + proj.description +
-    '"><button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="putProj()">Update</button>' +
-    '<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="cancelProj()">Cancel</button></form>';
+    upf[0].innerHTML = '<h2>Update Project</h2><form class="elevation3"><label>Name</label>' +
+    '<br><input class="updateprojinputs" name="projname" value="' + proj.name +
+    '"><br><label>Description</label><br><input class="updateprojinputs" name ="projdesc" value ="' + proj.description +
+    '"><p>&nbsp;</p><button class="submitButton" type="button" onclick="putProj()">Update</button>' +
+    '<button class="submitButton" type="button" onclick="cancelProj()">Cancel</button></form><p>&nbsp;</p><p>&nbsp;</p>';
     upf[0].scrollIntoView();
   });
 };
@@ -72,9 +74,9 @@ var createObs = function(projid, projname){
   var upf = document.getElementsByClassName('updateProjForm');
   upf[0].style.display = 'block';
   upf[0].innerHTML = '<h2>Make Observation for ' + projname + '</h2><form>' +
-  '<textarea rows="4" cols="50" class="obscom" name="obscom" value="">Enter comments</textarea>' +
-  '<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="postObs(' + projid + ')">Submit</button>' +
-  '<button style="cursor:pointer; cursor:hand;" onmouseout="this.style.backgroundColor=&apos;#f2f2f2&apos;" onmouseover="this.style.backgroundColor=&apos;#99ddff&apos;" type="button" onclick="cancelProj()">Cancel</button></form>';
+  '<textarea rows="7" cols="30" class="obscom" name="obscom" value="">Enter comments</textarea>' +
+  '<button type="button" class="submitButton" click="postObs(' + projid + ')">Submit</button>' +
+  '<button type="button" class="submitButton" onclick="cancelProj()">Cancel</button></form><p>&nbsp;</p><p>&nbsp;</p>';
   upf[0].scrollIntoView();
 };
 /* eslint-disable */
