@@ -119,3 +119,11 @@ Send a DELETE to the single item URL.
 Load some sample data into the database with `./manage.py loaddata rafter_user_service/initial_data.json`
 
 This will make an admin user with password `correcthorsebatterystaple`.
+
+## Admin Panel
+
+http://localhost:8000/admin/
+
+* If you are logged in as admin, you can access this webpage.
+
+* Investigation_Status is required for creating an investigation, and this needs to be added from the Admin panel.
