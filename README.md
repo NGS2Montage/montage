@@ -11,40 +11,25 @@
     ```
 3. Start a virtual environment
 
-  a.
-  ```
-  apt-get install python3-venv
-  ```
-  b.
-  ```
-  python3 -m venv env
-  ```
-  c.
-  ```
-   . ./env/bin/activate
-  ```
+  a. `apt-get install python3-venv`
+
+  b. `python3 -m venv env`
+
+  c. `. ./env/bin/activate`
 
 4. You should see (env) at prompt, then run:
-    ```
-    pip3 install -r requirements.txt
-    ```  
-5. Now apply settings.  To do this
-    ```
-    - Copy `django_montage/local_settings.py.example` to
+    `pip3 install -r requirements.txt`  
+5. Now apply settings. To do this:
+ * Copy `django_montage/local_settings.py.example` to
        `django_montage/local_settings.py`.
-    - Add any configuration settings to
+ * Add any configuration settings to
        `local_settings.py`.
-    - If not connecting to Postgres, comment out that entire section from this file.
-    ```
+ * If not connecting to Postgres, comment out that entire section from this file.
+    <br><br>
 6. Apply these migrations with:
-    ```
-    python3 manage.py migrate
-    ```
+   `python3 manage.py migrate`
 
-7. Start the server with:
-    ```
-    python3 manage.py runserver
-    ```
+7. Start the server with: `python3 manage.py runserver`
 
 8. Create a superuser `admin` with `python manage.py createsuperuser`.  This will allow for administrator account approval.
 
@@ -63,8 +48,8 @@ Configuration is described in [`/django_montage/README.md`](https://github.com/N
 
 ## Ongoing development
 
-1. . ./env/bin/activate
-2. python3 manage.py runserver
+1. `. ./env/bin/activate`
+2. `python3 manage.py runserver`
 
 ## If db KeyError Occurs
 

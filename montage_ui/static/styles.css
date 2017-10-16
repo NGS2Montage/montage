@@ -1,0 +1,52 @@
+
+a,
+a:visited {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: rgb(0, 123, 255);
+}
+
+button {
+  margin: 3px;
+}
+
+form {
+  text-align: left;
+  max-width: 2.5in;
+  margin: auto;
+}
+
+input {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+label {
+  margin-bottom: 0;
+  padding-left: 5px;
+  font-size: 10pt;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+td {
+  vertical-align: middle;
+}
+
+td button {
+  margin-top: 0;
+}
+
+textarea {
+  padding: 5px;
+}
+
+.table td {
+  vertical-align: middle;
+}

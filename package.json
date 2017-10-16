@@ -18,10 +18,10 @@
     "start": "nps",
     "eslint-fix": "./node_modules/eslint/bin/eslint.js --fix .",
     "preinstall": "npm install -g npm && npm install -g yarn",
-    "cleaninstall": "rm -rf bower_components && rm -rf yarn.lock && rm -rf node_modules && yarn cache clean && yarn install",
+    "cleaninstall": "rm -rf bower_components && rm -rf yarn.lock && rm -rf node_modules && yarn cache clean && yarn install"
   },
   "dependencies": {
-    "pushstate-server": "^3.0.0",
+    "pushstate-server": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

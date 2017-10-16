@@ -24,9 +24,39 @@ a:hover {
   color: #009c3a;
 }
 
+button {
+  cursor: pointer;
+  cursor: hand;
+}
+
+button:hover {
+  background-color: #f2f2f2;
+}
+
 h1 {
   text-align: center;
   margin-top: 20px;
+}
+
+table {
+  margin: auto;
+  border-collapse: separate;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #d8ecf3;
+}
+
+th,
+td {
+  border-collapse: collapse;
+  border: 1px solid #777;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  font-weight: bold;
 }
 
 .elevation3 {
